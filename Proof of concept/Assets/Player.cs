@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
 
     public static Player instance;
     Renderer rend;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float speedModifier;
     public float Sides = 3;
     public float Width = 1;
     public float Height = 1;
@@ -16,20 +20,23 @@ public class Player : MonoBehaviour
     public float BAmmount ;
     public float colorAugment;
     public float sizeAugment;
+    private Rigidbody2D rb;
 
     void Awake()
     {
         instance = this;
         rend = GetComponent<Renderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Move();
         Shape();
         //Size();
         ChangeColor();
+
     }
 
     void Shape()
@@ -45,32 +52,39 @@ public class Player : MonoBehaviour
             rend.material.SetFloat("Sides", Sides);
         }
     }
+    private void Move()
+    {
+        float inputHorizontal = Input.GetAxis("Horizontal");
+        
+        float inputVertical = Input.GetAxis("Vertical");
+        rb.velocity = new Vector2(inputHorizontal, inputVertical).normalized * (speed * speedModifier);
 
-    //void Size()
-    //{
-    //    if (Input.GetButton("z"))
-    //    {
-    //        Height = Mathf.Clamp(Height + 0.001f, 0.5f, 1.1f);
-    //        rend.material.SetFloat("Height", Height);
-    //    }
-    //    if (Input.GetButton("e"))
-    //    {
-    //        Width = Mathf.Clamp(Width + 0.001f, 0.5f, 1.1f);
-    //        rend.material.SetFloat("Width", Width);
-    //    }
-    //    if (Input.GetButton("s"))
-    //    {
-    //        Height = Mathf.Clamp(Height - 0.001f, 0.5f, 1.1f);
-    //        rend.material.SetFloat("Height", Height);
-    //    }
-    //    if (Input.GetButton("q"))
-    //    {
-    //        Width = Mathf.Clamp(Width - 0.001f, 0.5f, 1.1f);
-    //        rend.material.SetFloat("Width", Width);
-    //    }
-    //}
+    }
+        //void Size()
+        //{
+        //    if (Input.GetButton("z"))
+        //    {
+        //        Height = Mathf.Clamp(Height + 0.001f, 0.5f, 1.1f);
+        //        rend.material.SetFloat("Height", Height);
+        //    }
+        //    if (Input.GetButton("e"))
+        //    {
+        //        Width = Mathf.Clamp(Width + 0.001f, 0.5f, 1.1f);
+        //        rend.material.SetFloat("Width", Width);
+        //    }
+        //    if (Input.GetButton("s"))
+        //    {
+        //        Height = Mathf.Clamp(Height - 0.001f, 0.5f, 1.1f);
+        //        rend.material.SetFloat("Height", Height);
+        //    }
+        //    if (Input.GetButton("q"))
+        //    {
+        //        Width = Mathf.Clamp(Width - 0.001f, 0.5f, 1.1f);
+        //        rend.material.SetFloat("Width", Width);
+        //    }
+        //}
 
-    void ChangeColor()
+        void ChangeColor()
     {
         if (Input.GetButton("z"))
         {
