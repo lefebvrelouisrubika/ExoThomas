@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 1771732236}
   - component: {fileID: 1771732238}
   - component: {fileID: 1771732239}
+  - component: {fileID: 1771732240}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -354,6 +355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020e572c68ae07348bd72bd5e59e5fba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  speedModifier: 1
   Sides: 3
   Width: 1
   Height: 1
@@ -362,3 +365,24 @@ MonoBehaviour:
   BAmmount: 0.87795275
   colorAugment: 0.0005
   sizeAugment: 0.001
+--- !u!50 &1771732240
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771732235}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
