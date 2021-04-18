@@ -21,13 +21,23 @@ public class Player : MonoBehaviour
     public float colorAugment;
     public float sizeAugment;
     private Rigidbody2D rb;
+    private float originalSides;
+    private float originalRAmmount;
+    private float originalGAmmount;
+    private float originalBAmmount;
+    public float returnModifier;
+    public float Tlerp;
 
     void Awake()
     {
         instance = this;
         rend = GetComponent<Renderer>();
         rb = GetComponent<Rigidbody2D>();
-    }
+        originalSides=Sides;
+        originalRAmmount=RAmmount;
+        originalGAmmount=GAmmount;
+        originalBAmmount=BAmmount;
+}
 
     // Update is called once per frame
     void Update()
@@ -36,6 +46,7 @@ public class Player : MonoBehaviour
         Shape();
         //Size();
         ChangeColor();
+        ReturnToOriginal();
 
     }
 
@@ -50,6 +61,48 @@ public class Player : MonoBehaviour
         {
             Sides = Mathf.Clamp(Sides - sizeAugment, 3, 16);
             rend.material.SetFloat("Sides", Sides);
+        }
+    }
+    void ReturnToOriginal()
+    {
+        if(originalSides!=Sides || originalRAmmount!=RAmmount || originalGAmmount!=GAmmount || originalBAmmount!=BAmmount)
+        {
+            if (Sides > originalSides)
+            {
+                Sides = Sides - returnModifier * (Sides / originalSides);
+                rend.material.SetFloat("Sides", Sides);
+            }
+
+            RAmmount = Mathf.Lerp(RAmmount, originalRAmmount, Tlerp);
+            GAmmount = Mathf.Lerp(GAmmount, originalGAmmount, Tlerp);
+            BAmmount = Mathf.Lerp(BAmmount, originalBAmmount, Tlerp);
+            //if (RAmmount > originalRAmmount)
+            //{
+            //    RAmmount = Mathf.Clamp(RAmmount - returnModifier * (RAmmount / originalRAmmount),originalRAmmount,0);
+            //}
+            //if (RAmmount < originalRAmmount)
+            //{
+            //    RAmmount = Mathf.Clamp(RAmmount + returnModifier * (RAmmount / originalRAmmount),0,originalRAmmount);
+            //}
+            //if (GAmmount > originalGAmmount)
+            //{
+            //    GAmmount = Mathf.Clamp(GAmmount - returnModifier * (GAmmount / originalGAmmount),originalGAmmount,0);
+            //}
+            //if (GAmmount < originalGAmmount)
+            //{
+            //    GAmmount = Mathf.Clamp(GAmmount + returnModifier * (GAmmount / originalGAmmount),0,originalGAmmount);
+            //}
+            //if (BAmmount > originalBAmmount)
+            //{
+            //    BAmmount = Mathf.Clamp(BAmmount - returnModifier * (BAmmount / originalBAmmount),originalBAmmount,1);
+            //}
+            //if (BAmmount < originalBAmmount)
+            //{
+            //    BAmmount = Mathf.Clamp(BAmmount + returnModifier * (BAmmount / originalBAmmount),0,originalBAmmount);
+            //}
+            rend.material.SetColor("_Color", new Vector4(RAmmount, GAmmount, BAmmount, 1));
+
+            
         }
     }
     private void Move()

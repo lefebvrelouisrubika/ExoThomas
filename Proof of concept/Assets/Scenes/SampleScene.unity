@@ -364,7 +364,9 @@ MonoBehaviour:
   GAmmount: 0.63385826
   BAmmount: 0.87795275
   colorAugment: 0.0005
-  sizeAugment: 0.001
+  sizeAugment: 0.003
+  returnModifier: 0.001
+  Tlerp: 0.01
 --- !u!50 &1771732240
 Rigidbody2D:
   serializedVersion: 4
