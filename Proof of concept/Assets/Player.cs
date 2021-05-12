@@ -54,12 +54,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton("a"))
         {
-            Sides = Mathf.Clamp(Sides + sizeAugment, 3, 16);
+            Sides = Mathf.Clamp(Sides + sizeAugment, 3, 10);
             rend.material.SetFloat("Sides", Sides);
         }
         if (Input.GetButton("r"))
         {
-            Sides = Mathf.Clamp(Sides - sizeAugment, 3, 16);
+            Sides = Mathf.Clamp(Sides - sizeAugment, 3, 10);
             rend.material.SetFloat("Sides", Sides);
         }
     }
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour
         float inputHorizontal = Input.GetAxis("Horizontal");
         
         float inputVertical = Input.GetAxis("Vertical");
-        rb.velocity = new Vector2(inputHorizontal, inputVertical).normalized * (speed * speedModifier);
+        rb.velocity = new Vector2(inputHorizontal, inputVertical)* (speed * speedModifier);
 
     }
         //void Size()
