@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class NPCFriend : MonoBehaviour
+public enum State
+{
+    Happy,
+    Flee,
+    Attack,
+    Neutral,
+}
+public class NPC : MonoBehaviour
 {
 
 
@@ -65,7 +71,7 @@ public class NPCFriend : MonoBehaviour
     {
 
         Behaviour();
-        //StateCalcul();
+        StateCalcul();
 
 
         //if (Input.GetKeyDown(KeyCode.Space))

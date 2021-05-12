@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
     private float originalBAmmount;
     public float returnModifier;
     public float Tlerp;
+    public float returnSpeed =150 ;
 
     void Awake()
     {
@@ -73,9 +74,9 @@ public class Player : MonoBehaviour
                 rend.material.SetFloat("Sides", Sides);
             }
 
-            RAmmount = Mathf.Lerp(RAmmount, originalRAmmount, Tlerp);
-            GAmmount = Mathf.Lerp(GAmmount, originalGAmmount, Tlerp);
-            BAmmount = Mathf.Lerp(BAmmount, originalBAmmount, Tlerp);
+            RAmmount = Mathf.Lerp(RAmmount, originalRAmmount, Tlerp * Time.deltaTime * returnSpeed);
+            GAmmount = Mathf.Lerp(GAmmount, originalGAmmount, Tlerp * Time.deltaTime * returnSpeed);
+            BAmmount = Mathf.Lerp(BAmmount, originalBAmmount, Tlerp * Time.deltaTime * returnSpeed);
             //if (RAmmount > originalRAmmount)
             //{
             //    RAmmount = Mathf.Clamp(RAmmount - returnModifier * (RAmmount / originalRAmmount),originalRAmmount,0);

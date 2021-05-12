@@ -54,7 +54,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Multiply_movement: 0.009
+    - Multiply_movement: 0.004
     - Scale: 13
     - _AlphaClip: 0
     - _Blend: 0

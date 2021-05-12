@@ -112,11 +112,14 @@ MonoBehaviour:
   attackDistanceMin: 1.5
   attackDistanceMax: 3
   Tlerp: 0.0008
-  attackTLerp: 0.08
+  attackTLerp: 0.1
   rotLerp: 0.01
   palier1: 0.8
   palier2: 0.7
   palier3: 0.6
+  attackSpeed: 150
+  rotSpeed: 250
+  fleeSpeedDeltaTime: 250
 --- !u!58 &3956358307602030565
 CircleCollider2D:
   m_ObjectHideFlags: 0
