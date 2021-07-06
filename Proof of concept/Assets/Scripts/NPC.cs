@@ -17,7 +17,7 @@ public class NPC : MonoBehaviour
     
     Renderer rend;
 
-    public Player Player;
+    //public Player Player;
     public GameObject SwetParticles;
     public float Sides = 3;
     public float Width = 1;
@@ -73,7 +73,7 @@ public class NPC : MonoBehaviour
     {
 
         Behaviour();
-        //StateCalcul();
+        StateCalcul();
 
 
         //if (Input.GetKeyDown(KeyCode.Space))
@@ -178,7 +178,7 @@ public class NPC : MonoBehaviour
                         }
                         else
                         {
-                            this.transform.position = Vector3.Lerp(this.transform.position, initialPosition, attackTLerp * Time.deltaTime);
+                            this.transform.position = Vector3.Lerp(this.transform.position, initialPosition, attackTLerp * Time.deltaTime * attackSpeed);
                             hasFinishAttack = Vector3.Distance(this.transform.position, initialPosition) < 0.001f;
                         }
                     }
@@ -201,11 +201,11 @@ public class NPC : MonoBehaviour
     }
     void StateCalcul()
     {
-        float calculSides = Mathf.Abs(Sides-Player.Sides)+1;
+        float calculSides = Mathf.Abs(Sides-myPlayer.Sides)+1;
         var s = 1 / calculSides;
-        var r = 1 - Mathf.Abs(RAmmount - Player.RAmmount);
-        var b = 1 - Mathf.Abs(BAmmount - Player.BAmmount);
-        var g = 1 - Mathf.Abs(GAmmount - Player.GAmmount);
+        var r = 1 - Mathf.Abs(RAmmount - myPlayer.RAmmount);
+        var b = 1 - Mathf.Abs(BAmmount - myPlayer.BAmmount);
+        var g = 1 - Mathf.Abs(GAmmount - myPlayer.GAmmount);
 
         var moyenne = (s + r + b + g) / 4;
         if (moyenne>= palier1)

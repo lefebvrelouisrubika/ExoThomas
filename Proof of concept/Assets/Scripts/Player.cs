@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public float Tlerp;
     public float returnSpeed =150 ;
     public float returnSpeedSides = 150;
+    public float turnSpeed = 10;
 
     void Awake()
     {
@@ -113,6 +114,8 @@ public class Player : MonoBehaviour
         
         float inputVertical = Input.GetAxis("Vertical");
         rb.velocity = new Vector2(inputHorizontal, inputVertical)* (speed * speedModifier);
+        float angle = Mathf.Atan2(-inputHorizontal, inputVertical) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, angle), Time.deltaTime*turnSpeed);
 
     }
         //void Size()
