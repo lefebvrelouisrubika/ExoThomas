@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class NPCFriend : MonoBehaviour
+public enum State
+{
+    Neutral,
+    Attack,
+    Happy,
+    Flee
+};
+public class NPC : MonoBehaviour
 {
 
 
@@ -12,6 +18,7 @@ public class NPCFriend : MonoBehaviour
     Renderer rend;
 
     public Player Player;
+    public GameObject SwetParticles;
     public float Sides = 3;
     public float Width = 1;
     public float Height = 1;
@@ -48,6 +55,7 @@ public class NPCFriend : MonoBehaviour
     private float rotSpeed = 1;
     [SerializeField]
     private float fleeSpeedDeltaTime = 1;
+    
 
 
 
@@ -137,7 +145,13 @@ public class NPCFriend : MonoBehaviour
             case State.Flee:
                 if (Vector2.Distance(myPlayer.transform.position, this.transform.position) < fleeDistance)
                 {
+                    SwetParticles.SetActive(true);
                     this.transform.position = Vector2.Lerp(this.transform.position, this.transform.position + ((this.transform.position - myPlayer.transform.position).normalized * fleeSpeed), Tlerp * Time.deltaTime * fleeSpeedDeltaTime);
+
+                }
+                else
+                {
+                    SwetParticles.SetActive(false);
                 }
                 break;
             case State.Attack:
@@ -164,8 +178,8 @@ public class NPCFriend : MonoBehaviour
                         }
                         else
                         {
-                            this.transform.position = Vector3.Lerp(this.transform.position, initialPosition, attackTLerp);
-                            hasFinishAttack = Vector3.Distance(this.transform.position, initialPosition) < 0.1f;
+                            this.transform.position = Vector3.Lerp(this.transform.position, initialPosition, attackTLerp * Time.deltaTime);
+                            hasFinishAttack = Vector3.Distance(this.transform.position, initialPosition) < 0.001f;
                         }
                     }
                 }
@@ -214,7 +228,7 @@ public class NPCFriend : MonoBehaviour
             state = State.Attack;
 
         }
-        Debug.Log(moyenne);
+        //Debug.Log(moyenne);
         AmbientManager.instance.state = state;
     }
 
