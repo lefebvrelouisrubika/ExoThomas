@@ -7,6 +7,9 @@ public class Shape : MonoBehaviour
     [Range(3, 8)] public float side = 3;
     [ColorUsage(false, false)] public Color color = Color.red;
 
+    private SpriteRenderer sprRend = null;
+    private Renderer renderer;
+
     /// <summary>
     /// Renvoie l'écart entre deux couleur
     /// </summary>
@@ -33,4 +36,37 @@ public class Shape : MonoBehaviour
         return Shape.ColorDiff(colorA, colorB).magnitude;
     }
 
+
+#if UNITY_EDITOR
+
+    private void OnValidate()
+    {
+        if(sprRend == null)
+        {
+            sprRend = GetComponent<SpriteRenderer>();
+        }
+        else
+        {
+            sprRend.color = color;
+        }
+
+
+        if (renderer == null)
+        {
+            renderer = GetComponent<Renderer>();
+        }
+        else
+        {
+            if (renderer.material.HasFloat("Sides"))
+            {
+                renderer.material.SetFloat("Sides", side);
+            }
+            else
+            {
+                Debug.LogError("Shader stream data error", this);
+            }
+        }
+    }
+
+#endif
 }
