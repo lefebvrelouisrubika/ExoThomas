@@ -5,10 +5,19 @@ public class Shape : MonoBehaviour
 {
     [Header("ShapeParameter")]
     [Range(3, 8)] public float side = 3;
-    [ColorUsage(false, false)] public Color color = Color.red;
 
+    [ColorUsage(false, false), Space(12)]
+    public Color color = Color.grey;
+    private Color lastColor = Color.grey;
+
+    [Space(4)]
+    [Range(0, 1)] public float amountR = 0.5f;
+    [Range(0, 1)] public float amountG = 0.5f;
+    [Range(0, 1)] public float amountB = 0.5f;
+
+    [Header("Components")]
     private SpriteRenderer sprRend = null;
-    private Renderer renderer;
+    private Renderer rend;
 
     /// <summary>
     /// Renvoie l'écart entre deux couleur
@@ -36,12 +45,29 @@ public class Shape : MonoBehaviour
         return Shape.ColorDiff(colorA, colorB).magnitude;
     }
 
+    public void UpdateColor()
+    {
+        if (color != lastColor)
+        {
+            amountR = color.r;
+            amountG = color.g;
+            amountB = color.b;
+        }
+        else
+        {
+            color = new Color(amountR, amountG, amountB);
+        }
+
+        lastColor = color;
+    }
 
 #if UNITY_EDITOR
 
     private void OnValidate()
     {
-        if(sprRend == null)
+        UpdateColor();
+
+        if (sprRend == null)
         {
             sprRend = GetComponent<SpriteRenderer>();
         }
@@ -50,16 +76,15 @@ public class Shape : MonoBehaviour
             sprRend.color = color;
         }
 
-
-        if (renderer == null)
+        if (rend == null)
         {
-            renderer = GetComponent<Renderer>();
+            rend = GetComponent<Renderer>();
         }
         else
         {
-            if (renderer.material.HasFloat("Sides"))
+            if (rend.material.HasFloat("Sides"))
             {
-                renderer.material.SetFloat("Sides", side);
+                rend.material.SetFloat("Sides", side);
             }
             else
             {
