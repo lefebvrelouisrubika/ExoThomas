@@ -4,6 +4,8 @@ using UnityEngine;
 public class Shape : MonoBehaviour
 {
     [Header("ShapeParameter")]
+    protected const float MinSide = 3;
+    protected const float MaxSide = 8;
     [Range(3, 8)] public float side = 3;
 
     [ColorUsage(false, false), Space(12)]
@@ -16,8 +18,8 @@ public class Shape : MonoBehaviour
     [Range(0, 1)] public float amountB = 0.5f;
 
     [Header("Components")]
-    private SpriteRenderer sprRend = null;
-    private Renderer rend;
+    protected SpriteRenderer sprRend = null;
+    protected Renderer rend;
 
     /// <summary>
     /// Renvoie l'écart entre deux couleur
@@ -47,6 +49,11 @@ public class Shape : MonoBehaviour
 
     public void UpdateColor()
     {
+        if (sprRend == null)
+        {
+            sprRend = GetComponent<SpriteRenderer>();
+        }
+
         if (color != lastColor)
         {
             amountR = color.r;
@@ -59,6 +66,26 @@ public class Shape : MonoBehaviour
         }
 
         lastColor = color;
+
+        sprRend.color = color;
+    }
+
+    public void UpdateSide()
+    {
+        if (rend == null)
+        {
+            rend = GetComponent<Renderer>();
+        }
+
+
+        if (rend.material.HasFloat("Sides"))
+        {
+            rend.material.SetFloat("Sides", side);
+        }
+        else
+        {
+            Debug.LogError("Shader stream data error", this);
+        }
     }
 
 #if UNITY_EDITOR
@@ -66,31 +93,7 @@ public class Shape : MonoBehaviour
     private void OnValidate()
     {
         UpdateColor();
-
-        if (sprRend == null)
-        {
-            sprRend = GetComponent<SpriteRenderer>();
-        }
-        else
-        {
-            sprRend.color = color;
-        }
-
-        if (rend == null)
-        {
-            rend = GetComponent<Renderer>();
-        }
-        else
-        {
-            if (rend.material.HasFloat("Sides"))
-            {
-                rend.material.SetFloat("Sides", side);
-            }
-            else
-            {
-                Debug.LogError("Shader stream data error", this);
-            }
-        }
+        UpdateSide();
     }
 
 #endif

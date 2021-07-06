@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
         originalBAmmount=BAmmount;
 }
 
-    // Update is called once per frame
     void Update()
     {
         Move();
@@ -66,6 +65,7 @@ public class Player : MonoBehaviour
             rend.material.SetFloat("Sides", Sides);
         }
     }
+
     void ReturnToOriginal()
     {
         if(originalSides!=Sides || originalRAmmount!=RAmmount || originalGAmmount!=GAmmount || originalBAmmount!=BAmmount)
@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
         //    }
         //}
 
-        void ChangeColor()
+    void ChangeColor()
     {
         if (Input.GetButton("z"))
         {
