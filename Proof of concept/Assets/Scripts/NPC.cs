@@ -47,14 +47,15 @@ public class NPC : MonoBehaviour
     private float palier1;
     [SerializeField]
     private float palier2;
-    [SerializeField]
-    private float palier3;
+    //[SerializeField]
+    //private float palier3;
     [SerializeField]
     private float attackSpeed = 1;
     [SerializeField]
     private float rotSpeed = 1;
     [SerializeField]
     private float fleeSpeedDeltaTime = 1;
+    public bool flee = false;
     
 
 
@@ -218,16 +219,20 @@ public class NPC : MonoBehaviour
             state = State.Neutral;
 
         }
-        else if (moyenne >= palier3)
+        else if (moyenne < palier2)
         {
-            state = State.Flee;
+            if (flee==true)
+            {
+                state = State.Flee;
+            }
+            else
+            {
+                state = State.Attack;
+            }
+
 
         }
-        else if (moyenne < palier3)
-        {
-            state = State.Attack;
 
-        }
         //Debug.Log(moyenne);
         AmbientManager.instance.state = state;
     }

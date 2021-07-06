@@ -102,7 +102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 3
-  Player: {fileID: 0}
   SwetParticles: {fileID: 5579556255965725595}
   Sides: 5
   Width: 1
@@ -118,11 +117,11 @@ MonoBehaviour:
   attackTLerp: 0.1
   rotLerp: 0.01
   palier1: 0.8
-  palier2: 0.7
-  palier3: 0.6
+  palier2: 0.6
   attackSpeed: 150
   rotSpeed: 250
   fleeSpeedDeltaTime: 250
+  flee: 0
 --- !u!58 &3956358307602030565
 CircleCollider2D:
   m_ObjectHideFlags: 0

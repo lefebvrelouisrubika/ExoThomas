@@ -468,6 +468,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hexared
       objectReference: {fileID: 0}
+    - target: {fileID: 5700530734634079895, guid: 5adbe277b4a494548838ed2b7025a91c,
+        type: 3}
+      propertyPath: flee
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5adbe277b4a494548838ed2b7025a91c, type: 3}
 --- !u!4 &598417975 stripped
@@ -678,6 +683,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hexared
       objectReference: {fileID: 0}
+    - target: {fileID: 5700530734634079895, guid: 5adbe277b4a494548838ed2b7025a91c,
+        type: 3}
+      propertyPath: flee
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5adbe277b4a494548838ed2b7025a91c, type: 3}
 --- !u!4 &772790766 stripped
@@ -799,6 +809,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hexared
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700530734634079895, guid: 5adbe277b4a494548838ed2b7025a91c,
+        type: 3}
+      propertyPath: flee
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5adbe277b4a494548838ed2b7025a91c, type: 3}
@@ -1528,6 +1543,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hexared
+      objectReference: {fileID: 0}
+    - target: {fileID: 5700530734634079895, guid: 5adbe277b4a494548838ed2b7025a91c,
+        type: 3}
+      propertyPath: flee
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5adbe277b4a494548838ed2b7025a91c, type: 3}
