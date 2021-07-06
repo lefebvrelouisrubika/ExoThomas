@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public float returnModifier;
     public float Tlerp;
     public float returnSpeed =150 ;
+    public float returnSpeedSides = 150;
 
     void Awake()
     {
@@ -55,12 +56,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton("a"))
         {
-            Sides = Mathf.Clamp(Sides + sizeAugment, 3, 10);
+            Sides = Mathf.Clamp(Sides + (sizeAugment * Time.deltaTime), 3, 10);
             rend.material.SetFloat("Sides", Sides);
         }
         if (Input.GetButton("r"))
         {
-            Sides = Mathf.Clamp(Sides - sizeAugment, 3, 10);
+            Sides = Mathf.Clamp(Sides - (sizeAugment * Time.deltaTime), 3, 10);
             rend.material.SetFloat("Sides", Sides);
         }
     }
@@ -70,7 +71,7 @@ public class Player : MonoBehaviour
         {
             if (Sides > originalSides)
             {
-                Sides = Sides - returnModifier * (Sides / originalSides);
+                Sides = Mathf.Lerp(Sides, originalSides, Tlerp * Time.deltaTime * returnSpeedSides); 
                 rend.material.SetFloat("Sides", Sides);
             }
 
