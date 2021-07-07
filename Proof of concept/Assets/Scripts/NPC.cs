@@ -19,6 +19,7 @@ public class NPC : MonoBehaviour
 
     //public Player Player;
     public GameObject SwetParticles;
+    public ParticleSystem HappyParticles;
     public float Sides = 3;
     public float Width = 1;
     public float Height = 1;
@@ -56,6 +57,7 @@ public class NPC : MonoBehaviour
     [SerializeField]
     private float fleeSpeedDeltaTime = 1;
     public bool flee = false;
+    private bool waitForRotate = false;
     
 
 
@@ -188,17 +190,40 @@ public class NPC : MonoBehaviour
             case State.Happy:
                 if (!isRotating)
                 {
-                    while (Mathf.Abs(this.transform.eulerAngles.z - rotationGoal) % 360 < 45) { rotationGoal = Random.Range(0f, 360f); }
-
-                    isRotating = true;
+                    
+                    while (Mathf.Abs(this.transform.eulerAngles.z - rotationGoal) % 360 < 45) 
+                    { 
+                        rotationGoal = Random.Range(0f, 360f); 
+                    }
+                    if (!waitForRotate)
+                    {
+                        StartCoroutine("WaitForRotate");
+                    }
+                    
                 }
-                this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(0, 0, rotationGoal), rotLerp * Time.deltaTime * rotSpeed);
-                isRotating = Vector3.Distance(this.transform.eulerAngles, new Vector3(0, 0, rotationGoal)) > 0.1f;
+                else
+                {
+                    
+                    this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(0, 0, rotationGoal), rotLerp * Time.deltaTime * rotSpeed);
+                    isRotating = Vector3.Distance(this.transform.eulerAngles, new Vector3(0, 0, rotationGoal)) > 0.1f;
+                    waitForRotate = false;
+                }
+
+
+                
                 break;
             default:
 
                 break;
         }
+    }
+    IEnumerator WaitForRotate()
+    {
+        waitForRotate = true;
+        HappyParticles.Play();
+        yield return new WaitForSeconds(0.6f);
+        isRotating = true;
+        
     }
     void StateCalcul()
     {
