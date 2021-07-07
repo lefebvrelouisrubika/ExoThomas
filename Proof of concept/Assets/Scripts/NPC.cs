@@ -7,7 +7,8 @@ public enum State
     Neutral,
     Attack,
     Happy,
-    Flee
+    Flee,
+    Block
 };
 public class NPC : MonoBehaviour
 {
@@ -58,6 +59,9 @@ public class NPC : MonoBehaviour
     private float fleeSpeedDeltaTime = 1;
     public bool flee = false;
     private bool waitForRotate = false;
+    public bool block;
+    [HideInInspector] public bool wantToBlock;
+    public float blockDetectRange;
     
 
 
@@ -145,7 +149,9 @@ public class NPC : MonoBehaviour
             case State.Neutral:
 
                 break;
+
             case State.Flee:
+
                 if (Vector2.Distance(myPlayer.transform.position, this.transform.position) < fleeDistance)
                 {
                     SwetParticles.SetActive(true);
@@ -156,8 +162,11 @@ public class NPC : MonoBehaviour
                 {
                     SwetParticles.SetActive(false);
                 }
+
                 break;
+
             case State.Attack:
+
                 if (Vector2.Distance(myPlayer.transform.position, this.transform.position) < attackDistanceMax & !isWaitingForNextAttack)
                 {
                     if (canInitialiseAttack)
@@ -186,8 +195,11 @@ public class NPC : MonoBehaviour
                         }
                     }
                 }
+
                 break;
+
             case State.Happy:
+
                 if (!isRotating)
                 {
                     
@@ -208,10 +220,23 @@ public class NPC : MonoBehaviour
                     isRotating = Vector3.Distance(this.transform.eulerAngles, new Vector3(0, 0, rotationGoal)) > 0.1f;
                     waitForRotate = false;
                 }
-
-
                 
                 break;
+
+            case State.Block:
+
+                if (Vector2.Distance(myPlayer.transform.position, this.transform.position) < blockDetectRange)
+                {
+                    wantToBlock = true;
+                }
+                else
+                {
+                    wantToBlock = false;
+                }
+
+                Debug.Log(wantToBlock);
+                break;
+
             default:
 
                 break;
@@ -246,9 +271,13 @@ public class NPC : MonoBehaviour
         }
         else if (moyenne < palier2)
         {
-            if (flee==true)
+            if (flee == true)
             {
                 state = State.Flee;
+            }
+            else if (block == true)
+            {
+                state = State.Block;
             }
             else
             {
