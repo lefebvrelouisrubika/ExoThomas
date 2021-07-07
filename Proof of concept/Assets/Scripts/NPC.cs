@@ -18,7 +18,7 @@ public class NPC : MonoBehaviour
     Renderer rend;
 
     //public Player Player;
-    public GameObject SwetParticles;
+    public ParticleSystem SwetParticles;
     public ParticleSystem HappyParticles;
     public float Sides = 3;
     public float Width = 1;
@@ -148,13 +148,13 @@ public class NPC : MonoBehaviour
             case State.Flee:
                 if (Vector2.Distance(myPlayer.transform.position, this.transform.position) < fleeDistance)
                 {
-                    SwetParticles.SetActive(true);
+                    SwetParticles.Play();
                     this.transform.position = Vector2.Lerp(this.transform.position, this.transform.position + ((this.transform.position - myPlayer.transform.position).normalized * fleeSpeed), Tlerp * Time.deltaTime * fleeSpeedDeltaTime);
 
                 }
                 else
                 {
-                    SwetParticles.SetActive(false);
+                    SwetParticles.Stop();
                 }
                 break;
             case State.Attack:

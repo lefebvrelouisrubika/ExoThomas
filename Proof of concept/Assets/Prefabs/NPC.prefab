@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 3
-  SwetParticles: {fileID: 5579556255965725595}
+  SwetParticles: {fileID: 7479262812799536682}
   HappyParticles: {fileID: 2834122860320471113}
   Sides: 5
   Width: 1
@@ -411,19 +411,19 @@ PrefabInstance:
     - target: {fileID: 3689219196302074945, guid: f00882dcb39e2ba44ac1b8d19f604b11,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00882dcb39e2ba44ac1b8d19f604b11, type: 3}
---- !u!1 &5579556255965725595 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3689219196302074945, guid: f00882dcb39e2ba44ac1b8d19f604b11,
-    type: 3}
-  m_PrefabInstance: {fileID: 9105202619227727834}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5579556255965725594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3689219196302074944, guid: f00882dcb39e2ba44ac1b8d19f604b11,
+    type: 3}
+  m_PrefabInstance: {fileID: 9105202619227727834}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &7479262812799536682 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1844083776690514416, guid: f00882dcb39e2ba44ac1b8d19f604b11,
     type: 3}
   m_PrefabInstance: {fileID: 9105202619227727834}
   m_PrefabAsset: {fileID: 0}
