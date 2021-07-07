@@ -20,6 +20,15 @@ public class Shape : MonoBehaviour
     [Header("Components")]
     protected SpriteRenderer sprRend = null;
     protected Renderer rend;
+    protected Material mat;
+
+    public virtual void Awake()
+    {
+        sprRend = GetComponent<SpriteRenderer>();
+        
+        rend = GetComponent<Renderer>();
+        mat = rend.sharedMaterial;
+    }
 
     /// <summary>
     /// Renvoie l'écart entre deux couleur
@@ -49,11 +58,6 @@ public class Shape : MonoBehaviour
 
     public void UpdateColor()
     {
-        if (sprRend == null)
-        {
-            sprRend = GetComponent<SpriteRenderer>();
-        }
-
         if (color != lastColor)
         {
             amountR = color.r;
@@ -77,23 +81,31 @@ public class Shape : MonoBehaviour
             rend = GetComponent<Renderer>();
         }
 
-
-        if (rend.material.HasFloat("Sides"))
-        {
-            rend.material.SetFloat("Sides", side);
-        }
-        else
-        {
-            Debug.LogError("Shader stream data error", this);
-        }
+        mat.SetFloat("Sides", side);
     }
 
 #if UNITY_EDITOR
 
     private void OnValidate()
     {
-        UpdateColor();
-        UpdateSide();
+        if (sprRend == null)
+        {
+            sprRend = GetComponent<SpriteRenderer>();
+        }
+        else
+        {
+            UpdateColor();
+        }
+
+        if (rend == null)
+        {
+            rend = GetComponent<Renderer>();
+            mat = rend.sharedMaterial;
+        }
+        else
+        {
+            UpdateSide();
+        }
     }
 
 #endif
