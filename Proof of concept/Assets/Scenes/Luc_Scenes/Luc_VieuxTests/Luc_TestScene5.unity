@@ -970,7 +970,7 @@ MonoBehaviour:
   m_Spline:
     m_IsOpenEnded: 0
     m_ControlPoints:
-    - position: {x: 0.7130176, y: 0.41763532, z: 0}
+    - position: {x: 0.015508219, y: -0.093817696, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -978,29 +978,9 @@ MonoBehaviour:
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 1
-      m_CornerMode: 1
-    - position: {x: 6.964437, y: -1.4022365, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 3.36
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-      m_CornerMode: 1
-    - position: {x: 2.1790795, y: -3.3702378, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 2.36
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 1
-      m_CornerMode: 1
-    - position: {x: -0.7951285, y: -2.7366529, z: 0}
+      corner: 0
+      m_CornerMode: 0
+    - position: {x: 4.795969, y: -0.5915946, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -1008,21 +988,41 @@ MonoBehaviour:
       bevelCutoff: 0
       bevelSize: 0
       spriteIndex: 0
-      corner: 1
-      m_CornerMode: 1
+      corner: 0
+      m_CornerMode: 0
+    - position: {x: 3.725763, y: -5.2561326, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 0
+      m_CornerMode: 0
+    - position: {x: -2.5591407, y: -3.4966943, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      bevelCutoff: 0
+      bevelSize: 0
+      spriteIndex: 0
+      corner: 0
+      m_CornerMode: 0
   m_SpriteShape: {fileID: 11400000, guid: f24cddf7c09a6442abbce710a6fd7397, type: 2}
-  m_FillPixelPerUnit: 256
-  m_StretchTiling: 1
-  m_SplineDetail: 16
+  m_FillPixelPerUnit: 50
+  m_StretchTiling: 2
+  m_SplineDetail: 4
   m_AdaptiveUV: 0
   m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 37.2
+  m_WorldSpaceUV: 1
+  m_CornerAngleThreshold: 36.3
   m_ColliderDetail: 16
   m_ColliderOffset: 0.5
   m_UpdateCollider: 1
   m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
+  m_OptimizeGeometry: 0
   m_EnableTangents: 0
   m_GeometryCached: 0
   m_UTess2D: 0
@@ -1046,8 +1046,8 @@ SpriteShapeRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10758, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 15680648d6637584fb87b16b8aa7481b, type: 2}
+  - {fileID: 2100000, guid: d604d20788fb45c43882329c6361d81c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1068,7 +1068,7 @@ SpriteShapeRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Color: {r: 0.22745098, g: 0.22745098, b: 0.22745098, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_MaskInteraction: 0
   m_ShapeTexture: {fileID: 2800000, guid: b281b91a70a624a0da1c43adc1c30c7b, type: 3}
   m_Sprites:
@@ -1082,8 +1082,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: 3.1933131, y: -1.6299815, z: -0.0002}
-    m_Extent: {x: 4.3218255, y: 2.381001, z: 0.0002}
+    m_Center: {x: 1.0930979, y: -2.6539412, z: -0.0002}
+    m_Extent: {x: 4.002446, y: 2.9103312, z: 0.0002}
 --- !u!4 &754390271
 Transform:
   m_ObjectHideFlags: 0
@@ -1092,7 +1092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754390268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.11, y: -3.36, z: 0}
+  m_LocalPosition: {x: -10.44, y: -6.94, z: 0}
   m_LocalScale: {x: 0.5577, y: 0.6914, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2449,6 +2449,8 @@ MonoBehaviour:
   returnModifier: 0.01
   Tlerp: 0.0045
   returnSpeed: 200
+  returnSpeedSides: 150
+  turnSpeed: 10
 --- !u!50 &1291645294
 Rigidbody2D:
   serializedVersion: 4

@@ -3061,7 +3061,7 @@
     ],
     "synonyms": [],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
@@ -5370,7 +5370,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 3.0,
+    "m_Value": 6.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -5641,8 +5641,8 @@
     "m_Color": {
         "color": {
             "r": 1.0,
-            "g": 0.40784314274787905,
-            "b": 0.772549033164978,
+            "g": 0.40784311294555666,
+            "b": 1.0,
             "a": 1.0
         },
         "mode": 0
