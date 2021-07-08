@@ -12,6 +12,7 @@ public class PlayerController : Shape
 
     [ColorUsage(false, false)]
     public Color baseColor = new Color(1f, 0.5f, 0.75f);
+    public float baseHue;
 
     [Header("Mouvement Parameter")]
     public float moveSpeed = 10f;
@@ -27,6 +28,7 @@ public class PlayerController : Shape
     public float colorEvolvSpeed = 1f;
     public float returnBaseSideSpeed = 1f;
     public float returnBaseColorSpeed = 1f;
+    public float returnFigedBaseColorSpeed = 1f;
 
     public override void Awake()
     {
@@ -34,23 +36,36 @@ public class PlayerController : Shape
 
         input = GetComponent<InputHandler>();
         rb = GetComponent<Rigidbody2D>();
+
+        Color.RGBToHSV(baseColor, out baseHue, out _, out _);
     }
 
     private void Update()
     {
+        RGB = input.RGB;
+
         Movement();
         Orientation();
 
         Morphing();
-        ChangeColor();
+        //ChangeColor();
+        ChangeHue();
 
         ReturnToOriginal();
     }
 
     private void Movement()
     {
-        //Mouv
-        rb.velocity = new Vector2(input.mouvHori, input.mouvVert) * moveSpeed;
+        if (ColorDistance(baseColor, color) > 0.05f || SideDistance( MaxSide,side) > 0.05f)
+        {
+            //Mouv
+            rb.velocity = new Vector2(input.mouvHori, input.mouvVert) * moveSpeed * 0.5f;
+        }
+        else
+        {
+            //Mouv
+            rb.velocity = new Vector2(input.mouvHori, input.mouvVert) * moveSpeed;
+        }
     }
 
     private void Orientation()
@@ -112,8 +127,39 @@ public class PlayerController : Shape
 
         UpdateColor();
     }
+    private void ChangeHue()
+    {
+        if (input.HueUp)
+        {
+            hue += colorEvolvSpeed * Time.deltaTime;
+            hue %= 1;
+        }
+        if (input.HueDown)
+        {
+            hue -= colorEvolvSpeed * Time.deltaTime;
+        }
+
+        hue = hue < 0 ? hue + 1: hue;
+        hue %= 1;
+
+        UpdateColor();
+    }
 
     private void ReturnToOriginal()
+    {
+        ToOriginalShape();
+
+        if (input.RGB)
+        {
+            ToOriginalColorRGB();
+        }
+        else
+        {
+            ToOriginalColorHSV();
+        }
+    }
+
+    private void ToOriginalShape()
     {
         //Shape or Side
         if (!input.SideDown && !input.SideUp)
@@ -127,9 +173,11 @@ public class PlayerController : Shape
                 side = baseSide;
             }
         }
-        
         UpdateSide();
+    }
 
+    private void ToOriginalColorRGB()
+    {
         //Color
         if (!input.RedUp && !input.RedDown)
         {
@@ -167,12 +215,75 @@ public class PlayerController : Shape
 
         UpdateColor();
     }
+    private void ToOriginalColorHSV()
+    {
+        if (!input.HueUp && !input.HueDown)
+        {
+            //Color
+            if (Mathf.Abs(baseHue - hue) > 0.01f)
+            {
+                if (Mathf.Abs(baseHue - hue) < 0.5f)
+                {
+                    hue = Mathf.Lerp(hue, baseHue, returnBaseColorSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    if (baseHue > 0.5f)
+                    {
+                        hue = Mathf.Lerp(hue, baseHue - 1, returnBaseColorSpeed * Time.deltaTime);
+                    }
+                    else
+                    {
+                        hue = Mathf.Lerp(hue, baseHue + 1, returnBaseColorSpeed * Time.deltaTime);
+                    }
+
+                    hue = hue < 0 ? hue + 1 : hue;
+                    hue %= 1;
+                }
+            }
+            else
+            {
+                hue = baseHue;
+            }
+        }
+        else if(input.HueUp && input.HueDown)
+        {
+            if (Mathf.Abs(baseHue - hue) < 0.5f)
+            {
+                if (hue < baseHue)
+                {
+                    //Add
+                    hue += returnFigedBaseColorSpeed * Time.deltaTime;
+                }
+                if (hue > baseHue)
+                {
+                    //Substract
+                    hue -= returnFigedBaseColorSpeed * Time.deltaTime;
+                }
+            }
+            else
+            {
+                if (baseHue > 0.5f)
+                {
+                    hue -= returnFigedBaseColorSpeed * Time.deltaTime;
+                }
+                else
+                {
+                    hue += returnFigedBaseColorSpeed * Time.deltaTime;
+                }
+                hue = hue < 0 ? hue + 1 : hue;
+                hue %= 1;
+            }
+        }
+
+        UpdateColor();
+    }
+
 
     private void OnDrawGizmos()
     {
-        Orientation();
+        //EditorOrientation();
     }
-
     private void EditorOrientation()
     {
         transform.rotation = Quaternion.Euler(0, 0, baseAngle);
