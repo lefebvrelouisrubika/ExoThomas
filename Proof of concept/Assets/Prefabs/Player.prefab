@@ -124,7 +124,7 @@ MonoBehaviour:
   RAmmount: 1
   GAmmount: 0.4
   BAmmount: 0.8
-  colorAugment: 0.001
+  colorAugment: 0.6
   sizeAugment: 3
   returnModifier: 0.01
   Tlerp: 0.0045
