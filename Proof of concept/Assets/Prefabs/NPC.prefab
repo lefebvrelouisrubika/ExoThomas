@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9938455013c3eee4da84b2d81136b4ec, type: 2}
+  - {fileID: 2100000, guid: 7837807ba4e010f419a273fd1ca97bea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,6 +124,9 @@ MonoBehaviour:
   rotSpeed: 250
   fleeSpeedDeltaTime: 250
   flee: 0
+  block: 0
+  wantToBlock: 0
+  blockDetectRange: 0
 --- !u!58 &3956358307602030565
 CircleCollider2D:
   m_ObjectHideFlags: 0

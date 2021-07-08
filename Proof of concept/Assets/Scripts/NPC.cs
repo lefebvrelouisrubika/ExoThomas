@@ -30,7 +30,7 @@ public class NPC : MonoBehaviour
     public float fleeDistance;
     public float fleeSpeed;
     public float attackDistanceMin, attackDistanceMax;
-    private Player myPlayer;
+    private PlayerController myPlayer;
     //public bool flee = false;
     //public bool attack = false;
     public float Tlerp;
@@ -62,20 +62,22 @@ public class NPC : MonoBehaviour
     public bool block;
     [HideInInspector] public bool wantToBlock;
     public float blockDetectRange;
+     private SpriteRenderer sprRend = null;
     
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        myPlayer = Player.instance;
+        myPlayer = PlayerController.instance;
         rend = GetComponent<Renderer>();
         rend.material.SetFloat("Sides", Sides);
-        rend.material.SetColor("_Color", new Vector4(RAmmount, GAmmount, BAmmount, 1));
+
+        sprRend = GetComponent<SpriteRenderer>();
+
+        float h;
+        Color.RGBToHSV(new Color(RAmmount, GAmmount, BAmmount, 1), out h, out _, out _);
+        sprRend.color = Color.HSVToRGB(h,0.36f,1f);
+
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -234,7 +236,7 @@ public class NPC : MonoBehaviour
                     wantToBlock = false;
                 }
 
-                Debug.Log(wantToBlock);
+                //Debug.Log(wantToBlock);
                 break;
 
             default:
@@ -252,13 +254,16 @@ public class NPC : MonoBehaviour
     }
     void StateCalcul()
     {
-        float calculSides = Mathf.Abs(Sides-myPlayer.Sides)+1;
+        float calculSides = Mathf.Abs(Sides-myPlayer.side)+1;
         var s = 1 / calculSides;
-        var r = 1 - Mathf.Abs(RAmmount - myPlayer.RAmmount);
-        var b = 1 - Mathf.Abs(BAmmount - myPlayer.BAmmount);
-        var g = 1 - Mathf.Abs(GAmmount - myPlayer.GAmmount);
 
-        var moyenne = (s + r + b + g) / 4;
+        float baseH;
+        float h;
+        Color.RGBToHSV(sprRend.color, out baseH, out _, out _);
+        Color.RGBToHSV(myPlayer.color, out h, out _, out _);
+        h = 1 - Mathf.Abs(baseH - h);
+
+        var moyenne = (s + h) / 2;
         if (moyenne>= palier1)
         {
             state = State.Happy;
@@ -267,7 +272,6 @@ public class NPC : MonoBehaviour
         else if (moyenne >= palier2)
         {
             state = State.Neutral;
-
         }
         else if (moyenne < palier2)
         {
@@ -283,8 +287,6 @@ public class NPC : MonoBehaviour
             {
                 state = State.Attack;
             }
-
-
         }
 
         //Debug.Log(moyenne);

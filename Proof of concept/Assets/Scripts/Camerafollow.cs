@@ -5,12 +5,12 @@ using UnityEngine;
 public class Camerafollow : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Player Player;
+    private PlayerController Player;
     public float MoveLerp;
 
     void Start()
     {
-        Player = Player.instance;
+        Player = PlayerController.instance;
 
     }
     // Update is called once per frame

@@ -35,12 +35,12 @@ public class NPCBlockBehaviour : MonoBehaviour
         if (AllChecked(gatekeeping))
         {
             Block();
-            Debug.Log("Block");
+            //Debug.Log("Block");
         }
         else if (!AllChecked(gatekeeping))
         {
             MoveToNormalPos();
-            Debug.Log("Move");
+            //Debug.Log("Move");
         }
     }
 
@@ -79,6 +79,6 @@ public class NPCBlockBehaviour : MonoBehaviour
             NPCs[e].transform.position = Vector3.MoveTowards(NPCs[e].transform.position, normalPositions[e], moveToBlockSpeed * Time.deltaTime);
         }
 
-        Debug.Log("Returned");
+        //Debug.Log("Returned");
     }
 }

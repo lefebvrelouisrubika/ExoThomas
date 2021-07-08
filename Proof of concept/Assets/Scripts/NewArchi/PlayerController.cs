@@ -7,6 +7,8 @@ public class PlayerController : Shape
     public InputHandler input;
     public Rigidbody2D rb;
 
+    public static PlayerController instance;
+
     [Header("BaseState")]
     public float baseSide = 3;
 
@@ -33,6 +35,8 @@ public class PlayerController : Shape
     public override void Awake()
     {
         base.Awake();
+
+        instance = this;
 
         input = GetComponent<InputHandler>();
         rb = GetComponent<Rigidbody2D>();

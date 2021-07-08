@@ -18,7 +18,7 @@ public class NPCFriends : MonoBehaviour
     public float GAmmount;
     public float BAmmount;
     public float happyDistance;
-    private Player myPlayer;
+    private PlayerController myPlayer;
     //public bool flee = false;
     //public bool attack = false;
     public float rotLerp = 0.01f;
@@ -34,7 +34,7 @@ public class NPCFriends : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myPlayer = Player.instance;
+        myPlayer = PlayerController.instance;
         rend = GetComponent<Renderer>();
         rend.material.SetFloat("Sides", Sides);
         rend.material.SetColor("_Color", new Vector4(RAmmount, GAmmount, BAmmount, 1));
