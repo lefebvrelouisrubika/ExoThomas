@@ -146,28 +146,35 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButton("z"))
         {
-            RAmmount = Mathf.Clamp(RAmmount + colorAugment, 0, 1);
+            RAmmount += colorAugment * Time.deltaTime;
+            RAmmount = Mathf.Clamp01(RAmmount);
+
         }
         if (Input.GetButton("e"))
         {
-            GAmmount = Mathf.Clamp(GAmmount + colorAugment, 0, 1);
+            GAmmount += colorAugment * Time.deltaTime;
+            GAmmount = Mathf.Clamp01(GAmmount);
         }
         if (Input.GetButton("q"))
         {
-            BAmmount = Mathf.Clamp(BAmmount + colorAugment, 0, 1);
+            BAmmount += colorAugment * Time.deltaTime;
+            BAmmount = Mathf.Clamp01(BAmmount);
         }
 
         if (Input.GetButton("s"))
         {
-            RAmmount = Mathf.Clamp(RAmmount - colorAugment, 0, 1);
+            RAmmount -= colorAugment * Time.deltaTime;
+            RAmmount = Mathf.Clamp01(RAmmount);
         }
         if (Input.GetButton("d"))
         {
-            GAmmount = Mathf.Clamp(GAmmount - colorAugment, 0, 1);
+            GAmmount -= colorAugment * Time.deltaTime;
+            GAmmount = Mathf.Clamp01(GAmmount);
         }
         if (Input.GetButton("f"))
         {
-            BAmmount = Mathf.Clamp(BAmmount- colorAugment, 0, 1);
+            BAmmount -= colorAugment * Time.deltaTime;
+            BAmmount = Mathf.Clamp01(BAmmount);
         }
         rend.material.SetColor("_Color", new Vector4(RAmmount, GAmmount, BAmmount, 1));
     }
