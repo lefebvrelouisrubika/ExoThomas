@@ -183,7 +183,7 @@ MonoBehaviour:
   baseAngle: 0
   orientation: {x: 1, y: 0}
   sideEvolvSpeed: 4
-  colorEvolvSpeed: 0.75
+  colorEvolvSpeed: 0.35
   returnBaseSideSpeed: 1.5
   returnBaseColorSpeed: 1
   returnFigedBaseColorSpeed: 0.025

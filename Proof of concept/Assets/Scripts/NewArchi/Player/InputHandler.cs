@@ -45,8 +45,8 @@ public class InputHandler : MonoBehaviour
         }
         else
         {
-            SideUp = Input.GetButton("z");
-            SideDown = Input.GetButton("s");
+            SideUp = Input.GetKey(KeyCode.F);
+            SideDown = Input.GetKey(KeyCode.S);
         }
 
         if (RGB)
@@ -62,8 +62,8 @@ public class InputHandler : MonoBehaviour
         }
         else
         {
-            HueUp = Input.GetButton("q");
-            HueDown = Input.GetButton("d");
+            HueUp = Input.GetKey(KeyCode.A);
+            HueDown = Input.GetKey(KeyCode.E);
 
         }
     }
