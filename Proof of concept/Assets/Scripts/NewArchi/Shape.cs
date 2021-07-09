@@ -62,6 +62,31 @@ public class Shape : MonoBehaviour
     {
         return Shape.ColorDiff(colorOriginal, colorCompared).magnitude;
     }
+    public static float HueDistance(float hueOriginal, float hueCompared)
+    {
+        float hueDist = Mathf.Abs(hueOriginal - hueCompared);
+
+        if (hueDist > 0.5f)
+        {
+            if (hueOriginal > 0.5f)
+            {
+
+                hueOriginal = hueOriginal < 0 ? hueOriginal + 1 : hueOriginal;
+                hueOriginal %= 1;
+
+                hueDist = Mathf.Abs((hueOriginal+1) - hueCompared);
+            }
+            else
+            {
+                hueDist = Mathf.Abs((hueOriginal-1) - hueCompared);
+            }
+
+            hueDist = hueDist < 0 ? hueDist + 1 : hueDist;
+            hueDist %= 1;
+        }
+
+        return hueDist;
+    }
 
     /// <summary>
     /// Calcul la distance entre deux shape

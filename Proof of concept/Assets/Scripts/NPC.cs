@@ -12,8 +12,6 @@ public enum State
 };
 public class NPC : MonoBehaviour
 {
-
-
     public State state = State.Neutral;
     
     Renderer rend;
@@ -21,18 +19,23 @@ public class NPC : MonoBehaviour
     //public Player Player;
     public ParticleSystem SwetParticles;
     public ParticleSystem HappyParticles;
+
     public float Sides = 3;
     public float Width = 1;
     public float Height = 1;
     public float RAmmount;
     public float GAmmount;
     public float BAmmount;
+
     public float fleeDistance;
     public float fleeSpeed;
     public float attackDistanceMin, attackDistanceMax;
+
     private PlayerController myPlayer;
+
     //public bool flee = false;
     //public bool attack = false;
+
     public float Tlerp;
     private bool canInitialiseAttack = true;
     private Vector3 initialPosition;
