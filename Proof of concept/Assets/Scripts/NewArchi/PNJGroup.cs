@@ -6,6 +6,8 @@ using UnityEngine;
 public class PNJGroup : MonoBehaviour
 {
     [Header("Group Shape aimed")]
+    public bool groupOverwrite = false;
+    [Space(10)]
     [Range(3, 8)] public float targetSide = 3;
     [ColorUsage(false, false)] public Color targetColor = Color.HSVToRGB(0,0.36f,0.75f);
     [HideInInspector] public float targetHue = 0;
@@ -14,9 +16,13 @@ public class PNJGroup : MonoBehaviour
     [Range(0f, 1f)] public float neutralthreshold;
 
     [Header("Player Value")]
-    public float playerSimilarity = 0f;
+    public float playerLookSimilarity = 0f;
     public float playerDetectionThreshold = 2f;
+    private float playerDistance;
     private PlayerController player;
+
+    [Header("Group PNJ ")]
+    public List<PNJ> allPNJ = new List<PNJ>();
 
     void Start()
     {
@@ -26,20 +32,27 @@ public class PNJGroup : MonoBehaviour
 
     void Update()
     {
-        
+        DetectingPlayer();
+
+        if (groupOverwrite)
+        {
+            EvaluatePlayer();
+            CallPlayerProximity();
+        }
     }
 
     public void DetectingPlayer()
     {
-        if((player.transform.position - transform.position).magnitude < playerDetectionThreshold)
-        {
-            //Player Detected
-            EvaluatePlayer();
+        //Calcul Distance
+        playerDistance = (player.transform.position - transform.position).magnitude;
 
+        if (playerDistance < playerDetectionThreshold)
+        {
+            CallPlayerInArea(true);
         }
         else
         {
-            //Return to classique state
+            CallPlayerInArea(false);
         }
     }
 
@@ -49,7 +62,22 @@ public class PNJGroup : MonoBehaviour
         Color.RGBToHSV(targetColor, out targetHue, out _, out _);
         float colorProxi = 1 - Shape.HueDistance(targetHue, player.hue);
 
-        playerSimilarity = (sideProxi + colorProxi) / 2;
+        playerLookSimilarity = (sideProxi + colorProxi) / 2;
+    }
+
+    private void CallPlayerInArea(bool playerIsInArea)
+    {
+        for (int i = 0; i < allPNJ.Count; i++)
+        {
+            allPNJ[i].playerInArea = playerIsInArea;
+        }
+    }
+    private void CallPlayerProximity()
+    {
+        for (int i = 0; i < allPNJ.Count; i++)
+        {
+            allPNJ[i].playerLookProximity = playerLookSimilarity;
+        }
     }
 
     #region Debug
