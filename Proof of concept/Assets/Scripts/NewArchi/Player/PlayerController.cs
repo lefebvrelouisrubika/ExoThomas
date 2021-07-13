@@ -221,36 +221,7 @@ public class PlayerController : Shape
     }
     private void ToOriginalColorHSV()
     {
-        if (!input.HueUp && !input.HueDown)
-        {
-            //Color
-            if (Mathf.Abs(baseHue - hue) > 0.01f)
-            {
-                if (Mathf.Abs(baseHue - hue) < 0.5f)
-                {
-                    hue = Mathf.Lerp(hue, baseHue, returnBaseColorSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    if (baseHue > 0.5f)
-                    {
-                        hue = Mathf.Lerp(hue, baseHue - 1, returnBaseColorSpeed * Time.deltaTime);
-                    }
-                    else
-                    {
-                        hue = Mathf.Lerp(hue, baseHue + 1, returnBaseColorSpeed * Time.deltaTime);
-                    }
-
-                    hue = hue < 0 ? hue + 1 : hue;
-                    hue %= 1;
-                }
-            }
-            else
-            {
-                hue = baseHue;
-            }
-        }
-        else if(input.HueUp && input.HueDown)
+        if (true)
         {
             if (Mathf.Abs(baseHue - hue) < 0.5f)
             {
@@ -279,10 +250,71 @@ public class PlayerController : Shape
                 hue %= 1;
             }
         }
+        else
+        {
+            //old chroma system
+            if (!input.HueUp && !input.HueDown)
+            {
+                //Color
+                if (Mathf.Abs(baseHue - hue) > 0.01f)
+                {
+                    if (Mathf.Abs(baseHue - hue) < 0.5f)
+                    {
+                        hue = Mathf.Lerp(hue, baseHue, returnBaseColorSpeed * Time.deltaTime);
+                    }
+                    else
+                    {
+                        if (baseHue > 0.5f)
+                        {
+                            hue = Mathf.Lerp(hue, baseHue - 1, returnBaseColorSpeed * Time.deltaTime);
+                        }
+                        else
+                        {
+                            hue = Mathf.Lerp(hue, baseHue + 1, returnBaseColorSpeed * Time.deltaTime);
+                        }
+
+                        hue = hue < 0 ? hue + 1 : hue;
+                        hue %= 1;
+                    }
+                }
+                else
+                {
+                    hue = baseHue;
+                }
+            }
+            else if (input.HueUp && input.HueDown)
+            {
+                if (Mathf.Abs(baseHue - hue) < 0.5f)
+                {
+                    if (hue < baseHue)
+                    {
+                        //Add
+                        hue += returnFigedBaseColorSpeed * Time.deltaTime;
+                    }
+                    if (hue > baseHue)
+                    {
+                        //Substract
+                        hue -= returnFigedBaseColorSpeed * Time.deltaTime;
+                    }
+                }
+                else
+                {
+                    if (baseHue > 0.5f)
+                    {
+                        hue -= returnFigedBaseColorSpeed * Time.deltaTime;
+                    }
+                    else
+                    {
+                        hue += returnFigedBaseColorSpeed * Time.deltaTime;
+                    }
+                    hue = hue < 0 ? hue + 1 : hue;
+                    hue %= 1;
+                }
+            }
+        }
 
         UpdateColor();
     }
-
 
     private void OnDrawGizmos()
     {

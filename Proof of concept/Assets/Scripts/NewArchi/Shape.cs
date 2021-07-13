@@ -24,10 +24,15 @@ public class Shape : MonoBehaviour
     [Range(0, 1)] public float satur = 0.5f;
     [Range(0, 1)] public float value = 0.5f;
 
+    public float hueVisual = 0.5f;
+
     [Header("Components")]
     protected SpriteRenderer sprRend = null;
     protected Renderer rend;
     protected Material mat;
+
+    [Range(-0.1f, 0.1f)]
+    public float testOffsetHue = 0f;
 
     public virtual void Awake()
     {
@@ -97,7 +102,7 @@ public class Shape : MonoBehaviour
         return (SideCompared - MinSide) / (SideOriginal - MinSide);
     }
 
-    public void UpdateColor()
+    public virtual void UpdateColor()
     {
         if (RGB)
         {
@@ -125,7 +130,9 @@ public class Shape : MonoBehaviour
             else
             {
                 //HSV
-                color = Color.HSVToRGB(hue, satur, value);
+                hueVisual = Mathf.Ceil((hue-0.022f) * 8)/8;
+                hueVisual += -0.042f - 0.0115f; 
+                color = Color.HSVToRGB(hueVisual, satur, value);
             }
         }
 
