@@ -133,15 +133,31 @@ public class PlayerController : Shape
     }
     private void ChangeHue()
     {
-        if (input.HueUp)
+        if (true)
         {
-            hue += colorEvolvSpeed * Time.deltaTime;
-            hue %= 1;
+            if (input.HueUp)
+            {
+                hue += colorEvolvSpeed;
+                hue %= 1;
+            }
+            if (input.HueDown)
+            {
+                hue -= colorEvolvSpeed;
+            }
         }
-        if (input.HueDown)
+        else
         {
-            hue -= colorEvolvSpeed * Time.deltaTime;
+            if (input.HueUp)
+            {
+                hue += colorEvolvSpeed * Time.deltaTime;
+                hue %= 1;
+            }
+            if (input.HueDown)
+            {
+                hue -= colorEvolvSpeed * Time.deltaTime;
+            }
         }
+
 
         hue = hue < 0 ? hue + 1: hue;
         hue %= 1;

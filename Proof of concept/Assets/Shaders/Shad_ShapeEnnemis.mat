@@ -24,6 +24,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 79289a1c178c2e94096e43a1bf81448f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - Tex_Cracks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -42,6 +46,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - CrackLvl: 0
     - EdgeStrokeLevel: 0.25
     - FrameRate: 4
     - Scale: 0.5

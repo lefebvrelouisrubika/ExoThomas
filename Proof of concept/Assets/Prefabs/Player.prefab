@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 072ca597d6af4554cacffd1656fa76a3,
     type: 3}
-  m_Color: {r: 1, g: 0.64, b: 1, a: 1}
+  m_Color: {r: 0.97444, g: 0.64, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   side: 3
-  color: {r: 1, g: 0.64, b: 1, a: 1}
+  color: {r: 0.97444, g: 0.64, b: 1, a: 1}
   RGB: 0
   amountR: 1
   amountG: 0.64
@@ -173,6 +173,8 @@ MonoBehaviour:
   hue: 0.8333333
   satur: 0.36
   value: 1
+  hueVisual: 0.8215
+  testOffsetHue: 0
   input: {fileID: 4721335372810865556}
   rb: {fileID: 5522926182332527960}
   baseSide: 3

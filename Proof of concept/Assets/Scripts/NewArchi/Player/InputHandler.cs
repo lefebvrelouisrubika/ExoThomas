@@ -62,8 +62,8 @@ public class InputHandler : MonoBehaviour
         }
         else
         {
-            HueUp = Input.GetKey(KeyCode.A);
-            HueDown = Input.GetKey(KeyCode.E);
+            HueUp = Input.GetKeyDown(KeyCode.A);
+            HueDown = Input.GetKeyDown(KeyCode.E);
 
         }
     }
