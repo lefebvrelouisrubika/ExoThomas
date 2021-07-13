@@ -291,9 +291,8 @@ public class NPC : MonoBehaviour
                 state = State.Attack;
             }
         }
-
         //Debug.Log(moyenne);
-        AmbientManager.instance.state = state;
+        //AmbientManager.instance.state = state;
     }
 
     IEnumerator WaitForNextAttack()
