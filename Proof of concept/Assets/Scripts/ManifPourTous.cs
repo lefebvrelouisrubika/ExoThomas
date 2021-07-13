@@ -12,8 +12,8 @@ public class ManifPourTous : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        croudSpawnPoint.position = new Vector3(crouds[0].transform.position.x - 20, crouds[0].transform.position.y, 0);
-        croudEndPoint.position = new Vector3(crouds[2].transform.position.x + 20, crouds[0].transform.position.y, 0);
+        croudSpawnPoint.position = new Vector3(crouds[0].transform.position.x - 14.5f, crouds[0].transform.position.y, 0);
+        croudEndPoint.position = new Vector3(crouds[crouds.Length - 1].transform.position.x + 16.5f, crouds[0].transform.position.y, 0);
     }
 
     // Update is called once per frame
