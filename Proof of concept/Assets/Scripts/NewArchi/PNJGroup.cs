@@ -27,7 +27,6 @@ public class PNJGroup : MonoBehaviour
     void Start()
     {
         player = PlayerController.instance;
-
     }
 
     void Update()
