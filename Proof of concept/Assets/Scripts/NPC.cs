@@ -291,7 +291,6 @@ public class NPC : MonoBehaviour
                 state = State.Attack;
             }
         }
-
         //Debug.Log(moyenne);
         //AmbientManager.instance.state = state;
     }
