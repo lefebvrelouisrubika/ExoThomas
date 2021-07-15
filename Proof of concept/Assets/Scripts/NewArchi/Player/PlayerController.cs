@@ -63,12 +63,12 @@ public class PlayerController : Shape
         if (ColorDistance(baseColor, color) > 0.05f || SideDistance( MaxSide,side) > 0.05f)
         {
             //Mouv
-            rb.velocity = new Vector2(input.mouvHori, input.mouvVert) * moveSpeed * 0.5f;
+            rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
         }
         else
         {
             //Mouv
-            rb.velocity = new Vector2(input.mouvHori, input.mouvVert) * moveSpeed;
+            rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed;
         }
     }
 

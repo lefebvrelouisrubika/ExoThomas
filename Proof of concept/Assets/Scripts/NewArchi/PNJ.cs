@@ -55,7 +55,9 @@ public class PNJ : Shape
 
     [Header("Happy")]
     public ParticleSystem vfxHappy;
+    public float rotSpeed = 10f;
     public bool isRotating;
+
     [Header("Neutral")]
     public bool placeholder;
 
@@ -190,27 +192,11 @@ public class PNJ : Shape
                 vfxHappy.Stop();
             }
 
-            //Louis rotation
-            /*if (!isRotating)
+            if (!isRotating)
             {
-
-                while (Mathf.Abs(this.transform.eulerAngles.z - rotationGoal) % 360 < 45)
-                {
-                    rotationGoal = Random.Range(0f, 360f);
-                }
-                if (!waitForRotate)
-                {
-                    StartCoroutine("WaitForRotate");
-                }
-
+                isRotating = true;
+                StartCoroutine(RotateCorout());
             }
-            else
-            {
-
-                this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(0, 0, rotationGoal), rotLerp * Time.deltaTime * rotSpeed);
-                isRotating = Vector3.Distance(this.transform.eulerAngles, new Vector3(0, 0, rotationGoal)) > 0.1f;
-                waitForRotate = false;
-            }*/
         }
     }
 
@@ -243,7 +229,7 @@ public class PNJ : Shape
         }
         yield return new WaitForSeconds(Random.Range(0.3f, 0.5f));
 
-        if(actualBehaviour != NPCBehaviour.Attack)
+        if (actualBehaviour != NPCBehaviour.Attack)
         {
             isAttacking = false;
             yield break;
@@ -269,6 +255,36 @@ public class PNJ : Shape
         //Wait for next attack
         yield return new WaitForSeconds(Random.Range(0.3f, 0.5f));
         isAttacking = false;
+    }
+    private IEnumerator RotateCorout()
+    {
+        isRotating = true;
+        float rotGoal = transform.rotation.z;
+        bool clockwize = false;
+        //Rotate
+        while (actualBehaviour == NPCBehaviour.Happy)
+        {
+            //Reset Rotation
+            rotGoal += clockwize ? Random.Range(15, 360) : -Random.Range(15, 360);
+            if (rotGoal < 0)
+            {
+                rotGoal += 360;
+            }
+            rotGoal %= 360;
+
+            clockwize = !clockwize;
+
+            //Rotate
+            while (Mathf.Abs(rotGoal - transform.rotation.eulerAngles.z) > 3f)
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, rotGoal), rotSpeed * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
+
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
+
+        isRotating = false;
     }
 
     private void Flee()
