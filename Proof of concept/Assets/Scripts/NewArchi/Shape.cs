@@ -75,22 +75,17 @@ public class Shape : MonoBehaviour
         {
             if (hueOriginal > 0.5f)
             {
-
-                hueOriginal = hueOriginal < 0 ? hueOriginal + 1 : hueOriginal;
-                hueOriginal %= 1;
-
-                hueDist = Mathf.Abs((hueOriginal+1) - hueCompared);
+                hueCompared++;
+                hueDist = Mathf.Abs(hueOriginal - hueCompared);
             }
             else
             {
-                hueDist = Mathf.Abs((hueOriginal-1) - hueCompared);
+                hueCompared--;
+                hueDist = Mathf.Abs(hueOriginal - hueCompared);
             }
-
-            hueDist = hueDist < 0 ? hueDist + 1 : hueDist;
-            hueDist %= 1;
         }
 
-        return hueDist;
+        return 1 - (2*hueDist);
     }
 
     /// <summary>
@@ -99,7 +94,8 @@ public class Shape : MonoBehaviour
     /// <returns></returns>
     public static float SideDistance(float SideOriginal, float SideCompared)
     {
-        return (SideCompared - MinSide) / (SideOriginal - MinSide);
+        float result = (SideOriginal - MinSide) - (SideCompared - MinSide) / (MaxSide-MinSide);
+        return Mathf.Abs(result);
     }
 
     public virtual void UpdateColor()

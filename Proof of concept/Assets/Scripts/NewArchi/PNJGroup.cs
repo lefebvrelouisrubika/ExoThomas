@@ -19,7 +19,7 @@ public class PNJGroup : MonoBehaviour
     public float playerLookSimilarity = 0f;
     public float playerDetectionThreshold = 2f;
     private float playerDistance;
-    private PlayerController player;
+    public PlayerController player;
 
     [Header("Group PNJ ")]
     public List<PNJ> allPNJ = new List<PNJ>();
@@ -27,6 +27,11 @@ public class PNJGroup : MonoBehaviour
     void Start()
     {
         player = PlayerController.instance;
+        for (int i = 0; i < allPNJ.Count; i++)
+        {
+            allPNJ[i].group = this;
+            allPNJ[i].player = player;
+        }
     }
 
     void Update()
@@ -57,9 +62,9 @@ public class PNJGroup : MonoBehaviour
 
     private void EvaluatePlayer()
     {
-        float sideProxi = 1 - Shape.SideDistance(targetSide, player.side);
+        float sideProxi = Shape.SideDistance(targetSide, player.side);
         Color.RGBToHSV(targetColor, out targetHue, out _, out _);
-        float colorProxi = 1 - Shape.HueDistance(targetHue, player.hue);
+        float colorProxi = Shape.HueDistance(targetHue, player.hue);
 
         playerLookSimilarity = (sideProxi + colorProxi) / 2;
     }
@@ -85,7 +90,7 @@ public class PNJGroup : MonoBehaviour
     private void OnDrawGizmos()
     {
         Handles.color = targetColor;
-        Handles.DrawWireDisc(transform.position, Vector3.up, playerDetectionThreshold);
+        Handles.DrawWireDisc(transform.position, Vector3.forward, playerDetectionThreshold);
         Handles.color = Color.white;
     }
 

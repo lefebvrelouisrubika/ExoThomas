@@ -18,8 +18,8 @@ public enum NPCBehaviour
 [RequireComponent(typeof(SpriteRenderer))]
 public class PNJ : Shape
 {
-    private PlayerController player;
-    private PNJGroup group;
+    public PlayerController player;
+    public PNJGroup group;
     private NPCBehaviour actualBehaviour = NPCBehaviour.Happy;
 
     [Header("Comportement")]
@@ -29,15 +29,19 @@ public class PNJ : Shape
     [Space(10)]
     [Range(0f, 1f)] public float similarthreshold;
     [Range(0f, 1f)] public float neutralthreshold;
-    [HideInInspector] public float playerLookProximity;
+    public float playerLookProximity;
     
     [Header("Player")]
     [HideInInspector] public bool playerInArea;
+    private Vector2 toPlayerVector;
     private float playerDistance;
+
+    [Header("EnnemisData")]
+    private Vector3 defaultPos;
 
     [Header("Attack")]
     public bool isAttacking = false;
-    public float attackSpeed = 10f;
+    public float attackSpeed = 0.1f;
     public float attackDistance = 1f;
 
     [Header("Blocking")]
@@ -45,11 +49,13 @@ public class PNJ : Shape
     public float moveSpeed = 10f;
 
     [Header("Flee")]
+    public ParticleSystem vfxFlee;
     public float fleeSpeed = 10f;
+    public float fleeDistance = 2f;
 
     [Header("Happy")]
     public ParticleSystem vfxHappy;
-
+    public bool isRotating;
     [Header("Neutral")]
     public bool placeholder;
 
@@ -63,15 +69,18 @@ public class PNJ : Shape
 
         //Create a new instance of the material (use sharedMat for not changing it)
         rend.material.SetFloat("Sides", side);
+
+        defaultPos = transform.position;
     }
 
     void Update()
     {
+        //Calcul Distance
+        toPlayerVector = player.transform.position - transform.position;
+        playerDistance = toPlayerVector.magnitude;
+
         if (playerInArea)
         {
-            //Calcul Distance
-            playerDistance = (player.transform.position - transform.position).magnitude;
-            
             if (!group.groupOverwrite)
             {
                 EvaluatePlayer();
@@ -82,16 +91,17 @@ public class PNJ : Shape
         else
         {
             actualBehaviour = NPCBehaviour.Routine;
-            PlayBehaviour();
         }
+        
+        PlayBehaviour();
     }
 
     private void EvaluatePlayer()
     {
-        float sideProxi = 1 - SideDistance(side, player.side);
-        float colorProxi = 1 - ColorDistance(color, player.color);
+        float sideProxi = SideDistance(side, player.side);
+        float colorProxi = ColorDistance(color, player.color);
 
-        playerLookProximity = (sideProxi + colorProxi)/2;
+        playerLookProximity = (sideProxi + colorProxi)/2f;
     }
 
     private void ChooseBehavior()
@@ -113,68 +123,190 @@ public class PNJ : Shape
 
     private void PlayBehaviour()
     {
-        switch (actualBehaviour)
+        if (!isAttacking)
         {
-            case NPCBehaviour.Neutral:
+            switch (actualBehaviour)
+            {
+                case NPCBehaviour.Neutral:
+                    Neutral();
+                    break;
 
-                break;
+                case NPCBehaviour.Happy:
+                    Happy();
+                    break;
 
-            case NPCBehaviour.Happy:
+                case NPCBehaviour.Attack:
+                    Attack();
+                    break;
 
-                break;
+                case NPCBehaviour.Flee:
+                    Flee();
+                    break;
 
-            case NPCBehaviour.Attack:
+                case NPCBehaviour.Block:
+                    Block();
+                    break;
 
-                break;
+                case NPCBehaviour.Routine:
+                    Routine();
+                    break;
 
-            case NPCBehaviour.Flee:
-
-                break;
-
-            case NPCBehaviour.Block:
-
-                break;
-
-            case NPCBehaviour.Routine:
-
-                break;
-
-            default:
-
-                break;
+                default:
+                    Routine();
+                    break;
+            }
         }
     }
 
     private void Neutral()
     {
+        Vector2 toDefaultPos = defaultPos - transform.position;
 
+        if (toDefaultPos.magnitude > 0.1f)
+        {
+            transform.Translate(toDefaultPos.normalized * moveSpeed * Time.deltaTime, Space.World);
+        }
     }
 
     private void Happy()
     {
 
+
+
+        Vector2 toDefaultPos = defaultPos - transform.position;
+
+        if (toDefaultPos.magnitude > 0.1f)
+        {
+            transform.Translate(toDefaultPos.normalized * moveSpeed * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            if (!vfxHappy.isPlaying)
+            {
+                vfxHappy.Play();
+            }
+            if (vfxHappy.time > vfxHappy.main.duration)
+            {
+                vfxHappy.Stop();
+            }
+
+            //Louis rotation
+            /*if (!isRotating)
+            {
+
+                while (Mathf.Abs(this.transform.eulerAngles.z - rotationGoal) % 360 < 45)
+                {
+                    rotationGoal = Random.Range(0f, 360f);
+                }
+                if (!waitForRotate)
+                {
+                    StartCoroutine("WaitForRotate");
+                }
+
+            }
+            else
+            {
+
+                this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(0, 0, rotationGoal), rotLerp * Time.deltaTime * rotSpeed);
+                isRotating = Vector3.Distance(this.transform.eulerAngles, new Vector3(0, 0, rotationGoal)) > 0.1f;
+                waitForRotate = false;
+            }*/
+        }
     }
 
     private void Attack()
     {
-        if (isAttacking)
+        if (toPlayerVector.magnitude < attackDistance)
         {
+            if (!isAttacking)
+            {
+                isAttacking = true;
 
+                StartCoroutine(AttackCorout(player.transform.position));
+            }
         }
-        else if (player)
-        { 
-        
+    }
+
+    private IEnumerator AttackCorout(Vector3 targetAttackPos)
+    {
+        isAttacking = true;
+
+        //Attack
+        Vector2 toAttackPos = targetAttackPos - transform.position;
+        while (toAttackPos.magnitude > 0.1f)
+        {
+            transform.position = Vector3.Lerp(this.transform.position, targetAttackPos, attackSpeed * Time.deltaTime);
+            //transform.Translate(toAttackPos.normalized * attackSpeed * Time.deltaTime, Space.World);
+
+            toAttackPos = targetAttackPos - transform.position;
+            yield return new WaitForEndOfFrame();
         }
+        yield return new WaitForSeconds(Random.Range(0.3f, 0.5f));
+
+        if(actualBehaviour != NPCBehaviour.Attack)
+        {
+            isAttacking = false;
+            yield break;
+        }
+
+        //Retrive
+        Vector2 toDefaultPos = defaultPos - transform.position;
+        while (toDefaultPos.magnitude > 0.1f)
+        {
+            //transform.position = Vector3.Lerp(this.transform.position, toDefaultPos, moveSpeed * Time.deltaTime);
+            transform.Translate(toDefaultPos.normalized * moveSpeed * Time.deltaTime, Space.World);
+
+            toDefaultPos = defaultPos - transform.position;
+            yield return new WaitForEndOfFrame();
+        }
+
+        if (actualBehaviour != NPCBehaviour.Attack)
+        {
+            isAttacking = false;
+            yield break;
+        }
+
+        //Wait for next attack
+        yield return new WaitForSeconds(Random.Range(0.3f, 0.5f));
+        isAttacking = false;
     }
 
     private void Flee()
     {
 
+        if (toPlayerVector.magnitude < fleeDistance)
+        {
+            transform.Translate( -toPlayerVector.normalized * (0.25f/ toPlayerVector.magnitude) * fleeSpeed * Time.deltaTime, Space.World);
+
+            if (!vfxFlee.isPlaying)
+            {
+                vfxFlee.Play();
+            }
+        }
+        else
+        {
+            vfxFlee.Stop();
+        }
     }
 
     private void Block()
     {
+        Vector2 toBlockPos =  blockPos.position - transform.position;
 
+        if (toBlockPos.magnitude > 0.1f)
+        {
+            transform.Translate(toBlockPos.normalized * moveSpeed * Time.deltaTime, Space.World);
+        }
+    }
+
+    private void Routine()
+    {
+        Vector2 toDefaultPos = defaultPos - transform.position;
+
+        if (toDefaultPos.magnitude > 0.1f)
+        {
+            transform.Translate(toDefaultPos.normalized * moveSpeed * Time.deltaTime, Space.World);
+        }
     }
 
     #region Debug
@@ -183,7 +315,11 @@ public class PNJ : Shape
     private void OnDrawGizmos()
     {
         Handles.color = Color.red;
-        Handles.DrawWireDisc(transform.position, Vector3.up, attackDistance);
+        Handles.DrawWireDisc(transform.position, Vector3.forward, attackDistance);
+
+        Handles.color = Color.blue;
+        Handles.DrawWireDisc(transform.position, Vector3.forward, fleeDistance);
+
         Handles.color = Color.white;
     }
 
