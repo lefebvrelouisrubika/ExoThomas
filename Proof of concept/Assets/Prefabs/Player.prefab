@@ -177,6 +177,7 @@ MonoBehaviour:
   testOffsetHue: 0
   input: {fileID: 4721335372810865556}
   rb: {fileID: 5522926182332527960}
+  crackLvl: 0
   baseSide: 3
   baseColor: {r: 1, g: 0.6392157, b: 1, a: 1}
   baseHue: 0

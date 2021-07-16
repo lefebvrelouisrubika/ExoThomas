@@ -6,19 +6,16 @@ public class PlayerController : Shape
     [Header("Components")]
     public InputHandler input;
     public Rigidbody2D rb;
-
     public static PlayerController instance;
 
     [Header("BaseState")]
+    public float crackLvl = 0f;
     public float baseSide = 3;
-
-    [ColorUsage(false, false)]
-    public Color baseColor = new Color(1f, 0.5f, 0.75f);
+    [ColorUsage(false, false)] public Color baseColor = new Color(1f, 0.5f, 0.75f);
     public float baseHue;
 
     [Header("Mouvement Parameter")]
     public float moveSpeed = 10f;
-
     public float turnSpeed = 10f;
     [Range(0,360)]
     public float baseAngle = 0f;
@@ -26,8 +23,8 @@ public class PlayerController : Shape
 
     [Header("Evolving Parameter")]
     public float sideEvolvSpeed = 1f;
-
     public float colorEvolvSpeed = 1f;
+
     public float returnBaseSideSpeed = 1f;
     public float returnBaseColorSpeed = 1f;
     public float returnFigedBaseColorSpeed = 1f;
@@ -44,6 +41,12 @@ public class PlayerController : Shape
         Color.RGBToHSV(baseColor, out baseHue, out _, out _);
     }
 
+    private void Start()
+    {
+        crackLvl = 0f;
+        mat.SetFloat("CrackLvl", crackLvl);
+    }
+
     private void Update()
     {
         RGB = input.RGB;
@@ -56,6 +59,19 @@ public class PlayerController : Shape
         ChangeHue();
 
         ReturnToOriginal();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<PNJ>())
+        {
+            if (collision.gameObject.GetComponent<PNJ>().isAttacking)
+            {
+                crackLvl += 0.1f;
+                crackLvl = Mathf.Clamp01(crackLvl);
+                mat.SetFloat("CrackLvl", crackLvl/2);
+            }
+        }
     }
 
     private void Movement()

@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shad_ShapePlayer
-  m_Shader: {fileID: -6465566751694194690, guid: 0caa883638d4b80409db4b341913d622,
+  m_Shader: {fileID: -6465566751694194690, guid: 2cc7a9e7893ca0d4ebf3be28ab4d5ef0,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
@@ -29,7 +29,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 072ca597d6af4554cacffd1656fa76a3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_d24fde3976754c7682b9f98324b83f0f_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 23cac6e05cdf9694e85c3c702bd1f9e0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -46,7 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - CrackLvl: 0
+    - CrackLvl: 0.5
     - EdgeStrokeLevel: 0.25
     - FrameRate: 4
     - Scale: 0.5

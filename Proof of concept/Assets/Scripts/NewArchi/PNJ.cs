@@ -101,7 +101,7 @@ public class PNJ : Shape
     private void EvaluatePlayer()
     {
         float sideProxi = SideDistance(side, player.side);
-        float colorProxi = ColorDistance(color, player.color);
+        float colorProxi = HueDistance(hue, player.hue);
 
         playerLookProximity = (sideProxi + colorProxi)/2f;
     }
