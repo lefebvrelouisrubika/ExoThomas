@@ -15,6 +15,12 @@ public class PNJGroup : MonoBehaviour
     [Range(0f, 1f)] public float similarthreshold;
     [Range(0f, 1f)] public float neutralthreshold;
 
+    [Header("Post Process Behavior")]
+    public NPCBehaviour stateSimilar = NPCBehaviour.Happy;
+    public NPCBehaviour stateNeutral = NPCBehaviour.Neutral;
+    public NPCBehaviour stateFaraway = NPCBehaviour.Attack;
+    private NPCBehaviour actualBehaviour = NPCBehaviour.Happy;
+
     [Header("Player Value")]
     public float playerLookSimilarity = 0f;
     public float playerDetectionThreshold = 2f;
@@ -43,6 +49,8 @@ public class PNJGroup : MonoBehaviour
             EvaluatePlayer();
             CallPlayerProximity();
         }
+
+        ChooseBehavior();
     }
 
     public void DetectingPlayer()
@@ -69,6 +77,22 @@ public class PNJGroup : MonoBehaviour
         playerLookSimilarity = (sideProxi + colorProxi) / 2;
     }
 
+    private void ChooseBehavior()
+    {
+        if (playerLookSimilarity < neutralthreshold)
+        {
+            actualBehaviour = stateFaraway;
+        }
+        else
+        if (playerLookSimilarity < similarthreshold)
+        {
+            actualBehaviour = stateNeutral;
+        }
+        else
+        {
+            actualBehaviour = stateSimilar;
+        }
+    }
     private void CallPlayerInArea(bool playerIsInArea)
     {
         for (int i = 0; i < allPNJ.Count; i++)
