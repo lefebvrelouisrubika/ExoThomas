@@ -12,7 +12,8 @@ public enum NPCBehaviour
     Attack,
     Flee,
     Block,
-    Routine
+    Routine,
+    AFK
 };
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -153,6 +154,10 @@ public class PNJ : Shape
                     Routine();
                     break;
 
+                case NPCBehaviour.AFK:
+                    //Nothing
+                    break;
+
                 default:
                     Routine();
                     break;
@@ -172,9 +177,6 @@ public class PNJ : Shape
 
     private void Happy()
     {
-
-
-
         Vector2 toDefaultPos = defaultPos - transform.position;
 
         if (toDefaultPos.magnitude > 0.1f)
@@ -335,6 +337,14 @@ public class PNJ : Shape
 
         Handles.color = Color.blue;
         Handles.DrawWireDisc(transform.position, Vector3.forward, fleeDistance);
+
+        Debug.DrawLine(transform.position, defaultPos, Color.black);
+
+        Handles.color = Color.green;
+        Debug.DrawLine(transform.position, blockPos.position, Color.green);
+        Handles.DrawWireDisc(blockPos.position, Vector3.forward, 1f);
+        Handles.DrawWireDisc(blockPos.position, Vector3.right, 1f);
+        Handles.DrawWireDisc(blockPos.position, Vector3.up, 1f);
 
         Handles.color = Color.white;
     }
