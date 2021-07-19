@@ -38,7 +38,12 @@ public class PNJ : Shape
     private float playerDistance;
 
     [Header("EnnemisData")]
-    private Vector3 defaultPos;
+    public Transform defaultPosition = null;
+    private Vector3 defaultPos
+    {
+        get { return defaultPosition.position; }
+        set { defaultPosition.position = value; }
+    }
 
     [Header("Attack")]
     public bool isAttacking = false;
@@ -73,7 +78,17 @@ public class PNJ : Shape
         //Create a new instance of the material (use sharedMat for not changing it)
         rend.material.SetFloat("Sides", side);
 
-        defaultPos = transform.position;
+        if(defaultPosition != null)
+        {
+            transform.position = defaultPos;
+        }
+        else
+        {
+            GameObject go = new GameObject(this.gameObject.name + "_DefaultPos");
+            go.transform.SetParent(this.transform.parent);
+            defaultPosition = go.transform;
+            defaultPosition.position = transform.position;
+        }
     }
 
     void Update()
