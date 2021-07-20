@@ -9850,6 +9850,7 @@ MonoBehaviour:
   neutralthreshold: 0.33
   playerLookProximity: 0
   playerInArea: 0
+  defaultPosition: {fileID: 0}
   isAttacking: 0
   attackSpeed: 25
   attackDistance: 2.5
