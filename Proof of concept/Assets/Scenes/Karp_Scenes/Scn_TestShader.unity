@@ -592,6 +592,9 @@ MonoBehaviour:
   targetHue: 0
   similarthreshold: 0
   neutralthreshold: 0
+  stateSimilar: 1
+  stateNeutral: 0
+  stateFaraway: 2
   playerLookSimilarity: 0
   playerDetectionThreshold: 8
   player: {fileID: 0}
@@ -1097,7 +1100,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: ac21eab4a801ba543908bd862182b602, type: 2}
+  sharedProfile: {fileID: 11400000, guid: e1aeb81360f06264fafff54d9de95b32, type: 2}
 --- !u!199 &25837605006133374
 ParticleSystemRenderer:
   serializedVersion: 6

@@ -12,13 +12,6 @@ public class Shape : MonoBehaviour
     public Color color = Color.grey;
     private Color lastColor = Color.grey;
 
-    public bool RGB = false;
-
-    [Space(4)]
-    [Range(0, 1)] public float amountR = 0.5f;
-    [Range(0, 1)] public float amountG = 0.5f;
-    [Range(0, 1)] public float amountB = 0.5f;
-
     [Space(4)]
     [Range(0, 1)] public float hue = 0.5f;
     [Range(0, 1)] public float satur = 0.5f;
@@ -43,30 +36,9 @@ public class Shape : MonoBehaviour
     }
 
     /// <summary>
-    /// Renvoie l'écart entre deux couleur
-    /// </summary>
-    /// <param name="colorA">Couleur de référence</param>
-    /// <param name="colorB">Couleur à soustraire</param>
-    /// <returns></returns>
-    public static Vector3 ColorDiff(Color colorOriginal, Color colorCompared)
-    {
-        //Color have a convertion to Vec4 but not Vec3
-        Vector4 diff = colorOriginal - colorCompared;
-        Vector3 colorDiff = diff;
-
-        return colorDiff;
-    }
-
-    /// <summary>
     /// Calcul la distance entre deux couleur
     /// </summary>
-    /// <param name="colorA">Couleur de référence</param>
-    /// <param name="colorB">Couleur à soustraire</param>
     /// <returns></returns>
-    public static float ColorDistance(Color colorOriginal, Color colorCompared)
-    {
-        return Shape.ColorDiff(colorOriginal, colorCompared).magnitude;
-    }
     public static float HueDistance(float hueOriginal, float hueCompared)
     {
         float hueDist = Mathf.Abs(hueOriginal - hueCompared);
@@ -101,36 +73,19 @@ public class Shape : MonoBehaviour
 
     public virtual void UpdateColor()
     {
-        if (RGB)
+
+        if (color != lastColor)
         {
-            if (color != lastColor)
-            {
-                //RGB
-                amountR = color.r;
-                amountG = color.g;
-                amountB = color.b;
-            }
-            else
-            {
-                //RGB
-                color = new Color(amountR, amountG, amountB);
-            }
+            //HSV
+            Color.RGBToHSV(color, out hue, out satur, out value);
+
         }
         else
         {
-            if (color != lastColor)
-            {
-                //HSV
-                Color.RGBToHSV(color, out hue, out satur, out value);
-
-            }
-            else
-            {
-                //HSV
-                hueVisual = Mathf.Ceil((hue-0.022f) * 8)/8;
-                hueVisual += -0.042f - 0.0115f; 
-                color = Color.HSVToRGB(hueVisual, satur, value);
-            }
+            //HSV
+            hueVisual = Mathf.Ceil((hue - 0.022f) * 8) / 8;
+            hueVisual += -0.042f - 0.0115f;
+            color = Color.HSVToRGB(hueVisual, satur, value);
         }
 
         lastColor = color;

@@ -49,13 +49,10 @@ public class PlayerController : Shape
 
     private void Update()
     {
-        RGB = input.RGB;
-
         Movement();
         Orientation();
 
         Morphing();
-        //ChangeColor();
         ChangeHue();
 
         ReturnToOriginal();
@@ -76,7 +73,7 @@ public class PlayerController : Shape
 
     private void Movement()
     {
-        if (ColorDistance(baseColor, color) > 0.05f || SideDistance( MaxSide,side) > 0.05f)
+        if (HueDistance(baseHue, hue) > 0.05f || SideDistance( MaxSide,side) > 0.05f)
         {
             //Mouv
             rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
@@ -96,6 +93,10 @@ public class PlayerController : Shape
 
     private void Morphing()
     {
+        if (true)
+        {
+
+        }
         if (input.SideUp)
         {
             float nextSide = side + (sideEvolvSpeed * Time.deltaTime);
@@ -110,43 +111,6 @@ public class PlayerController : Shape
         UpdateSide();
     }
 
-    private void ChangeColor()
-    {
-        //Rouge
-        if (input.RedUp)
-        {
-            amountR += colorEvolvSpeed * Time.deltaTime;
-        }
-        if (input.RedDown)
-        {
-            amountR -= colorEvolvSpeed * Time.deltaTime;
-        }
-        amountR = Mathf.Clamp01(amountR);
-
-        //Vert
-        if (input.GreenUp)
-        {
-            amountG += colorEvolvSpeed * Time.deltaTime;
-        }
-        if (input.GreenDown)
-        {
-            amountG -= colorEvolvSpeed * Time.deltaTime;
-        }
-        amountG = Mathf.Clamp01(amountG);
-
-        //Bleue
-        if (input.BlueUp)
-        {
-            amountB += colorEvolvSpeed * Time.deltaTime;
-        }
-        if (input.BlueDown)
-        {
-            amountB -= colorEvolvSpeed * Time.deltaTime;
-        }
-        amountB = Mathf.Clamp01(amountB);
-
-        UpdateColor();
-    }
     private void ChangeHue()
     {
         if (true)
@@ -184,15 +148,7 @@ public class PlayerController : Shape
     private void ReturnToOriginal()
     {
         ToOriginalShape();
-
-        if (input.RGB)
-        {
-            ToOriginalColorRGB();
-        }
-        else
-        {
-            ToOriginalColorHSV();
-        }
+        ToOriginalHue();
     }
 
     private void ToOriginalShape()
@@ -211,47 +167,7 @@ public class PlayerController : Shape
         }
         UpdateSide();
     }
-
-    private void ToOriginalColorRGB()
-    {
-        //Color
-        if (!input.RedUp && !input.RedDown)
-        {
-            if (Mathf.Abs(baseColor.r - amountR) > 0.05f)
-            {
-                amountR = Mathf.Lerp(amountR, baseColor.r, returnBaseColorSpeed * Time.deltaTime);
-            }
-            else
-            {
-                amountR = baseColor.r;
-            }
-        }
-        if (!input.GreenUp && !input.GreenDown)
-        {
-            if (Mathf.Abs(baseColor.g - amountG) > 0.05f)
-            {
-                amountG = Mathf.Lerp(amountG, baseColor.g, returnBaseColorSpeed * Time.deltaTime);
-            }
-            else
-            {
-                amountG = baseColor.g;
-            }
-        }
-        if (!input.BlueUp && !input.BlueDown)
-        {
-            if (Mathf.Abs(baseColor.b - amountB) > 0.05f)
-            {
-                amountB = Mathf.Lerp(amountB, baseColor.b, returnBaseColorSpeed * Time.deltaTime);
-            }
-            else
-            {
-                amountB = baseColor.b;
-            }
-        }
-
-        UpdateColor();
-    }
-    private void ToOriginalColorHSV()
+    private void ToOriginalHue()
     {
         if (true)
         {
@@ -348,12 +264,4 @@ public class PlayerController : Shape
         UpdateColor();
     }
 
-    private void OnDrawGizmos()
-    {
-        //EditorOrientation();
-    }
-    private void EditorOrientation()
-    {
-        transform.rotation = Quaternion.Euler(0, 0, baseAngle);
-    }
 }
