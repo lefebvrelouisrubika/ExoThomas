@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEngine.VFX;
-using DG.Tweening;
 
 public enum NPCBehaviour
 {
@@ -41,8 +38,25 @@ public class PNJ : Shape
     public Transform defaultPosition = null;
     private Vector3 defaultPos
     {
-        get { return defaultPosition.position; }
-        set { defaultPosition.position = value; }
+        get 
+        {
+            if (defaultPosition != null)
+            {
+                return defaultPosition.position;
+            }
+            else
+            {
+                GameObject go = new GameObject(this.gameObject.name + "_DefaultPos");
+                go.transform.SetParent(this.transform.parent);
+                defaultPosition = go.transform;
+                defaultPosition.position = transform.position;
+
+                return defaultPosition.position; 
+            }
+        }
+        set { 
+            defaultPosition.position = value; 
+        }
     }
 
     [Header("Attack")]
@@ -77,18 +91,6 @@ public class PNJ : Shape
 
         //Create a new instance of the material (use sharedMat for not changing it)
         rend.material.SetFloat("Sides", side);
-
-        if(defaultPosition != null)
-        {
-            transform.position = defaultPos;
-        }
-        else
-        {
-            GameObject go = new GameObject(this.gameObject.name + "_DefaultPos");
-            go.transform.SetParent(this.transform.parent);
-            defaultPosition = go.transform;
-            defaultPosition.position = transform.position;
-        }
     }
 
     void Update()
@@ -355,11 +357,12 @@ public class PNJ : Shape
 
         Debug.DrawLine(transform.position, defaultPos, Color.black);
 
-        Handles.color = Color.green;
-        Debug.DrawLine(transform.position, blockPos.position, Color.green);
-        Handles.DrawWireDisc(blockPos.position, Vector3.forward, 1f);
-        Handles.DrawWireDisc(blockPos.position, Vector3.right, 1f);
-        Handles.DrawWireDisc(blockPos.position, Vector3.up, 1f);
+        Handles.color = Color.black;
+        Debug.DrawLine(transform.position, blockPos.position, Color.black);
+        float scale = 0.5f;
+        Handles.DrawWireDisc(blockPos.position, Vector3.forward, scale);
+        Handles.DrawWireDisc(blockPos.position, Vector3.right, scale);
+        Handles.DrawWireDisc(blockPos.position, Vector3.up, scale);
 
         Handles.color = Color.white;
     }

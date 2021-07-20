@@ -470,10 +470,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 3
   color: {r: 0.97444, g: 0.64, b: 1, a: 1}
-  RGB: 0
-  amountR: 1
-  amountG: 0.64
-  amountB: 1
   hue: 0.8215
   satur: 0.36
   value: 1
@@ -489,11 +485,10 @@ MonoBehaviour:
   turnSpeed: 10
   baseAngle: 0
   orientation: {x: 1, y: 0}
-  sideEvolvSpeed: 4
-  colorEvolvSpeed: 0.1
-  returnBaseSideSpeed: 1.5
-  returnBaseColorSpeed: 1
-  returnFigedBaseColorSpeed: 0.025
+  sideEvolvSpeed: 0.65
+  returnBaseSideSpeed: 0.5
+  hueEvolvSpeed: 0.0625
+  returnBaseHueSpeed: 0.05
 --- !u!114 &170465620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,15 +505,8 @@ MonoBehaviour:
   mouvVert: 0
   SideUp: 0
   SideDown: 0
-  RGB: 0
   HueUp: 0
   HueDown: 0
-  RedUp: 0
-  RedDown: 0
-  GreenUp: 0
-  GreenDown: 0
-  BlueUp: 0
-  BlueDown: 0
   inputCounter: 0
 --- !u!50 &170465621
 Rigidbody2D:
@@ -613,6 +601,7 @@ Transform:
   m_Children:
   - {fileID: 143580510}
   - {fileID: 402910920876303459}
+  - {fileID: 1115350046}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -713,6 +702,36 @@ Transform:
   - {fileID: 851109329}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1115350045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1115350046}
+  m_Layer: 0
+  m_Name: NPC_DefaultPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1115350046
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115350045}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5799999, y: 3.31, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 806966059}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1297649151
 GameObject:
@@ -1353,10 +1372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 3
   color: {r: 0.07099998, g: 1, b: 0, a: 1}
-  RGB: 0
-  amountR: 0.5
-  amountG: 0.5
-  amountB: 0.5
   hue: 0.3215
   satur: 1
   value: 1
@@ -1371,7 +1386,7 @@ MonoBehaviour:
   neutralthreshold: 0.33
   playerLookProximity: 0
   playerInArea: 0
-  defaultPosition: {fileID: 0}
+  defaultPosition: {fileID: 1115350046}
   isAttacking: 0
   attackSpeed: 25
   attackDistance: 2.5

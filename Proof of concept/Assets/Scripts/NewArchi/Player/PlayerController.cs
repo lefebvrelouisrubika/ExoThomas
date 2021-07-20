@@ -22,12 +22,11 @@ public class PlayerController : Shape
     public Vector2 orientation = Vector2.right;
 
     [Header("Evolving Parameter")]
-    public float sideEvolvSpeed = 1f;
-    public float colorEvolvSpeed = 1f;
-
-    public float returnBaseSideSpeed = 1f;
-    public float returnBaseColorSpeed = 1f;
-    public float returnFigedBaseColorSpeed = 1f;
+    [Range(0.5f, 1f)] public float sideEvolvSpeed = 1f;
+    [Range(0, 1f)] public float returnBaseSideSpeed = 1f;
+    [Space(10)]
+    [Range(0.0625f, 0.1875f)] public float hueEvolvSpeed = 1f;
+    [Range(0, 0.125f)] public float returnBaseHueSpeed = 1f;
 
     public override void Awake()
     {
@@ -81,10 +80,14 @@ public class PlayerController : Shape
         else
         {
             //Mouv
-            rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed;
+            rb.velocity += new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f * Time.deltaTime;
+
+            if(rb.velocity.magnitude > moveSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * moveSpeed;
+            }
         }
     }
-
     private void Orientation()
     {
         float angle = Mathf.Atan2(-input.mouvHori, input.mouvVert) * Mathf.Rad2Deg;
@@ -95,51 +98,72 @@ public class PlayerController : Shape
     {
         if (true)
         {
-
+            //Palier
+            if (input.SideUp)
+            {
+                float nextSide = side + sideEvolvSpeed;
+                nextSide = Mathf.Round(nextSide);
+                side = Mathf.Clamp(nextSide, MinSide, MaxSide);
+            }
+            if (input.SideDown)
+            {
+                float nextSide = side - sideEvolvSpeed;
+                nextSide = Mathf.Round(nextSide);
+                side = Mathf.Clamp(nextSide, MinSide, MaxSide);
+            }
         }
-        if (input.SideUp)
+        else
         {
-            float nextSide = side + (sideEvolvSpeed * Time.deltaTime);
-            side = Mathf.Clamp(nextSide, MinSide, MaxSide);
+            if (input.SideUp)
+            {
+                float nextSide = side + sideEvolvSpeed;
+                side = Mathf.Clamp(nextSide, MinSide, MaxSide);
+            }
+            if (input.SideDown)
+            {
+                float nextSide = side - sideEvolvSpeed;
+                side = Mathf.Clamp(nextSide, MinSide, MaxSide);
+            }
         }
-        if (input.SideDown)
-        {
-            float nextSide = side - (sideEvolvSpeed * Time.deltaTime);
-            side = Mathf.Clamp(nextSide, MinSide, MaxSide);
 
-        }
         UpdateSide();
     }
-
     private void ChangeHue()
     {
         if (true)
         {
             if (input.HueUp)
             {
-                hue += colorEvolvSpeed;
+                hue += hueEvolvSpeed;
+
                 hue %= 1;
             }
             if (input.HueDown)
             {
-                hue -= colorEvolvSpeed;
+                hue -= hueEvolvSpeed;
+
+                hue = hue < 0 ? hue + 1 : hue;
+                hue %= 1;
             }
         }
         else
         {
             if (input.HueUp)
             {
-                hue += colorEvolvSpeed * Time.deltaTime;
+                hue += hueEvolvSpeed;
+
                 hue %= 1;
             }
             if (input.HueDown)
             {
-                hue -= colorEvolvSpeed * Time.deltaTime;
+                hue -= hueEvolvSpeed;
+
+                hue = hue < 0 ? hue + 1 : hue;
+                hue %= 1;
             }
         }
 
-
-        hue = hue < 0 ? hue + 1: hue;
+        hue = hue < 0 ? hue + 1 : hue;
         hue %= 1;
 
         UpdateColor();
@@ -150,7 +174,6 @@ public class PlayerController : Shape
         ToOriginalShape();
         ToOriginalHue();
     }
-
     private void ToOriginalShape()
     {
         //Shape or Side
@@ -158,7 +181,14 @@ public class PlayerController : Shape
         {
             if (Mathf.Abs(baseSide - side) > 0.05f)
             {
-                side = Mathf.Lerp(side, baseSide, returnBaseSideSpeed * Time.deltaTime);
+                if (baseSide < side)
+                {
+                    side -= returnBaseSideSpeed * Time.deltaTime;
+                }
+                else
+                {
+                    side += returnBaseSideSpeed * Time.deltaTime;
+                }
             }
             else
             {
@@ -169,96 +199,31 @@ public class PlayerController : Shape
     }
     private void ToOriginalHue()
     {
-        if (true)
+        if (Mathf.Abs(baseHue - hue) < 0.5f)
         {
-            if (Mathf.Abs(baseHue - hue) < 0.5f)
+            if (hue < baseHue)
             {
-                if (hue < baseHue)
-                {
-                    //Add
-                    hue += returnFigedBaseColorSpeed * Time.deltaTime;
-                }
-                if (hue > baseHue)
-                {
-                    //Substract
-                    hue -= returnFigedBaseColorSpeed * Time.deltaTime;
-                }
+                //Add
+                hue += returnBaseHueSpeed * Time.deltaTime;
             }
-            else
+            if (hue > baseHue)
             {
-                if (baseHue > 0.5f)
-                {
-                    hue -= returnFigedBaseColorSpeed * Time.deltaTime;
-                }
-                else
-                {
-                    hue += returnFigedBaseColorSpeed * Time.deltaTime;
-                }
-                hue = hue < 0 ? hue + 1 : hue;
-                hue %= 1;
+                //Substract
+                hue -= returnBaseHueSpeed * Time.deltaTime;
             }
         }
         else
         {
-            //old chroma system
-            if (!input.HueUp && !input.HueDown)
+            if (baseHue > 0.5f)
             {
-                //Color
-                if (Mathf.Abs(baseHue - hue) > 0.01f)
-                {
-                    if (Mathf.Abs(baseHue - hue) < 0.5f)
-                    {
-                        hue = Mathf.Lerp(hue, baseHue, returnBaseColorSpeed * Time.deltaTime);
-                    }
-                    else
-                    {
-                        if (baseHue > 0.5f)
-                        {
-                            hue = Mathf.Lerp(hue, baseHue - 1, returnBaseColorSpeed * Time.deltaTime);
-                        }
-                        else
-                        {
-                            hue = Mathf.Lerp(hue, baseHue + 1, returnBaseColorSpeed * Time.deltaTime);
-                        }
-
-                        hue = hue < 0 ? hue + 1 : hue;
-                        hue %= 1;
-                    }
-                }
-                else
-                {
-                    hue = baseHue;
-                }
+                hue -= returnBaseHueSpeed * Time.deltaTime;
             }
-            else if (input.HueUp && input.HueDown)
+            else
             {
-                if (Mathf.Abs(baseHue - hue) < 0.5f)
-                {
-                    if (hue < baseHue)
-                    {
-                        //Add
-                        hue += returnFigedBaseColorSpeed * Time.deltaTime;
-                    }
-                    if (hue > baseHue)
-                    {
-                        //Substract
-                        hue -= returnFigedBaseColorSpeed * Time.deltaTime;
-                    }
-                }
-                else
-                {
-                    if (baseHue > 0.5f)
-                    {
-                        hue -= returnFigedBaseColorSpeed * Time.deltaTime;
-                    }
-                    else
-                    {
-                        hue += returnFigedBaseColorSpeed * Time.deltaTime;
-                    }
-                    hue = hue < 0 ? hue + 1 : hue;
-                    hue %= 1;
-                }
+                hue += returnBaseHueSpeed * Time.deltaTime;
             }
+            hue = hue < 0 ? hue + 1 : hue;
+            hue %= 1;
         }
 
         UpdateColor();

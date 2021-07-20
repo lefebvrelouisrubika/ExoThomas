@@ -5,24 +5,13 @@ public class InputHandler : MonoBehaviour
     [Header("InputValue")]
     public float mouvHori = 0;
     public float mouvVert = 0;
+
     [Space(10)]
     public bool SideUp = false;
     public bool SideDown = false;
-
-    [Space(10)]
-    public bool RGB = false;
     [Space(5)]
     public bool HueUp = false;
     public bool HueDown = false;
-    [Space(5)]
-    public bool RedUp = false;
-    public bool RedDown = false;
-    [Space(5)]
-    public bool GreenUp = false;
-    public bool GreenDown = false;
-    [Space(5)]
-    public bool BlueUp = false;
-    public bool BlueDown = false;
 
     [Header("Additional Info")]
     public int inputCounter = 0;
@@ -38,34 +27,12 @@ public class InputHandler : MonoBehaviour
         mouvHori = Input.GetAxis("Horizontal");
         mouvVert = Input.GetAxis("Vertical");
 
-        if (RGB)
-        {
-            SideUp = Input.GetButton("a");
-            SideDown = Input.GetButton("q");
-        }
-        else
-        {
-            SideUp = Input.GetKeyDown(KeyCode.F);
-            SideDown = Input.GetKeyDown(KeyCode.S);
-        }
+        SideUp = Input.GetKeyDown(KeyCode.Z);
+        SideDown = Input.GetKeyDown(KeyCode.S);
 
-        if (RGB)
-        {
-            RedUp = Input.GetButton("z");
-            RedDown = Input.GetButton("s");
+        HueUp = Input.GetKeyDown(KeyCode.Q);
+        HueDown = Input.GetKeyDown(KeyCode.D);
 
-            GreenUp = Input.GetButton("e");
-            GreenDown = Input.GetButton("d");
-
-            BlueUp = Input.GetButton("r");
-            BlueDown = Input.GetButton("f");
-        }
-        else
-        {
-            HueUp = Input.GetKeyDown(KeyCode.A);
-            HueDown = Input.GetKeyDown(KeyCode.E);
-
-        }
     }
 
     private int CountInput()
@@ -81,33 +48,14 @@ public class InputHandler : MonoBehaviour
             counter++;
         }
 
-        if (RedUp)
+        if (HueUp)
         {
             counter++;
         }
-        if (RedDown)
+        if (HueDown)
         {
             counter++;
         }
-        
-        if (GreenUp)
-        {
-            counter++;
-        }
-        if (GreenDown)
-        {
-            counter++;
-        }
-
-        if (BlueUp)
-        {
-            counter++;
-        }
-        if (BlueDown)
-        {
-            counter++;
-        }
-
         return counter;
     }
 }

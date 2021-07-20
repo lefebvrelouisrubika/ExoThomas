@@ -31,7 +31,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: color.r
-    value: 1
+    value: 0.97444
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: color.g
@@ -46,24 +46,8 @@ Preset:
     value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: RGB
-    value: 0
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: amountR
-    value: 1
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: amountG
-    value: 0.64
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: amountB
-    value: 1
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
     propertyPath: hue
-    value: 0.8333333
+    value: 0.8215
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: satur
@@ -74,12 +58,24 @@ Preset:
     value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
+    propertyPath: hueVisual
+    value: 0.8215
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: testOffsetHue
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
     propertyPath: input
     value: 
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: rb
     value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: crackLvl
+    value: 0
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: baseSide
@@ -127,22 +123,18 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: sideEvolvSpeed
-    value: 4
-    objectReference: {fileID: 0}
-  - target: {fileID: 0}
-    propertyPath: colorEvolvSpeed
-    value: 0.75
+    value: 0.65
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: returnBaseSideSpeed
-    value: 1.5
+    value: 0.5
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: returnBaseColorSpeed
-    value: 1
+    propertyPath: hueEvolvSpeed
+    value: 0.0625
     objectReference: {fileID: 0}
   - target: {fileID: 0}
-    propertyPath: returnFigedBaseColorSpeed
-    value: 0.025
+    propertyPath: returnBaseHueSpeed
+    value: 0.0625
     objectReference: {fileID: 0}
   m_ExcludedProperties: []
