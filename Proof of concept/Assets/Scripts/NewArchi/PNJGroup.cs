@@ -70,9 +70,12 @@ public class PNJGroup : MonoBehaviour
 
     private void EvaluatePlayer()
     {
-        float sideProxi = Shape.SideDistance(targetSide, player.side);
+        //Get group target Hue
         Color.RGBToHSV(targetColor, out targetHue, out _, out _);
-        float colorProxi = Shape.HueDistance(targetHue, player.hue);
+
+        float sideProxi = Shape.SideDistance(targetSide, player.side);
+        //compare distance (1- / oneMinus to convert distance in proximity)
+        float colorProxi = 1-Shape.HueDistance(targetHue, player.hue);
 
         playerLookSimilarity = (sideProxi + colorProxi) / 2;
     }

@@ -18,6 +18,8 @@ public class PNJ : Shape
 {
     public PlayerController player;
     public PNJGroup group;
+    private Rigidbody2D rb;
+
     private NPCBehaviour actualBehaviour = NPCBehaviour.Happy;
 
     [Header("Comportement")]
@@ -84,7 +86,7 @@ public class PNJ : Shape
     void Start()
     {
         player = PlayerController.instance;
-
+        rb = GetComponent<Rigidbody2D>();
         float h;
         Color.RGBToHSV(color, out h, out _, out _);
         sprRend.color = Color.HSVToRGB(h, 0.36f, 1f);
@@ -118,10 +120,11 @@ public class PNJ : Shape
 
     private void EvaluatePlayer()
     {
-        float sideProxi = SideDistance(side, player.side);
-        float colorProxi = HueDistance(hue, player.hue);
+        float sideProxi = Shape.SideDistance(side, player.side);
+        //compare distance (1- / oneMinus to convert distance in proximity)
+        float colorProxi = 1 - Shape.HueDistance(hue, player.hue);
 
-        playerLookProximity = (sideProxi + colorProxi)/2f;
+        playerLookProximity = (sideProxi + colorProxi) / 2;
     }
 
     private void ChooseBehavior()
@@ -311,7 +314,8 @@ public class PNJ : Shape
 
         if (toPlayerVector.magnitude < fleeDistance)
         {
-            transform.Translate( -toPlayerVector.normalized * (0.25f/ toPlayerVector.magnitude) * fleeSpeed * Time.deltaTime, Space.World);
+            //rb.velocity = -toPlayerVector.normalized * fleeSpeed * Time.deltaTime;
+            transform.Translate(-toPlayerVector.normalized * fleeSpeed * Time.deltaTime, Space.World);
 
             if (!vfxFlee.isPlaying)
             {

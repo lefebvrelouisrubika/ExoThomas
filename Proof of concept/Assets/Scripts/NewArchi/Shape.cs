@@ -57,7 +57,7 @@ public class Shape : MonoBehaviour
             }
         }
 
-        hueDist = 1 - (2 * hueDist);
+        hueDist = 2 * hueDist;
         return hueDist;
     }
 
@@ -68,7 +68,7 @@ public class Shape : MonoBehaviour
     public static float SideDistance(float SideOriginal, float SideCompared)
     {
         float result = Mathf.Abs((SideOriginal - MinSide) - (SideCompared - MinSide)) / (MaxSide-MinSide);
-        return 1-result;
+        return result;
     }
 
     public virtual void UpdateColor()

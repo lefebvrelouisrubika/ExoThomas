@@ -72,7 +72,7 @@ public class PlayerController : Shape
 
     private void Movement()
     {
-        if (HueDistance(baseHue, hue) > 0.05f || SideDistance( MaxSide,side) > 0.05f)
+        if (HueDistance(baseHue, hue) > 0.05f || SideDistance( baseSide,side) > 0.05f)
         {
             //Mouv
             rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
