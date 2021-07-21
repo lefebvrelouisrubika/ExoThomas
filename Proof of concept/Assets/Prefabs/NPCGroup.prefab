@@ -9806,16 +9806,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 072ca597d6af4554cacffd1656fa76a3,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 072ca597d6af4554cacffd1656fa76a3, type: 3}
   m_Color: {r: 0.07099998, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2969996353475063977
@@ -9832,10 +9831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 3
   color: {r: 0.07099998, g: 1, b: 0, a: 1}
-  RGB: 0
-  amountR: 0.5
-  amountG: 0.5
-  amountB: 0.5
   hue: 0.3215
   satur: 1
   value: 1
@@ -9850,7 +9845,7 @@ MonoBehaviour:
   neutralthreshold: 0.33
   playerLookProximity: 0
   playerInArea: 0
-  defaultPosition: {fileID: 0}
+  defaultPosition: {fileID: 4114841050283104747}
   isAttacking: 0
   attackSpeed: 25
   attackDistance: 2.5
@@ -9999,6 +9994,36 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!1 &3107229264627793629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4114841050283104747}
+  m_Layer: 0
+  m_Name: NPC_DefaultPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4114841050283104747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107229264627793629}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.41000175, y: 2.5599995, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7114139920580018446}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3215823758673201129
 GameObject:
   m_ObjectHideFlags: 0
@@ -10050,6 +10075,9 @@ MonoBehaviour:
   targetHue: 0
   similarthreshold: 0
   neutralthreshold: 0
+  stateSimilar: 1
+  stateNeutral: 0
+  stateFaraway: 2
   playerLookSimilarity: 0
   playerDetectionThreshold: 8
   player: {fileID: 0}
@@ -14977,6 +15005,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2969996353475063971}
+  - {fileID: 4114841050283104747}
   m_Father: {fileID: 3215823758673201131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
