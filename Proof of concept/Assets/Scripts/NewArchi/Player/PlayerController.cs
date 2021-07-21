@@ -80,7 +80,7 @@ public class PlayerController : Shape
         else
         {
             //Mouv
-            rb.velocity += new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f * Time.deltaTime;
+            rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
 
             if(rb.velocity.magnitude > moveSpeed)
             {
