@@ -28,6 +28,11 @@ public class PlayerController : Shape
     [Range(0.0625f, 0.1875f)] public float hueEvolvSpeed = 1f;
     [Range(0, 0.125f)] public float returnBaseHueSpeed = 1f;
 
+    [Header("sounds")]
+    public AudioClip hit;
+    public AudioClip changeColor;
+    public AudioClip walk;
+
     public override void Awake()
     {
         base.Awake();
