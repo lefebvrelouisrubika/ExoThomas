@@ -78,17 +78,20 @@ public class PlayerController : Shape
 
     private void Movement()
     {
-        if (HueDistance(baseHue, hue) > 0.05f || SideDistance( baseSide,side) > 0.05f)
+        if (HueDistance(baseHue, hue) > 0.1f || SideDistance( baseSide,side) > 1.05f)
         {
             //Mouv
+            //Debug.Log("ralenti");
+            //Debug.Log(SideDistance(baseSide, side));
+            
             rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
-            Soundmanager.Instance.PlayMusic(walk, 1f);
+            //Soundmanager.Instance.PlayMusic(walk, 1f);
         }
         else
         {
             //Mouv
-            rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
-            Soundmanager.Instance.PlayMusic(walk, 1f);
+            rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed;
+            //Soundmanager.Instance.PlayMusic(walk, 1f);
             if (rb.velocity.magnitude > moveSpeed)
             {
                 rb.velocity = rb.velocity.normalized * moveSpeed;
@@ -96,10 +99,10 @@ public class PlayerController : Shape
             }
 
         }
-        if(rb.velocity == new Vector2(0,0))
-        {
-           Soundmanager.Instance.stopMusic();
-        }
+        //if(rb.velocity == new Vector2(0,0))
+        //{
+        //   //Soundmanager.Instance.stopMusic();
+        //}
     }
     private void Orientation()
     {

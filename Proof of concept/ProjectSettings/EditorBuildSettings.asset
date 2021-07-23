@@ -14,10 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MENU.unity
     guid: bf71860bacc80cc4e85e5dd1a09cc9d2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ScenePrincipale.unity
     guid: 992a46603d419e94fad3eaa21c1aa077
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SceneDesScenettes.unity
     guid: 76fce2dd4174413479309528042451b6
+  - enabled: 1
+    path: Assets/Scenes/SceneDeDebug.unity
+    guid: 57c3ef71827c7f048825a4b4ec74c497
   m_configObjects: {}
