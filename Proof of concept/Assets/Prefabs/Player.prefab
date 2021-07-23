@@ -177,9 +177,9 @@ MonoBehaviour:
   returnBaseSideSpeed: 1
   hueEvolvSpeed: 0.1875
   returnBaseHueSpeed: 0.125
-  hit: {fileID: 0}
-  changeColor: {fileID: 0}
-  walk: {fileID: 0}
+  hit: {fileID: 8300000, guid: 459e1fd5799d11e4098bdb7d095abf14, type: 3}
+  changeColor: {fileID: 8300000, guid: 31f35b9144e83584292710bfc68c832c, type: 3}
+  walk: {fileID: 8300000, guid: ba4325c68fa444d449d08ca9c0dc46fb, type: 3}
 --- !u!1001 &2244078129241797936
 PrefabInstance:
   m_ObjectHideFlags: 0

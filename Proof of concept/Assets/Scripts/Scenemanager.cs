@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class Scenemanager : MonoBehaviour
 {
     public static Scenemanager instance;
-    // Start is called before the first frame update
-    //#region transitions 
-    //public Animator transition;
+    public GameObject ImageFondu;
+    #region transitions 
+    public Animator transition;
 
-    //#endregion
+    #endregion
     void Awake()
     {
         instance = this;
@@ -19,22 +19,19 @@ public class Scenemanager : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadLevel(sceneName));
     }
 
-    //private void StartGame()
-    //{
-    //    StartCoroutine(LoadLevel());
 
-    //}
-    //IEnumerator LoadLevel()
-    //{
-    //    //play animation
-    //    transitionj1.SetTrigger("Changescene");
-    //    transitionj2.SetTrigger("Changescene");
-    //    yield return new WaitForSeconds(1);
-    //    SceneManager.LoadScene(1);
-    //}
+    IEnumerator LoadLevel(string sceneName)
+    {
+        //play animation
+        ImageFondu.SetActive(true);
+        transition.SetTrigger("FonduOut");
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(sceneName);
+        transition.SetTrigger("FonduIn");
+    }
     //private void GoCredits()
     //{
     //    transitionj1.SetTrigger("Changescene");
@@ -43,9 +40,9 @@ public class Scenemanager : MonoBehaviour
     //    Debug.Log("Credit");
     //}
 
-    //private void Quit()
-    //{
-    //    Application.Quit();
-    //    Debug.Log("Quit");
-    //}
+    private void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Quit");
+    }
 }

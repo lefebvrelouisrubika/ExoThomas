@@ -71,6 +71,7 @@ public class PlayerController : Shape
                 crackLvl += 0.1f;
                 crackLvl = Mathf.Clamp01(crackLvl);
                 mat.SetFloat("CrackLvl", crackLvl/2);
+                Soundmanager.Instance.PlaySFX(hit, 0.5f);
             }
         }
     }
@@ -81,16 +82,23 @@ public class PlayerController : Shape
         {
             //Mouv
             rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
+            Soundmanager.Instance.PlayMusic(walk, 1f);
         }
         else
         {
             //Mouv
             rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
-
-            if(rb.velocity.magnitude > moveSpeed)
+            Soundmanager.Instance.PlayMusic(walk, 1f);
+            if (rb.velocity.magnitude > moveSpeed)
             {
                 rb.velocity = rb.velocity.normalized * moveSpeed;
+                
             }
+
+        }
+        if(rb.velocity == new Vector2(0,0))
+        {
+           Soundmanager.Instance.stopMusic();
         }
     }
     private void Orientation()
@@ -142,6 +150,7 @@ public class PlayerController : Shape
                 hue += hueEvolvSpeed;
 
                 hue %= 1;
+                Soundmanager.Instance.PlaySFX(changeColor, 1f);
             }
             if (input.HueDown)
             {
@@ -149,6 +158,7 @@ public class PlayerController : Shape
 
                 hue = hue < 0 ? hue + 1 : hue;
                 hue %= 1;
+                Soundmanager.Instance.PlaySFX(changeColor, 1f);
             }
         }
         else
@@ -172,6 +182,7 @@ public class PlayerController : Shape
         hue %= 1;
 
         UpdateColor();
+        
     }
 
     private void ReturnToOriginal()

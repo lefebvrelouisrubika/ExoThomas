@@ -36,17 +36,24 @@ public class Soundmanager : MonoBehaviour
 
     }
 
-    public void PlayMusic(AudioClip musicClip)
+    public void PlayMusic(AudioClip musicClip,float volume)
     {
         Debug.Log(musicClip);
         Debug.Log(musicSource);
         musicSource.clip = musicClip;
+        musicSource.volume = volume;
         musicSource.Play();
 
     }
-    public void PlayMusic2(AudioClip musicClip)
+    public void stopMusic()
+    {
+        musicSource.Stop();
+
+    }
+    public void PlayMusic2(AudioClip musicClip, float volume)
     {
         musicSource2.clip = musicClip;
+        musicSource.volume = volume;
         musicSource2.Play();
 
     }
