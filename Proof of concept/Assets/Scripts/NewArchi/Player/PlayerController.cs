@@ -30,11 +30,14 @@ public class PlayerController : Shape
     [Range(0, 0.125f)] public float returnBaseHueSpeed = 1f;
     public int returnShapeCooldown;
     private int currentShapeCD;
+
+
     private bool coroutineDownShape = false;
     public int returnColorCooldown;
     private int currentColorCD;
     private bool coroutineDownColor = false;
     private bool shaking = false;
+    private bool colorTwitching = false;
 
     [Header("sounds")]
     public AudioClip hit;
@@ -71,6 +74,8 @@ public class PlayerController : Shape
 
         ReturnToOriginal();
         Shaking();
+        //Debug.Log(shaking);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -145,7 +150,15 @@ public class PlayerController : Shape
             }
             else
             {
-                currentShapeCD = Random.Range(2, 3);
+                if (input.SideDown)
+                {
+                    currentShapeCD = Random.Range(2, 4);
+                }
+                if (input.SideUp)
+                {
+                    currentShapeCD = Random.Range(2, 4);
+                }
+
             }
         }
         else
@@ -168,23 +181,40 @@ public class PlayerController : Shape
     {
         if (true)
         {
-            if (input.HueUp)
+            if (colorTwitching)
             {
-                hue += hueEvolvSpeed;
+                if (input.HueUp)
+                {
+                    hue += hueEvolvSpeed;
 
-                hue %= 1;
-                Soundmanager.Instance.PlaySFX(changeColor, 1f);
-                currentColorCD = returnColorCooldown;
+                    hue %= 1;
+                    Soundmanager.Instance.PlaySFX(changeColor, 1f);
+                    currentColorCD = returnColorCooldown;
+                }
+                if (input.HueDown)
+                {
+                    hue -= hueEvolvSpeed;
+
+                    hue = hue < 0 ? hue + 1 : hue;
+                    hue %= 1;
+                    Soundmanager.Instance.PlaySFX(changeColor, 1f);
+                    currentColorCD = returnColorCooldown;
+                }
             }
-            if (input.HueDown)
+            else
             {
-                hue -= hueEvolvSpeed;
-
-                hue = hue < 0 ? hue + 1 : hue;
-                hue %= 1;
-                Soundmanager.Instance.PlaySFX(changeColor, 1f);
-                currentColorCD = returnColorCooldown;
+                if (input.HueUp)
+                {
+                    Soundmanager.Instance.PlaySFX(changeColor, 1f);
+                    currentColorCD = Random.Range(2, 4);
+                }
+                if (input.HueDown)
+                {
+                    Soundmanager.Instance.PlaySFX(changeColor, 1f);
+                    currentColorCD = Random.Range(2, 4);
+                }
             }
+            
         }
         else
         {
@@ -218,99 +248,98 @@ public class PlayerController : Shape
     private void ToOriginalShape()
     {
         //Shape or Side
-        
-            //if (Mathf.Abs(baseSide - side) > 0.05f)
-            //{
-            //    if (baseSide < side)
-            //    {
-            //        side -= returnBaseSideSpeed * Time.deltaTime;
-            //    }
-            //    else
-            //    {
-            //        side += returnBaseSideSpeed * Time.deltaTime;
-            //    }
-            //}
-            if (currentShapeCD > 0)       
+
+        if (Mathf.Abs(baseSide - side) > 0.05f)
+        {
+            if (currentShapeCD > 0)
             {
+
+
+                if (currentShapeCD <= 1)
+                {
+                    //Debug.Log("test");
+
+                    shaking = true;
+                }
+                if (currentShapeCD > 1)
+                {
+
+                    shaking = false;
+                }
                 if (coroutineDownShape == false)
                 {
                     StartCoroutine("downshapeCD");
                 }
-
-                if (currentShapeCD<=1)
-                {
-                shaking = true;
-                }
-                else
-                {
-                shaking = false;
-                }
-
             }
             else
             {
-            side = baseSide;
-            currentShapeCD = returnShapeCooldown;
-            shaking = false;
+                side = baseSide;
+
+                shaking = false;
             }
+        }
 
         UpdateSide();
     }
 
     IEnumerator downshapeCD()
     {
+        //Debug.Log("coroutine");
         coroutineDownShape = true;
         yield return new WaitForSeconds(1);
-        currentShapeCD = currentShapeCD - 1;
+        currentShapeCD -=1;
+        //Debug.Log(currentShapeCD);
         coroutineDownShape = false;
     }
     private void ToOriginalHue()
     {
-        //if (Mathf.Abs(baseHue - hue) < 0.5f)
-        //{
-        //    //if (hue < baseHue)
-        //    //{
-        //    //    //Add
-        //    //    //hue += returnBaseHueSpeed * Time.deltaTime;
-
-        //    //}
-        //    //if (hue > baseHue)
-        //    //{
-        //    //    //Substract
-        //    //    //hue -= returnBaseHueSpeed * Time.deltaTime;
-        //    //}
-            
-        //}
-        //else
-        //{
+        if (Mathf.Abs(baseHue - hue) > 0.05f)
+        {
+            Debug.Log("test");
             if (currentColorCD > 0)
             {
+
+
+                if (currentColorCD <= 1)
+                {
+                    
+
+                    colorTwitching = true;
+                }
+                if (currentColorCD > 1)
+                {
+
+                    colorTwitching = false;
+                }
                 if (coroutineDownColor == false)
                 {
                     StartCoroutine("downColorCD");
                 }
-                
             }
             else
             {
                 hue = baseHue;
+
+                colorTwitching = false;
             }
-            //if (baseHue > 0.5f)
-            //{
-            //    hue -= returnBaseHueSpeed * Time.deltaTime;
-            //}
-            //else
-            //{
-            //    hue += returnBaseHueSpeed * Time.deltaTime;
-            //}
-            //hue = hue < 0 ? hue + 1 : hue;
-            //hue %= 1;
+        }
+        //if (baseHue > 0.5f)
+        //{
+        //    hue -= returnBaseHueSpeed * Time.deltaTime;
+        //}
+        //else
+        //{
+        //    hue += returnBaseHueSpeed * Time.deltaTime;
+        //}
+        //hue = hue < 0 ? hue + 1 : hue;
+        //hue %= 1;
         //}
 
         UpdateColor();
     }
     IEnumerator downColorCD()
     {
+        //Debug.Log("colorroutine");
         coroutineDownColor = true;
         yield return new WaitForSeconds(1);
         currentColorCD = currentColorCD - 1;
@@ -318,6 +347,15 @@ public class PlayerController : Shape
     }
     private void Shaking()
     {
+
+        if(shaking == true)
+        {
+
+                mat.SetFloat("Sides", side + Random.Range(-0.1f, 0.1f));
+                //StartCoroutine("ShapeShake");
+
+        }
         
     }
+
 }
