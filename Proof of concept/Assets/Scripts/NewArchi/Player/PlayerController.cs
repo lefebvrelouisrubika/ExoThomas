@@ -74,6 +74,7 @@ public class PlayerController : Shape
 
         ReturnToOriginal();
         Shaking();
+        ColorTwitching();
         //Debug.Log(shaking);
         
     }
@@ -181,7 +182,7 @@ public class PlayerController : Shape
     {
         if (true)
         {
-            if (colorTwitching)
+            if (colorTwitching == false)
             {
                 if (input.HueUp)
                 {
@@ -357,5 +358,16 @@ public class PlayerController : Shape
         }
         
     }
+    private void ColorTwitching()
+    {
 
+        if (colorTwitching == true)
+        {
+
+            mat.SetFloat("Hue", hue + Random.Range(-0.1f, 0.1f));
+            //StartCoroutine("ShapeShake");
+
+        }
+
+    }
 }
