@@ -40,6 +40,8 @@ public class PlayerController : Shape
     private bool colorTwitching = false;
     private float shakeHue;
     private bool isWalking = false;
+    private bool ishealing = false;
+    private bool healable = false;
 
     [Header("sounds")]
     public AudioClip hit;
@@ -78,7 +80,7 @@ public class PlayerController : Shape
         Shaking();
         ColorTwitching();
         //Debug.Log(shaking);
-        
+        ReturnCracks();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -91,6 +93,8 @@ public class PlayerController : Shape
                 crackLvl = Mathf.Clamp01(crackLvl);
                 mat.SetFloat("CrackLvl", crackLvl/2);
                 Soundmanager.Instance.PlaySFX(hit, 0.5f);
+                healable = false;
+                StartCoroutine("Wounded");
             }
         }
     }
@@ -366,8 +370,15 @@ public class PlayerController : Shape
 
         if(shaking == true)
         {
-
+            if (side >= 6)
+            {
+                mat.SetFloat("Sides", side + Random.Range(-0.6f, 0.6f));
+            }
+            else
+            {
                 mat.SetFloat("Sides", side + Random.Range(-0.3f, 0.3f));
+            }
+                
                 //StartCoroutine("ShapeShake");
 
         }
@@ -387,4 +398,30 @@ public class PlayerController : Shape
         }
 
     }
+    private void ReturnCracks()
+    {
+        if (healable == true)
+        {
+            if (ishealing == false)
+            {
+                StartCoroutine("HealTime");
+            }
+        }
+
+    }
+    IEnumerator HealTime()
+    {
+        ishealing = true;
+        yield return new WaitForSeconds(1);
+        crackLvl -= 0.05f;
+        crackLvl = Mathf.Clamp01(crackLvl);
+        mat.SetFloat("CrackLvl", crackLvl / 2);
+        ishealing = false;
+    }
+    IEnumerator Wounded()
+    {
+        yield return new WaitForSeconds(4);
+        healable = true;
+    }
+
 }
