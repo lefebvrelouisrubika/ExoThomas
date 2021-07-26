@@ -38,6 +38,8 @@ public class PlayerController : Shape
     private bool coroutineDownColor = false;
     private bool shaking = false;
     private bool colorTwitching = false;
+    private float shakeHue;
+    private bool isWalking = false;
 
     [Header("sounds")]
     public AudioClip hit;
@@ -95,20 +97,32 @@ public class PlayerController : Shape
 
     private void Movement()
     {
-        if (HueDistance(baseHue, hue) > 0.1f || SideDistance( baseSide,side) > 1.05f)
+       
+        if (HueDistance(baseHue, hue) > 0.1f || SideDistance( baseSide,side) < 1f)
         {
             //Mouv
             //Debug.Log("ralenti");
             //Debug.Log(SideDistance(baseSide, side));
             
             rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
-            //Soundmanager.Instance.PlayMusic(walk, 1f);
+            if (isWalking == false)
+            {
+                Debug.Log("son");
+                //Soundmanager.Instance.PlayMusic(walk, 0.5f);
+                isWalking = true;
+            }
+
         }
         else
         {
             //Mouv
             rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed;
-            //Soundmanager.Instance.PlayMusic(walk, 1f);
+            if (isWalking == false)
+            {
+                Debug.Log("son");
+                //Soundmanager.Instance.PlayMusic(walk, 0.5f);
+                isWalking = true;
+            }
             if (rb.velocity.magnitude > moveSpeed)
             {
                 rb.velocity = rb.velocity.normalized * moveSpeed;
@@ -116,10 +130,11 @@ public class PlayerController : Shape
             }
 
         }
-        //if(rb.velocity == new Vector2(0,0))
-        //{
-        //   //Soundmanager.Instance.stopMusic();
-        //}
+        if(rb.velocity == new Vector2(0,0))
+        {
+            isWalking = false;
+            //Soundmanager.Instance.StopMusic();
+        }
     }
     private void Orientation()
     {
@@ -296,7 +311,7 @@ public class PlayerController : Shape
     {
         if (Mathf.Abs(baseHue - hue) > 0.05f)
         {
-            Debug.Log("test");
+            //Debug.Log("test");
             if (currentColorCD > 0)
             {
 
@@ -309,7 +324,7 @@ public class PlayerController : Shape
                 }
                 if (currentColorCD > 1)
                 {
-
+                    shakeHue = hue;
                     colorTwitching = false;
                 }
                 if (coroutineDownColor == false)
@@ -352,7 +367,7 @@ public class PlayerController : Shape
         if(shaking == true)
         {
 
-                mat.SetFloat("Sides", side + Random.Range(-0.1f, 0.1f));
+                mat.SetFloat("Sides", side + Random.Range(-0.3f, 0.3f));
                 //StartCoroutine("ShapeShake");
 
         }
@@ -363,9 +378,11 @@ public class PlayerController : Shape
 
         if (colorTwitching == true)
         {
-
-            mat.SetFloat("Hue", hue + Random.Range(-0.1f, 0.1f));
+            
+            Debug.Log("test");
+            hue = shakeHue + Random.Range(-0.01f, 0.01f);
             //StartCoroutine("ShapeShake");
+            
 
         }
 

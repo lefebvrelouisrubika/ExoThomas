@@ -38,14 +38,14 @@ public class Soundmanager : MonoBehaviour
 
     public void PlayMusic(AudioClip musicClip,float volume)
     {
-        Debug.Log(musicClip);
-        Debug.Log(musicSource);
+        //Debug.Log(musicClip);
+        //Debug.Log(musicSource);
         musicSource.clip = musicClip;
         musicSource.volume = volume;
         musicSource.Play();
 
     }
-    public void stopMusic()
+    public void StopMusic()
     {
         musicSource.Stop();
 
