@@ -74,6 +74,9 @@ public class PNJ : Shape
     public ParticleSystem vfxFlee;
     public float fleeSpeed = 10f;
     public float fleeDistance = 2f;
+    public bool disapear;
+    private bool noTurningBack = false;
+    public float DisapearRatio;
 
     [Header("Happy")]
     public ParticleSystem vfxHappy;
@@ -312,14 +315,25 @@ public class PNJ : Shape
     private void Flee()
     {
 
-        if (toPlayerVector.magnitude < fleeDistance)
+        if (toPlayerVector.magnitude < fleeDistance || noTurningBack == true)
         {
             //rb.velocity = -toPlayerVector.normalized * fleeSpeed * Time.deltaTime;
             transform.Translate(-toPlayerVector.normalized * fleeSpeed * Time.deltaTime, Space.World);
-
+            
             if (!vfxFlee.isPlaying)
             {
-                vfxFlee.Play();
+                vfxFlee.Play(); 
+            }
+
+            // Mettre en condition "si le son n'est pas joué"
+
+            // Jouer le son de fuite classique 
+
+            if (disapear == true)
+            {
+                noTurningBack = true;
+                disapear = false;
+                StartCoroutine(FadeOut());
             }
         }
         else
@@ -346,6 +360,25 @@ public class PNJ : Shape
         {
             transform.Translate(toDefaultPos.normalized * moveSpeed * Time.deltaTime, Space.World);
         }
+    }
+
+    private IEnumerator FadeOut()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Color spriteColor = this.GetComponent<SpriteRenderer>().color;
+
+        while (color.a > 0)
+        {
+            Debug.Log("Sayonara");
+            spriteColor.a -= DisapearRatio;
+
+            this.GetComponent<SpriteRenderer>().color = spriteColor;
+
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        Destroy(gameObject);
     }
 
     #region Debug
