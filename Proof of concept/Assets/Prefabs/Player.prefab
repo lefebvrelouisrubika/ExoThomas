@@ -169,7 +169,7 @@ MonoBehaviour:
   baseSide: 3
   baseColor: {r: 1, g: 0.6392157, b: 1, a: 1}
   baseHue: 0.8215
-  moveSpeed: 7
+  moveSpeed: 6
   turnSpeed: 10
   baseAngle: 0
   orientation: {x: 1, y: 0}
