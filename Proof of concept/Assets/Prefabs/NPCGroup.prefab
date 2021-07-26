@@ -124,8 +124,10 @@ MonoBehaviour:
   blockPos: {fileID: 3215823758798211486}
   moveSpeed: 10
   vfxFlee: {fileID: 9001905238922574298}
-  fleeSpeed: 5
-  fleeDistance: 2
+  fleeSpeed: 3
+  fleeDistance: 2.5
+  disapear: 0
+  DisapearRatio: 0.075
   vfxHappy: {fileID: 207431761230416549}
   rotSpeed: 10
   isRotating: 0

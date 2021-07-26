@@ -10,7 +10,7 @@ public class Shape : MonoBehaviour
 
     [ColorUsage(false, false), Space(12)]
     public Color color = Color.grey;
-    private Color lastColor = Color.grey;
+    protected Color lastColor = Color.grey;
 
     [Space(4)]
     [Range(0, 1)] public float hue = 0.5f;
