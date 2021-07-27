@@ -86,6 +86,9 @@ public class PNJ : Shape
     [Header("Neutral")]
     public bool placeholder;
 
+    [Header("Sounds")]
+    public AudioClip fuite;
+
     void Start()
     {
         player = PlayerController.instance;
@@ -368,7 +371,7 @@ public class PNJ : Shape
 
         Color spriteColor = this.GetComponent<SpriteRenderer>().color;
 
-        while (color.a > 0)
+        while (this.GetComponent<SpriteRenderer>().color.a > 0)
         {
             Debug.Log("Sayonara");
             spriteColor.a -= DisapearRatio;
@@ -378,7 +381,7 @@ public class PNJ : Shape
             yield return new WaitForSeconds(0.05f);
         }
 
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     }
 
     #region Debug

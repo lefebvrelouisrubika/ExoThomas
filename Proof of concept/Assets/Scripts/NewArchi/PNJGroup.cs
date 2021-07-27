@@ -26,6 +26,7 @@ public class PNJGroup : MonoBehaviour
     public float playerDetectionThreshold = 2f;
     private float playerDistance;
     public PlayerController player;
+    public bool allGone;
 
     [Header("Group PNJ ")]
     public List<PNJ> allPNJ = new List<PNJ>();
@@ -51,6 +52,7 @@ public class PNJGroup : MonoBehaviour
         }
 
         ChooseBehavior();
+        VerifyNPCs();
     }
 
     public void DetectingPlayer()
@@ -108,6 +110,24 @@ public class PNJGroup : MonoBehaviour
         for (int i = 0; i < allPNJ.Count; i++)
         {
             allPNJ[i].playerLookProximity = playerLookSimilarity;
+        }
+    }
+
+    private void VerifyNPCs()
+    {
+        int goneCount = 0;
+
+        for (int i = 0; i < allPNJ.Count; i++)
+        {
+            if (allPNJ[i].isActiveAndEnabled == false)
+            {
+                goneCount++;
+            }
+        }
+
+        if (goneCount == allPNJ.Count)
+        {
+            allGone = true;
         }
     }
 
