@@ -20,7 +20,7 @@ public class PNJ : Shape
     public PNJGroup group;
     private Rigidbody2D rb;
 
-    private NPCBehaviour actualBehaviour = NPCBehaviour.Happy;
+    public NPCBehaviour actualBehaviour = NPCBehaviour.Happy;
 
     [Header("Comportement")]
     public NPCBehaviour stateSimilar = NPCBehaviour.Happy;

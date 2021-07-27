@@ -42,6 +42,7 @@ public class PlayerController : Shape
     private bool isWalking = false;
     private bool ishealing = false;
     private bool healable = false;
+    
 
     [Header("sounds")]
     public AudioClip hit;
@@ -423,5 +424,6 @@ public class PlayerController : Shape
         yield return new WaitForSeconds(4);
         healable = true;
     }
+
 
 }

@@ -43869,6 +43869,7 @@ MonoBehaviour:
   rotSpeed: 10
   isRotating: 0
   placeholder: 0
+  fuite: {fileID: 0}
 --- !u!58 &693324072948509290
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -49001,6 +49002,7 @@ MonoBehaviour:
   rotSpeed: 10
   isRotating: 0
   placeholder: 0
+  fuite: {fileID: 0}
 --- !u!58 &693324072965256955
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -132139,6 +132141,7 @@ MonoBehaviour:
   rotSpeed: 10
   isRotating: 0
   placeholder: 0
+  fuite: {fileID: 0}
 --- !u!58 &693324074282413529
 CircleCollider2D:
   m_ObjectHideFlags: 0
