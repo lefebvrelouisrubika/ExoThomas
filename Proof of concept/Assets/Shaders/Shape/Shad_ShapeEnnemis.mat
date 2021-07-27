@@ -50,7 +50,7 @@ Material:
     - EdgeStrokeLevel: 0.25
     - FrameRate: 4
     - Scale: 0.5
-    - Sides: 6
+    - Sides: 4
     - TextureVisibility: 0.5
     m_Colors: []
   m_BuildTextureStacks: []
