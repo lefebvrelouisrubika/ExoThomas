@@ -21,6 +21,7 @@ public class ColliderComparison : MonoBehaviour
     {
         ResetScores();
         CalculateScore();
+        ApplyScore();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -59,5 +60,13 @@ public class ColliderComparison : MonoBehaviour
                 blockScore = Mathf.Clamp(blockScore + 1, 0, 10);
             }
         }
+    }
+
+    public void ApplyScore()
+    {
+        PostProcessManager.Instance.attackScore = attackScore;
+        PostProcessManager.Instance.fleeScore = fleeScore;
+        PostProcessManager.Instance.happyScore = happyScore;
+        PostProcessManager.Instance.blockScore = blockScore;
     }
 }
