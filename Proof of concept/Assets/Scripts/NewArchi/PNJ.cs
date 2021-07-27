@@ -86,6 +86,9 @@ public class PNJ : Shape
     [Header("Neutral")]
     public bool placeholder;
 
+    [Header("Sounds")]
+    public AudioClip fuite;
+
     void Start()
     {
         player = PlayerController.instance;

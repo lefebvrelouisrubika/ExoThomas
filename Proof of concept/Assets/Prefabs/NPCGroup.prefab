@@ -132,6 +132,7 @@ MonoBehaviour:
   rotSpeed: 10
   isRotating: 0
   placeholder: 0
+  fuite: {fileID: 0}
 --- !u!58 &2969996353475063974
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -355,6 +356,7 @@ MonoBehaviour:
   playerLookSimilarity: 0
   playerDetectionThreshold: 8
   player: {fileID: 0}
+  allGone: 0
   allPNJ:
   - {fileID: 2969996353475063977}
 --- !u!1 &3215823758798211485

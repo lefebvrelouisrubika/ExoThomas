@@ -26,7 +26,7 @@ public class PNJGroup : MonoBehaviour
     public float playerDetectionThreshold = 2f;
     private float playerDistance;
     public PlayerController player;
-    [SerializeField] private bool allGone;
+    public bool allGone;
 
     [Header("Group PNJ ")]
     public List<PNJ> allPNJ = new List<PNJ>();
@@ -122,7 +122,6 @@ public class PNJGroup : MonoBehaviour
             if (allPNJ[i].isActiveAndEnabled == false)
             {
                 goneCount++;
-                Debug.Log(goneCount);
             }
         }
 

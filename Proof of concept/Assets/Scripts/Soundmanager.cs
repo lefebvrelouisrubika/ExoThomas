@@ -32,8 +32,6 @@ public class Soundmanager : MonoBehaviour
         musicSource.loop = true;
         musicSource2.loop = true;
 
-
-
     }
 
     public void PlayMusic(AudioClip musicClip,float volume)
@@ -53,7 +51,7 @@ public class Soundmanager : MonoBehaviour
     public void PlayMusic2(AudioClip musicClip, float volume)
     {
         musicSource2.clip = musicClip;
-        musicSource.volume = volume;
+        musicSource2.volume = volume;
         musicSource2.Play();
 
     }
@@ -62,6 +60,16 @@ public class Soundmanager : MonoBehaviour
     {
         sfxSource.PlayOneShot(clip, volume);
 
+    }
+
+    public void ChangeVolume (float newVolume)
+    {
+        musicSource.volume = newVolume;
+    }
+    
+    public void ChangeVolume2 (float newVolume)
+    {
+        musicSource2.volume = newVolume;
     }
 
 }
