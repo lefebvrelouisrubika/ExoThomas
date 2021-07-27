@@ -612,12 +612,12 @@ PrefabInstance:
     - target: {fileID: 5522926182332527941, guid: 0a32c1d90995d0e41bca77d5aca73d46,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 94.22
+      value: 92
       objectReference: {fileID: 0}
     - target: {fileID: 5522926182332527941, guid: 0a32c1d90995d0e41bca77d5aca73d46,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -35.1
+      value: -42.4
       objectReference: {fileID: 0}
     - target: {fileID: 5522926182332527941, guid: 0a32c1d90995d0e41bca77d5aca73d46,
         type: 3}
@@ -5086,6 +5086,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 891055853}
+    - target: {fileID: 4852685352735769873, guid: 6c9c21a5ca53aff41a6d5504ef5b455f,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.3210001
+      objectReference: {fileID: 0}
     - target: {fileID: 4852685352735769884, guid: 6c9c21a5ca53aff41a6d5504ef5b455f,
         type: 3}
       propertyPath: hue
@@ -5096,6 +5101,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 891055853}
+    - target: {fileID: 4852685352735769884, guid: 6c9c21a5ca53aff41a6d5504ef5b455f,
+        type: 3}
+      propertyPath: color.b
+      value: 0.3210001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4852685352735769884, guid: 6c9c21a5ca53aff41a6d5504ef5b455f,
+        type: 3}
+      propertyPath: hueVisual
+      value: 0.9465
+      objectReference: {fileID: 0}
     - target: {fileID: 4852685352968879665, guid: 6c9c21a5ca53aff41a6d5504ef5b455f,
         type: 3}
       propertyPath: hue
