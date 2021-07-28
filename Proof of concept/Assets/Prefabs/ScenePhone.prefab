@@ -117115,6 +117115,10 @@ MonoBehaviour:
   Door1: {fileID: 589246000892070382}
   Door2: {fileID: 589246001391358071}
   lerpSpeed: 0.5
+  chatSound1: {fileID: 8300000, guid: 3ba2ed350a4a74849b83d38e1fcdb485, type: 3}
+  chatSound2: {fileID: 8300000, guid: 796cb06e61cd112488f623b132418253, type: 3}
+  noiseDelay: 1.75
+  noiseDelayReductionFactor: 0.85
 --- !u!61 &693324073724272354
 BoxCollider2D:
   m_ObjectHideFlags: 0

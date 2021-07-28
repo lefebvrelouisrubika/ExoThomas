@@ -12,6 +12,11 @@ public class PhoneScript : MonoBehaviour
     private float distance;
     public float lerpSpeed;
     private bool coroutinable = true;
+    public AudioClip chatSound1;
+    public AudioClip chatSound2;
+    private bool sound1Done;
+    public float noiseDelay;
+    public float noiseDelayReductionFactor;
     
     void Start()
     {
@@ -46,6 +51,7 @@ public class PhoneScript : MonoBehaviour
             if (coroutinable == true)
             {
                 StartCoroutine("WaitToMove");
+                StartCoroutine("PingProgressive");
             }
         }
     }
@@ -57,5 +63,28 @@ public class PhoneScript : MonoBehaviour
         coroutinable = false;
         Door1.SetActive(true);
         Door2.SetActive(true);
+    }
+
+    IEnumerator PingProgressive()
+    {
+        float firstDistance = distance;
+
+        while (distance > 0.1f)
+        {
+            Debug.Log("NewTwitterSound");
+            if (sound1Done == false)
+            {
+                Soundmanager.Instance.PlaySFX(chatSound1, 1);
+                sound1Done = true;
+            }
+            else if (sound1Done == true)
+            {
+                Soundmanager.Instance.PlaySFX(chatSound2, 1);
+                sound1Done = false;
+            }
+
+            yield return new WaitForSeconds(noiseDelay);
+            noiseDelay = noiseDelay * noiseDelayReductionFactor;
+        }
     }
 }
