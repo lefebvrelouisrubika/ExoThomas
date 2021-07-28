@@ -90,6 +90,7 @@ public class PlayerController : Shape
         {
             if (collision.gameObject.GetComponent<PNJ>().isAttacking)
             {
+                PostProcessManager.Instance.attackScore = PostProcessManager.Instance.attackScore+0.1f;
                 crackLvl += 0.1f;
                 crackLvl = Mathf.Clamp01(crackLvl);
                 mat.SetFloat("CrackLvl", crackLvl/2);

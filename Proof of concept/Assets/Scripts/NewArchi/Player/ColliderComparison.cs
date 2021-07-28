@@ -10,6 +10,7 @@ public class ColliderComparison : MonoBehaviour
     float happyScore;
     float attackScore;
     float blockScore;
+    public float lerpSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -79,9 +80,9 @@ public class ColliderComparison : MonoBehaviour
 
     public void ApplyScore()
     {
-        PostProcessManager.Instance.attackScore = attackScore;
-        PostProcessManager.Instance.fleeScore = fleeScore;
-        PostProcessManager.Instance.happyScore = happyScore;
-        PostProcessManager.Instance.blockScore = blockScore;
+        PostProcessManager.Instance.attackScore = Mathf.Lerp(PostProcessManager.Instance.attackScore,attackScore,lerpSpeed*Time.deltaTime);
+        PostProcessManager.Instance.fleeScore = Mathf.Lerp(PostProcessManager.Instance.fleeScore, fleeScore, lerpSpeed * Time.deltaTime);
+        PostProcessManager.Instance.happyScore = Mathf.Lerp(PostProcessManager.Instance.happyScore, happyScore, lerpSpeed * Time.deltaTime);
+        PostProcessManager.Instance.blockScore = Mathf.Lerp(PostProcessManager.Instance.blockScore, blockScore, lerpSpeed * Time.deltaTime);
     }
 }

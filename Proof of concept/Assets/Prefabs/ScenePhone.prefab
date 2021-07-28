@@ -43856,6 +43856,8 @@ MonoBehaviour:
   playerLookProximity: 0
   playerInArea: 0
   defaultPosition: {fileID: 693324073349194497}
+  fuite: {fileID: 0}
+  screamVolume: 0
   isAttacking: 0
   attackSpeed: 25
   attackDistance: 2.5
@@ -43870,7 +43872,6 @@ MonoBehaviour:
   rotSpeed: 10
   isRotating: 0
   placeholder: 0
-  fuite: {fileID: 0}
 --- !u!58 &693324072948509290
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -48990,6 +48991,8 @@ MonoBehaviour:
   playerLookProximity: 0
   playerInArea: 0
   defaultPosition: {fileID: 693324074283267158}
+  fuite: {fileID: 0}
+  screamVolume: 0
   isAttacking: 0
   attackSpeed: 25
   attackDistance: 2.5
@@ -49004,7 +49007,6 @@ MonoBehaviour:
   rotSpeed: 10
   isRotating: 0
   placeholder: 0
-  fuite: {fileID: 0}
 --- !u!58 &693324072965256955
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -132130,6 +132132,8 @@ MonoBehaviour:
   playerLookProximity: 0
   playerInArea: 0
   defaultPosition: {fileID: 693324074064445165}
+  fuite: {fileID: 0}
+  screamVolume: 0
   isAttacking: 0
   attackSpeed: 25
   attackDistance: 2.5
@@ -132144,7 +132148,6 @@ MonoBehaviour:
   rotSpeed: 10
   isRotating: 0
   placeholder: 0
-  fuite: {fileID: 0}
 --- !u!58 &693324074282413529
 CircleCollider2D:
   m_ObjectHideFlags: 0
