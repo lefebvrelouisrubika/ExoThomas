@@ -43847,6 +43847,7 @@ MonoBehaviour:
   testOffsetHue: 0
   player: {fileID: 0}
   group: {fileID: 2684084054286790901}
+  actualBehaviour: 1
   stateSimilar: 1
   stateNeutral: 0
   stateFaraway: 2
@@ -48980,6 +48981,7 @@ MonoBehaviour:
   testOffsetHue: 0
   player: {fileID: 0}
   group: {fileID: 2684084054286790901}
+  actualBehaviour: 1
   stateSimilar: 1
   stateNeutral: 0
   stateFaraway: 2
@@ -132119,6 +132121,7 @@ MonoBehaviour:
   testOffsetHue: 0
   player: {fileID: 0}
   group: {fileID: 2684084054286790901}
+  actualBehaviour: 1
   stateSimilar: 1
   stateNeutral: 0
   stateFaraway: 2

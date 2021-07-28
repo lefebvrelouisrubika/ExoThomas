@@ -110,6 +110,7 @@ MonoBehaviour:
   testOffsetHue: 0
   player: {fileID: 0}
   group: {fileID: 0}
+  actualBehaviour: 1
   stateSimilar: 3
   stateNeutral: 3
   stateFaraway: 1

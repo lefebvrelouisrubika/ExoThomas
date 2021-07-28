@@ -15,10 +15,10 @@ public class PostProcessManager : MonoBehaviour
     public Volume AttackVolume;
     public Volume BlockVolume;
 
-    public int fleeScore;
-    public int happyScore;
-    public int attackScore;
-    public int blockScore;
+    public float fleeScore;
+    public float happyScore;
+    public float attackScore;
+    public float blockScore;
 
     private void Awake()
     {
@@ -31,6 +31,15 @@ public class PostProcessManager : MonoBehaviour
 
     void Update()
     {
-       
+        PostProcessUpdate();
     }
+
+    private void PostProcessUpdate()
+    {
+        FleeVolume.weight = fleeScore;
+        HappyVolume.weight = happyScore;
+        AttackVolume.weight = attackScore;
+        BlockVolume.weight = blockScore;
+    }
+
 }
