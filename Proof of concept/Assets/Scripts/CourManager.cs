@@ -11,11 +11,14 @@ public class CourManager : MonoBehaviour
     public GameObject gate;
     public float timer;
     private bool timerLaunched;
+    private bool playLaunched;
     public AudioClip courAmbiance;
 
     // Start is called before the first frame update
     void Start()
     {
+        timerLaunched = false;
+        playLaunched = false;
         gate.SetActive(true);
         count = NPCGroups.Length;
         empty = false;
@@ -84,9 +87,10 @@ public class CourManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>())
+        if (collision.gameObject.GetComponent<PlayerController>() && playLaunched == false)
         {
             Soundmanager.Instance.PlayMusic(courAmbiance, 1);
+            playLaunched = true;
         }
 
         if (timerLaunched == false)

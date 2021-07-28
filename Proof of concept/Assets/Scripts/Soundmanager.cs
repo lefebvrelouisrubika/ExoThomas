@@ -44,9 +44,9 @@ public class Soundmanager : MonoBehaviour
         {
             musicSource.volume = Mathf.Lerp(musicSource.volume, newMusicVolume, 0.5f * Time.deltaTime);
 
-            Debug.Log(musicSource.volume);
-            if (Mathf.Abs(musicSource.volume - newMusicVolume) > 0.05f)
+            if (Mathf.Abs(musicSource.volume - newMusicVolume) < 0.075f)
             {
+                musicSource.volume = newMusicVolume;
                 musicVolumeChanging = false;
             }
         }
