@@ -119,6 +119,8 @@ MonoBehaviour:
   playerLookProximity: 0
   playerInArea: 0
   defaultPosition: {fileID: 4114841050283104747}
+  fuite: {fileID: 8300000, guid: df43ff5c9ecfd234a8aca82996f0e96d, type: 3}
+  screamVolume: 0.75
   isAttacking: 0
   attackSpeed: 25
   attackDistance: 2.5
@@ -133,7 +135,6 @@ MonoBehaviour:
   rotSpeed: 10
   isRotating: 0
   placeholder: 0
-  fuite: {fileID: 0}
 --- !u!58 &2969996353475063974
 CircleCollider2D:
   m_ObjectHideFlags: 0

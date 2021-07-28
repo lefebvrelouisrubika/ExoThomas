@@ -38,6 +38,10 @@ public class PNJ : Shape
 
     [Header("EnnemisData")]
     public Transform defaultPosition = null;
+
+    [Header("Sounds")]
+    public AudioClip fuite;
+    public float screamVolume;
     private Vector3 defaultPos
     {
         get 
@@ -77,6 +81,7 @@ public class PNJ : Shape
     public bool disapear;
     private bool noTurningBack = false;
     public float DisapearRatio;
+    private bool hasScreamed = false;
 
     [Header("Happy")]
     public ParticleSystem vfxHappy;
@@ -85,9 +90,6 @@ public class PNJ : Shape
 
     [Header("Neutral")]
     public bool placeholder;
-
-    [Header("Sounds")]
-    public AudioClip fuite;
 
     void Start()
     {
@@ -328,9 +330,12 @@ public class PNJ : Shape
                 vfxFlee.Play(); 
             }
 
-            // Mettre en condition "si le son n'est pas joué"
-
-            // Jouer le son de fuite classique 
+            if (hasScreamed == false)
+            {
+                Debug.Log("AH!");
+                hasScreamed = true;
+                Soundmanager.Instance.PlaySFX(fuite, screamVolume);
+            }
 
             if (disapear == true)
             {

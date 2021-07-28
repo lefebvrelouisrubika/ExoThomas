@@ -13,6 +13,8 @@ public class Soundmanager : MonoBehaviour
     private AudioSource musicSource;
     private AudioSource musicSource2;
     private AudioSource sfxSource;
+    private bool musicVolumeChanging;
+    private float newMusicVolume;
 
     #endregion
 
@@ -32,6 +34,22 @@ public class Soundmanager : MonoBehaviour
         musicSource.loop = true;
         musicSource2.loop = true;
 
+        musicVolumeChanging = false;
+
+    }
+
+    public void Update()
+    {
+        if (musicVolumeChanging == true)
+        {
+            musicSource.volume = Mathf.Lerp(musicSource.volume, newMusicVolume, 0.5f * Time.deltaTime);
+
+            if (Mathf.Abs(musicSource.volume - newMusicVolume) < 0.075f)
+            {
+                musicSource.volume = newMusicVolume;
+                musicVolumeChanging = false;
+            }
+        }
     }
 
     public void PlayMusic(AudioClip musicClip,float volume)
@@ -64,12 +82,13 @@ public class Soundmanager : MonoBehaviour
 
     public void ChangeVolume (float newVolume)
     {
-        musicSource.volume = newVolume;
-    }
-    
-    public void ChangeVolume2 (float newVolume)
-    {
-        musicSource2.volume = newVolume;
+        if (musicVolumeChanging == false)
+        {
+            Debug.Log("lolilol");
+            musicVolumeChanging = true;
+
+            newMusicVolume = newVolume;
+        }
     }
 
 }
