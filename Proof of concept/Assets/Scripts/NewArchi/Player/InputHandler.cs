@@ -15,23 +15,38 @@ public class InputHandler : MonoBehaviour
 
     [Header("Additional Info")]
     public int inputCounter = 0;
+    public bool qwerty = false;
 
     void Update()
     {
-        InputCheck();
+        InputCheck(qwerty);
         inputCounter = CountInput();
     }
 
-    private void InputCheck()
+    private void InputCheck(bool isQwerty)
     {
-        mouvHori = Input.GetAxis("Horizontal");
-        mouvVert = Input.GetAxis("Vertical");
+        if (qwerty == false)
+        {
+            mouvHori = Input.GetAxis("Horizontal");
+            mouvVert = Input.GetAxis("Vertical");
 
-        SideUp = Input.GetKeyDown(KeyCode.Z);
-        SideDown = Input.GetKeyDown(KeyCode.S);
+            SideUp = Input.GetKeyDown(KeyCode.Z);
+            SideDown = Input.GetKeyDown(KeyCode.S);
 
-        HueUp = Input.GetKeyDown(KeyCode.Q);
-        HueDown = Input.GetKeyDown(KeyCode.D);
+            HueUp = Input.GetKeyDown(KeyCode.Q);
+            HueDown = Input.GetKeyDown(KeyCode.D);
+        }
+        else if (qwerty == true)
+        {
+            mouvHori = Input.GetAxis("Horizontal");
+            mouvVert = Input.GetAxis("Vertical");
+
+            SideUp = Input.GetKeyDown(KeyCode.W);
+            SideDown = Input.GetKeyDown(KeyCode.S);
+
+            HueUp = Input.GetKeyDown(KeyCode.A);
+            HueDown = Input.GetKeyDown(KeyCode.D);
+        }
 
     }
 
