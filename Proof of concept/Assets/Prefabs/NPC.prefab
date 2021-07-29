@@ -5102,7 +5102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   side: 3
   color: {r: 0, g: 1, b: 0.6789999, a: 1}
-  hue: 0.4453125
+  hue: 0.44649997
   satur: 1
   value: 1
   hueVisual: 0.4465
@@ -5113,8 +5113,8 @@ MonoBehaviour:
   stateSimilar: 1
   stateNeutral: 0
   stateFaraway: 2
-  similarthreshold: 0.813
-  neutralthreshold: 0.61
+  similarthreshold: 0.8
+  neutralthreshold: 0.65
   playerLookProximity: 0
   playerInArea: 0
   defaultPosition: {fileID: 0}
@@ -5122,12 +5122,12 @@ MonoBehaviour:
   screamVolume: 0
   isAttacking: 0
   attackSpeed: 25
-  attackDistance: 3
+  attackDistance: 2.5
   blockPos: {fileID: 0}
   moveSpeed: 10
   vfxFlee: {fileID: 4809571261609425630}
-  fleeSpeed: 3
-  fleeDistance: 2.5
+  fleeSpeed: 5
+  fleeDistance: 2
   disapear: 0
   DisapearRatio: 0.075
   vfxHappy: {fileID: 6111969682988581679}
