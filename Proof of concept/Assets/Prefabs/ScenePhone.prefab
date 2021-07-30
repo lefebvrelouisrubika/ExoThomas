@@ -755,7 +755,7 @@ PrefabInstance:
     - target: {fileID: 3572058051383050561, guid: 1b94ca35e3267c444ab1c5a1b6b35050,
         type: 3}
       propertyPath: hue
-      value: 0.315
+      value: 0.3215
       objectReference: {fileID: 0}
     - target: {fileID: 3572058051383050561, guid: 1b94ca35e3267c444ab1c5a1b6b35050,
         type: 3}

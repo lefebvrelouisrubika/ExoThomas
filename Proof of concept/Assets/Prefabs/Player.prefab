@@ -145,6 +145,7 @@ MonoBehaviour:
   HueUp: 0
   HueDown: 0
   inputCounter: 0
+  qwerty: 0
 --- !u!114 &6423445931201613432
 MonoBehaviour:
   m_ObjectHideFlags: 0
