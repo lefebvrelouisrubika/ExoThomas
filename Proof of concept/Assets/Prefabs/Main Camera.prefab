@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 2084899215199106380}
   - component: {fileID: 2084899215199106381}
   - component: {fileID: 2084899215199106386}
+  - component: {fileID: 2716567081299515717}
   - component: {fileID: 2084899215199106377}
   m_Layer: 0
   m_Name: Main Camera
@@ -225,12 +226,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084899215199106387}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 092f9ebf2a7dab34b93164e3cbef72af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MoveLerp: 2
+--- !u!114 &2716567081299515717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084899215199106387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f12fbb75e4f4445ac5f2cc4250026c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showEdge: 1
+  edgeColor: {r: 0, g: 1, b: 0, a: 1}
+  limit: {x: 2, y: 2}
+  MoveLerp: 1
 --- !u!114 &2084899215199106377
 MonoBehaviour:
   m_ObjectHideFlags: 0
