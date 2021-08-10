@@ -15,7 +15,7 @@ public class InputHandler : MonoBehaviour
 
     [Header("Additional Info")]
     public int inputCounter = 0;
-    public bool qwerty = false;
+    public static bool qwerty = false;
 
     void Update()
     {
