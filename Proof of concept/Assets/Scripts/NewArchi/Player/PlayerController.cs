@@ -125,7 +125,7 @@ public class PlayerController : Shape
             rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed;
             if (isWalking == false)
             {
-                Debug.Log("son");
+                //Debug.Log("son");
                 //Soundmanager.Instance.PlayMusic(walk, 0.5f);
                 isWalking = true;
             }

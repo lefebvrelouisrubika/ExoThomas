@@ -6,7 +6,7 @@ public class CourManager : MonoBehaviour
 {
     public GameObject[] NPCGroups;
     private bool[] noSee;
-    private bool empty;
+    [SerializeField] private bool empty;
     [SerializeField] private int count;
     public GameObject gate;
     public float timer;
@@ -46,7 +46,7 @@ public class CourManager : MonoBehaviour
 
     private void CheckGroup()
     {
-        Debug.Log("Check");
+        //Debug.Log("Check");
         for (int a = 0; a < NPCGroups.Length; a++)
         {
             if (NPCGroups[a].GetComponent<PNJGroup>().allGone == true && noSee[a] == false)
@@ -59,7 +59,8 @@ public class CourManager : MonoBehaviour
 
         if (count == 0)
         {
-            empty = true;
+            StartCoroutine(TimerForGate());
+            //empty = true;
         }
     }
 
@@ -93,12 +94,12 @@ public class CourManager : MonoBehaviour
             playLaunched = true;
         }
 
-        if (timerLaunched == false)
-        {
-            timerLaunched = true;
+        //if (timerLaunched == false)
+        //{
+        //    timerLaunched = true;
 
-            StartCoroutine(TimerForGate());
-        }
+        //    StartCoroutine(TimerForGate());
+        //}
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -112,7 +113,7 @@ public class CourManager : MonoBehaviour
     private IEnumerator TimerForGate()
     {
         yield return new WaitForSeconds(timer);
-
         empty = true;
+
     }
 }

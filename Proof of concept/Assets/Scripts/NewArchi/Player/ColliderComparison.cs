@@ -20,7 +20,7 @@ public class ColliderComparison : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(NPCAround.Count);
+        //Debug.Log(NPCAround.Count);
         ResetScores();
         CalculateScore();
         ApplyScore();
@@ -28,12 +28,12 @@ public class ColliderComparison : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
+        //Debug.Log(collision);
         if (collision.gameObject.GetComponent<PNJ>())
         {
 
             NPCAround.Add(collision.gameObject);
-            Debug.Log("add" + collision.gameObject);
+            //Debug.Log("add" + collision.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
