@@ -16,14 +16,15 @@ public class InputHandler : MonoBehaviour
     [Header("Additional Info")]
     public int inputCounter = 0;
     public static bool qwerty = false;
+    public bool canHueChange = true;
 
     void Update()
     {
-        InputCheck(qwerty);
+        InputCheck();
         inputCounter = CountInput();
     }
 
-    private void InputCheck(bool isQwerty)
+    private void InputCheck()
     {
         if (qwerty == false)
         {
@@ -32,9 +33,11 @@ public class InputHandler : MonoBehaviour
 
             SideUp = Input.GetKeyDown(KeyCode.Z);
             SideDown = Input.GetKeyDown(KeyCode.S);
-
-            HueUp = Input.GetKeyDown(KeyCode.Q);
-            HueDown = Input.GetKeyDown(KeyCode.D);
+            if (canHueChange)
+            {
+                HueUp = Input.GetKeyDown(KeyCode.Q);
+                HueDown = Input.GetKeyDown(KeyCode.D);
+            }
         }
         else if (qwerty == true)
         {
@@ -44,8 +47,11 @@ public class InputHandler : MonoBehaviour
             SideUp = Input.GetKeyDown(KeyCode.W);
             SideDown = Input.GetKeyDown(KeyCode.S);
 
-            HueUp = Input.GetKeyDown(KeyCode.A);
-            HueDown = Input.GetKeyDown(KeyCode.D);
+            if (canHueChange)
+            {
+                HueUp = Input.GetKeyDown(KeyCode.A);
+                HueDown = Input.GetKeyDown(KeyCode.D);
+            }
         }
 
     }
