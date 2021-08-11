@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Scenemanager : MonoBehaviour
 {
     public static Scenemanager instance;
+
     public GameObject ImageFondu;
     #region transitions 
     public Animator transition;
@@ -32,6 +33,7 @@ public class Scenemanager : MonoBehaviour
         SceneManager.LoadScene(sceneName);
         transition.SetTrigger("FonduIn");
     }
+
     //private void GoCredits()
     //{
     //    transitionj1.SetTrigger("Changescene");
@@ -40,7 +42,7 @@ public class Scenemanager : MonoBehaviour
     //    Debug.Log("Credit");
     //}
 
-    private void Quit()
+    public void Quit()
     {
         Application.Quit();
         Debug.Log("Quit");

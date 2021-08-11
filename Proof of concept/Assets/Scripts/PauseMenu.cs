@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
@@ -9,7 +7,6 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseButtons;
     public GameObject playerController;
 
-    // Start is called before the first frame update
     void Start()
     {
         pauseButtons.SetActive(true);
@@ -17,7 +14,6 @@ public class PauseMenu : MonoBehaviour
         pauseCanvas.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -62,9 +58,9 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void SetKeyboard (bool qwerty)
+    public void SetKeyboard (bool isQwerty)
     {
-        playerController.GetComponent<InputHandler>().qwerty = qwerty;
+        InputHandler.qwerty = isQwerty;
     }
 
     public void ReturnToMenu(string scene)

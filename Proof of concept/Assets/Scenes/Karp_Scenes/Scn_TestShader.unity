@@ -429,13 +429,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 072ca597d6af4554cacffd1656fa76a3,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 072ca597d6af4554cacffd1656fa76a3, type: 3}
   m_Color: {r: 0.97444, g: 0.64, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -488,6 +487,11 @@ MonoBehaviour:
   returnBaseSideSpeed: 0.5
   hueEvolvSpeed: 0.0625
   returnBaseHueSpeed: 0.05
+  returnShapeCooldown: 0
+  returnColorCooldown: 0
+  hit: {fileID: 0}
+  changeColor: {fileID: 0}
+  walk: {fileID: 0}
 --- !u!114 &170465620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,6 +511,7 @@ MonoBehaviour:
   HueUp: 0
   HueDown: 0
   inputCounter: 0
+  qwerty: 0
 --- !u!50 &170465621
 Rigidbody2D:
   serializedVersion: 4
@@ -615,6 +620,7 @@ MonoBehaviour:
   playerLookSimilarity: 0
   playerDetectionThreshold: 8
   player: {fileID: 0}
+  allGone: 0
   allPNJ:
   - {fileID: 402910920876303465}
 --- !u!4 &806966059
@@ -745,6 +751,7 @@ GameObject:
   - component: {fileID: 1297649152}
   - component: {fileID: 1297649155}
   - component: {fileID: 1297649156}
+  - component: {fileID: 1297649157}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -856,11 +863,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297649151}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 092f9ebf2a7dab34b93164e3cbef72af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MoveLerp: 1
+--- !u!114 &1297649157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297649151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f12fbb75e4f4445ac5f2cc4250026c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showEdge: 1
+  edgeColor: {r: 0, g: 1, b: 0, a: 1}
+  limit: {x: 1.5, y: 1.5}
   MoveLerp: 1
 --- !u!1 &1626804889
 GameObject:
@@ -897,7 +920,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8, y: 1.74}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1038,8 +1061,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 072ca597d6af4554cacffd1656fa76a3,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 072ca597d6af4554cacffd1656fa76a3, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1287,13 +1309,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 072ca597d6af4554cacffd1656fa76a3,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 072ca597d6af4554cacffd1656fa76a3, type: 3}
   m_Color: {r: 0.07099998, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1378,6 +1399,7 @@ MonoBehaviour:
   testOffsetHue: 0
   player: {fileID: 0}
   group: {fileID: 0}
+  actualBehaviour: 1
   stateSimilar: 3
   stateNeutral: 3
   stateFaraway: 1
@@ -1386,6 +1408,8 @@ MonoBehaviour:
   playerLookProximity: 0
   playerInArea: 0
   defaultPosition: {fileID: 380863519}
+  fuite: {fileID: 0}
+  screamVolume: 0
   isAttacking: 0
   attackSpeed: 25
   attackDistance: 2.5
@@ -1394,6 +1418,8 @@ MonoBehaviour:
   vfxFlee: {fileID: 6105489475927373225}
   fleeSpeed: 8
   fleeDistance: 2
+  disapear: 0
+  DisapearRatio: 0
   vfxHappy: {fileID: 1451408174632059850}
   rotSpeed: 10
   isRotating: 0
