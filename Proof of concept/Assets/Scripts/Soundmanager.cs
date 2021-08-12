@@ -21,7 +21,6 @@ public class Soundmanager : MonoBehaviour
     private void Awake()
     {
 
-        DontDestroyOnLoad(this.gameObject);
         Instance = this;
 
         //créer les audiosources
@@ -76,7 +75,7 @@ public class Soundmanager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip, float volume)
     {
-        //sfxSource.PlayOneShot(clip, volume);
+        sfxSource.PlayOneShot(clip, volume);
 
     }
 
