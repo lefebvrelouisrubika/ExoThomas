@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Luc_Scenes/Luc_TrueLevelTest.unity
     guid: 96e609fe5264c374ba8a777da2de6fd5
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MENU.unity
     guid: bf71860bacc80cc4e85e5dd1a09cc9d2
   - enabled: 0

@@ -76,7 +76,7 @@ public class Soundmanager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip, float volume)
     {
-        sfxSource.PlayOneShot(clip, volume);
+        //sfxSource.PlayOneShot(clip, volume);
 
     }
 
