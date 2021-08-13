@@ -5,10 +5,16 @@ using UnityEngine;
 public class ActvationColors : MonoBehaviour
 {
     // Start is called before the first frame update
-public InputHandler  Inputs;
+    public InputHandler  Inputs;
+    public GameObject ChromaticWheel;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Inputs.canHueChange = true;
+
+        if (collision.gameObject.GetComponent<PlayerController>())
+        {
+            Inputs.canHueChange = true;
+            ChromaticWheel.SetActive(true);
+        }
     }
 }
