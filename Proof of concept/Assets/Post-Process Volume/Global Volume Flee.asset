@@ -139,7 +139,7 @@ MonoBehaviour:
   m_AdvancedMode: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.30588233, g: 1, b: 0.94460404, a: 1}
+    m_Value: {r: 0.08962262, g: 1, b: 0.9279927, a: 1}
     hdr: 0
     showAlpha: 0
     showEyeDropper: 1
@@ -148,7 +148,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.142
+    m_Value: 0.323
     min: 0
     max: 1
   smoothness:

@@ -83,7 +83,7 @@ public class Soundmanager : MonoBehaviour
     {
         if (musicVolumeChanging == false)
         {
-            Debug.Log("lolilol");
+
             musicVolumeChanging = true;
 
             newMusicVolume = newVolume;

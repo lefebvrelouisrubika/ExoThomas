@@ -20,6 +20,7 @@ public class PostProcessManager : MonoBehaviour
     public float attackScore;
     public float blockScore;
 
+
     private void Awake()
     {
         Instance = this;
