@@ -378,7 +378,7 @@ public class PNJ : Shape
 
         while (this.GetComponent<SpriteRenderer>().color.a > 0)
         {
-            Debug.Log("Sayonara");
+
             spriteColor.a -= DisapearRatio;
 
             this.GetComponent<SpriteRenderer>().color = spriteColor;

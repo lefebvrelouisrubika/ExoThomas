@@ -8,7 +8,8 @@ public class CourManager : MonoBehaviour
     private bool[] noSee;
     [SerializeField] private bool empty;
     [SerializeField] private int count;
-    public GameObject gate;
+    public GameObject gateOut;
+    public GameObject gateIn;
     public float timer;
     private bool timerLaunched;
     private bool playLaunched;
@@ -19,7 +20,8 @@ public class CourManager : MonoBehaviour
     {
         timerLaunched = false;
         playLaunched = false;
-        gate.SetActive(true);
+        gateOut.SetActive(true);
+        gateIn.SetActive(false);
         count = NPCGroups.Length;
         empty = false;
         noSee = new bool[NPCGroups.Length];
@@ -40,7 +42,7 @@ public class CourManager : MonoBehaviour
         }
         else if (empty == true)
         {
-            gate.SetActive(false);
+            gateOut.SetActive(false);
         }
     }
 
@@ -60,6 +62,7 @@ public class CourManager : MonoBehaviour
         if (count == 0)
         {
             StartCoroutine(TimerForGate());
+            gateIn.SetActive(true);
             //empty = true;
         }
     }
@@ -92,6 +95,7 @@ public class CourManager : MonoBehaviour
         {
             Soundmanager.Instance.PlayMusic(courAmbiance, 1);
             playLaunched = true;
+            
         }
 
         //if (timerLaunched == false)
