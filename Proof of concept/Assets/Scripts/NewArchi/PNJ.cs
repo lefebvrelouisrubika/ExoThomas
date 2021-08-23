@@ -332,7 +332,7 @@ public class PNJ : Shape
 
             if (hasScreamed == false)
             {
-                Debug.Log("AH!");
+
                 hasScreamed = true;
                 Soundmanager.Instance.PlaySFX(fuite, screamVolume);
             }
