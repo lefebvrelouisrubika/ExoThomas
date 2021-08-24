@@ -8,6 +8,7 @@ public class PhoneScript : MonoBehaviour
     public Transform Arrivee;
     public GameObject Door1;
     public GameObject Door2;
+    public GameObject Part2;
     private bool canMove = false;
     private float distance;
     public float lerpSpeed;
@@ -40,6 +41,7 @@ public class PhoneScript : MonoBehaviour
                 canMove = false;
                 Door1.SetActive(false);
                 Door2.SetActive(false);
+                Part2.SetActive(true);
             }
         }
     }

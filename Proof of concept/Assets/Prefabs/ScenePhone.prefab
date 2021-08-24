@@ -82,6 +82,7 @@ MonoBehaviour:
   Arrivee: {fileID: 0}
   Door1: {fileID: 589246000892070382}
   Door2: {fileID: 589246001391358071}
+  Part2: {fileID: 0}
   lerpSpeed: 0.5
   chatSound1: {fileID: 8300000, guid: 3ba2ed350a4a74849b83d38e1fcdb485, type: 3}
   chatSound2: {fileID: 8300000, guid: 796cb06e61cd112488f623b132418253, type: 3}
