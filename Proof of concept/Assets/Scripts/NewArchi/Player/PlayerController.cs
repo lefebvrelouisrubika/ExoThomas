@@ -16,8 +16,10 @@ public class PlayerController : Shape
     public float baseHue;
 
     [Header("Mouvement Parameter")]
-    public float moveSpeed = 10f;
+    public float baseMoveSpeed = 10f;
+     float moveSpeed = 10f;
     public float turnSpeed = 10f;
+    public float woundedNerf = 1f;
     [Range(0,360)]
     public float baseAngle = 0f;
     public Vector2 orientation = Vector2.right;
@@ -59,6 +61,7 @@ public class PlayerController : Shape
         rb = GetComponent<Rigidbody2D>();
 
         Color.RGBToHSV(baseColor, out baseHue, out _, out _);
+        moveSpeed = baseMoveSpeed;
     }
 
     private void Start()
@@ -90,7 +93,7 @@ public class PlayerController : Shape
         {
             if (collision.gameObject.GetComponent<PNJ>().isAttacking)
             {
-                PostProcessManager.Instance.attackScore = PostProcessManager.Instance.attackScore+0.1f;
+                PostProcessManager.Instance.attackScore = PostProcessManager.Instance.attackScore+0.2f;
                 crackLvl += 0.1f;
                 crackLvl = Mathf.Clamp01(crackLvl);
                 mat.SetFloat("CrackLvl", crackLvl/2);
@@ -422,7 +425,9 @@ public class PlayerController : Shape
     }
     IEnumerator Wounded()
     {
+        moveSpeed = moveSpeed - woundedNerf;
         yield return new WaitForSeconds(4);
+        moveSpeed = baseMoveSpeed;
         healable = true;
     }
 

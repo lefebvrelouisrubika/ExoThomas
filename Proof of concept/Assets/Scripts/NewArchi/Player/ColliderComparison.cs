@@ -102,7 +102,7 @@ public class ColliderComparison : MonoBehaviour
         }
         else
         {
-            PostProcessManager.Instance.attackScore = Mathf.Lerp(PostProcessManager.Instance.attackScore, 0.7f, lerpSpeed * Time.deltaTime);
+            PostProcessManager.Instance.attackScore = Mathf.Lerp(PostProcessManager.Instance.attackScore, 0.5f, lerpSpeed * Time.deltaTime);
         }
 
         
