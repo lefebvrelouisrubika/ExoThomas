@@ -171,7 +171,7 @@ MonoBehaviour:
   baseSide: 3
   baseColor: {r: 1, g: 0.6392157, b: 1, a: 1}
   baseHue: 0.8215
-  baseMoveSpeed: 10
+  baseMoveSpeed: 7
   turnSpeed: 10
   woundedNerf: 1
   baseAngle: 0

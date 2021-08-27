@@ -425,7 +425,7 @@ public class PlayerController : Shape
     }
     IEnumerator Wounded()
     {
-        moveSpeed = moveSpeed - woundedNerf;
+        moveSpeed = Mathf.Clamp(moveSpeed - woundedNerf, 3, 10);
         yield return new WaitForSeconds(4);
         moveSpeed = baseMoveSpeed;
         healable = true;
