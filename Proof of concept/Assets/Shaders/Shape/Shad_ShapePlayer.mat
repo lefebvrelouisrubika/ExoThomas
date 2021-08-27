@@ -50,7 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - CrackLvl: 0.14999998
+    - CrackLvl: 0.075
     - EdgeStrokeLevel: 0.1
     - FrameRate: 4
     - Scale: 0.5

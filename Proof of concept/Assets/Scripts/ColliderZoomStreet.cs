@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class ColliderZoomStreet : MonoBehaviour
 {
-    float targetOrtho;
-    public float smoothSpeed = 2.0f;
+    
+    
 
     public float zoomAmount;
     float baseOrtho;
 
     void Awake()
     {
-        targetOrtho = Camera.main.orthographicSize;
+        
         baseOrtho = Camera.main.orthographicSize;
     }
 
@@ -22,7 +22,7 @@ public class ColliderZoomStreet : MonoBehaviour
         {
             if (zoomAmount != 0.0f)
             {
-                targetOrtho -= zoomAmount;
+                CameraManager.Instance.targetOrtho -= zoomAmount;
 
             }
         }
@@ -35,16 +35,13 @@ public class ColliderZoomStreet : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>())
         {
 
-                targetOrtho = baseOrtho;
+            CameraManager.Instance.targetOrtho = baseOrtho;
 
 
         }
 
     }
 
-    private void Update()
-    {
-        Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
-    }
+   
 
 }

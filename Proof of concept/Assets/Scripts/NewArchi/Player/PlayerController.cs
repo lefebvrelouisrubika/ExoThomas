@@ -44,7 +44,10 @@ public class PlayerController : Shape
     private bool isWalking = false;
     private bool ishealing = false;
     private bool healable = false;
-    
+
+    public float zoomAmount;
+    float baseOrtho;
+
 
     [Header("sounds")]
     public AudioClip hit;
@@ -54,7 +57,7 @@ public class PlayerController : Shape
     public override void Awake()
     {
         base.Awake();
-
+        baseOrtho = Camera.main.orthographicSize;
         instance = this;
 
         input = GetComponent<InputHandler>();
@@ -425,10 +428,12 @@ public class PlayerController : Shape
     }
     IEnumerator Wounded()
     {
+        CameraManager.Instance.targetOrtho -= zoomAmount;
         moveSpeed = Mathf.Clamp(moveSpeed - woundedNerf, 3, 10);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         moveSpeed = baseMoveSpeed;
         healable = true;
+        CameraManager.Instance.targetOrtho = baseOrtho;
     }
 
 
