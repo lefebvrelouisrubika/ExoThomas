@@ -69752,11 +69752,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 114931913}
-    - target: {fileID: 1181709534374614433, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: timerClose
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1181709535288488362, guid: dc900bc8a0680e94fb13f41103da2872,
         type: 3}
       propertyPath: m_RootOrder
@@ -69912,16 +69907,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 114931913}
-    - target: {fileID: 2446643516828896510, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: neutralthreshold
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2446643516828896510, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: similarthreshold
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 2446643517283567324, guid: dc900bc8a0680e94fb13f41103da2872,
         type: 3}
       propertyPath: player
@@ -69952,16 +69937,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 114931913}
-    - target: {fileID: 3453085763336675712, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: neutralthreshold
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3453085763336675712, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: similarthreshold
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 3605609569579272557, guid: dc900bc8a0680e94fb13f41103da2872,
         type: 3}
       propertyPath: player
@@ -69997,16 +69972,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 114931913}
-    - target: {fileID: 5140088409975859211, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: neutralthreshold
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5140088409975859211, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: similarthreshold
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 5350940513579584831, guid: dc900bc8a0680e94fb13f41103da2872,
         type: 3}
       propertyPath: player
@@ -70047,16 +70012,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 114931913}
-    - target: {fileID: 5451288568141467299, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: neutralthreshold
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5451288568141467299, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: similarthreshold
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 5816739747835598310, guid: dc900bc8a0680e94fb13f41103da2872,
         type: 3}
       propertyPath: player
@@ -70142,31 +70097,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 114931913}
-    - target: {fileID: 8191251932326317444, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: neutralthreshold
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8191251932326317444, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: similarthreshold
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 8950431540252170069, guid: dc900bc8a0680e94fb13f41103da2872,
         type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 114931913}
-    - target: {fileID: 8950431540252170069, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: neutralthreshold
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8950431540252170069, guid: dc900bc8a0680e94fb13f41103da2872,
-        type: 3}
-      propertyPath: similarthreshold
-      value: 0.9
-      objectReference: {fileID: 0}
     - target: {fileID: 9055638837132301812, guid: dc900bc8a0680e94fb13f41103da2872,
         type: 3}
       propertyPath: player
