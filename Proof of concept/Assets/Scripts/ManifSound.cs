@@ -11,7 +11,7 @@ public class ManifSound : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() && playLaunched == false)
         {
-            Soundmanager.Instance.PlayMusic(sonManif, 1);
+            Soundmanager.Instance.PlayMusic(sonManif, 0.8f);
             playLaunched = true;
 
         }

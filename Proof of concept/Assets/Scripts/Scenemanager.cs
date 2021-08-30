@@ -21,17 +21,19 @@ public class Scenemanager : MonoBehaviour
     public void ChangeScene(string sceneName)
     {
         StartCoroutine(LoadLevel(sceneName));
+
     }
 
 
     IEnumerator LoadLevel(string sceneName)
     {
-        //play animation
+        
         ImageFondu.SetActive(true);
         transition.SetTrigger("FonduOut");
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneName);
         transition.SetTrigger("FonduIn");
+        Debug.Log("play animation");
     }
 
     //private void GoCredits()
