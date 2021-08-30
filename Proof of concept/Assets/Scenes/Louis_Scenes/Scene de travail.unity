@@ -809,12 +809,12 @@ PrefabInstance:
     - target: {fileID: 5522926182332527941, guid: 0a32c1d90995d0e41bca77d5aca73d46,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.17
+      value: -29.2
       objectReference: {fileID: 0}
     - target: {fileID: 5522926182332527941, guid: 0a32c1d90995d0e41bca77d5aca73d46,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.37
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5522926182332527941, guid: 0a32c1d90995d0e41bca77d5aca73d46,
         type: 3}
@@ -25280,7 +25280,7 @@ PrefabInstance:
     - target: {fileID: 3956358307602030567, guid: 5adbe277b4a494548838ed2b7025a91c,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.3773585
+      value: 0.26080313
       objectReference: {fileID: 0}
     - target: {fileID: 3956358307602030567, guid: 5adbe277b4a494548838ed2b7025a91c,
         type: 3}
@@ -25290,7 +25290,7 @@ PrefabInstance:
     - target: {fileID: 3956358307602030567, guid: 5adbe277b4a494548838ed2b7025a91c,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.350566
+      value: 0.3773585
       objectReference: {fileID: 0}
     - target: {fileID: 3956358307602030571, guid: 5adbe277b4a494548838ed2b7025a91c,
         type: 3}
@@ -64174,7 +64174,7 @@ PrefabInstance:
     - target: {fileID: 7778137734736152595, guid: 1b94ca35e3267c444ab1c5a1b6b35050,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.07099998
+      value: 0.23921569
       objectReference: {fileID: 0}
     - target: {fileID: 7778137734736152596, guid: 1b94ca35e3267c444ab1c5a1b6b35050,
         type: 3}
@@ -68678,6 +68678,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 114931913}
+    - target: {fileID: 1181709534374614433, guid: dc900bc8a0680e94fb13f41103da2872,
+        type: 3}
+      propertyPath: timerClose
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1181709535288488362, guid: dc900bc8a0680e94fb13f41103da2872,
         type: 3}
       propertyPath: m_RootOrder

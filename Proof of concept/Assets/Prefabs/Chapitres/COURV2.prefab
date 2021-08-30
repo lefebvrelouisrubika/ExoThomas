@@ -1012,6 +1012,7 @@ MonoBehaviour:
   gateOut: {fileID: 0}
   gateIn: {fileID: 0}
   timer: 6
+  timerClose: 0
   courAmbiance: {fileID: 8300000, guid: 218ae4f125598b5429f0f5e9830f5029, type: 3}
 --- !u!61 &2923551604609969622
 BoxCollider2D:

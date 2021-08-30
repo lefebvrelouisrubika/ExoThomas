@@ -11,6 +11,7 @@ public class CourManager : MonoBehaviour
     public GameObject gateOut;
     public GameObject gateIn;
     public float timer;
+    public float timerClose;
     private bool timerLaunched;
     private bool playLaunched;
     public AudioClip courAmbiance;
@@ -62,7 +63,7 @@ public class CourManager : MonoBehaviour
         if (count == 0)
         {
             StartCoroutine(TimerForGate());
-            gateIn.SetActive(true);
+            
             //empty = true;
         }
     }
@@ -95,7 +96,7 @@ public class CourManager : MonoBehaviour
         {
             Soundmanager.Instance.PlayMusic(courAmbiance, 1);
             playLaunched = true;
-            
+            StartCoroutine(TimerForClose());
         }
 
         //if (timerLaunched == false)
@@ -111,6 +112,7 @@ public class CourManager : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>())
         {
             Soundmanager.Instance.PlayMusic(courAmbiance, 0);
+            
         }
     }
 
@@ -118,6 +120,12 @@ public class CourManager : MonoBehaviour
     {
         yield return new WaitForSeconds(timer);
         empty = true;
+
+    }
+    private IEnumerator TimerForClose()
+    {
+        yield return new WaitForSeconds(timerClose);
+        gateIn.SetActive(true);
 
     }
 }
