@@ -8,7 +8,6 @@ public class Scenemanager : MonoBehaviour
     public static Scenemanager instance;
 
     public GameObject ImageFondu;
-    //public static bool sceneManager = false;
 
     #region transitions 
     public Animator transition;
@@ -16,17 +15,11 @@ public class Scenemanager : MonoBehaviour
     #endregion
     void Awake()
     {
-        //if (sceneManager)
-        //{
-        //    Destroy(this);
-        //}
-        //else
-        //{
+        if (instance == null)
+        {
             instance = this;
             DontDestroyOnLoad(this);
-            //sceneManager = true;
-        //}
-
+        }
     }
 
     public void ChangeScene(string sceneName)
