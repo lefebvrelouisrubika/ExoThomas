@@ -8,14 +8,25 @@ public class Scenemanager : MonoBehaviour
     public static Scenemanager instance;
 
     public GameObject ImageFondu;
+    //public static bool sceneManager = false;
+
     #region transitions 
     public Animator transition;
 
     #endregion
     void Awake()
     {
-        instance = this;
-        DontDestroyOnLoad(this);
+        //if (sceneManager)
+        //{
+        //    Destroy(this);
+        //}
+        //else
+        //{
+            instance = this;
+            DontDestroyOnLoad(this);
+            //sceneManager = true;
+        //}
+
     }
 
     public void ChangeScene(string sceneName)
@@ -33,7 +44,14 @@ public class Scenemanager : MonoBehaviour
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(sceneName);
         transition.SetTrigger("FonduIn");
-        Debug.Log("play animation");
+        //Debug.Log("play animation");
+        StartCoroutine(Dissapear());
+
+    }
+    IEnumerator Dissapear()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ImageFondu.SetActive(false);
     }
 
     //private void GoCredits()
@@ -43,6 +61,8 @@ public class Scenemanager : MonoBehaviour
     //    SceneManager.LoadScene(2);
     //    Debug.Log("Credit");
     //}
+
+    
 
     public void Quit()
     {

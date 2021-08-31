@@ -16,13 +16,13 @@ public class MenuOption : MonoBehaviour
     {
         if (InputHandler.qwerty)
         {
-            azerty.SetActive(false);
-            qwerty.SetActive(true);
+            azerty.SetActive(true);
+            qwerty.SetActive(false);
         }
         else
         {
-            azerty.SetActive(true);
-            qwerty.SetActive(false);
+            azerty.SetActive(false);
+            qwerty.SetActive(true);
         }
     }
 
