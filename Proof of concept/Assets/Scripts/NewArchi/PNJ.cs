@@ -10,6 +10,7 @@ public enum NPCBehaviour
     Flee,
     Block,
     Routine,
+    Follow,
     AFK
 };
 
@@ -82,6 +83,10 @@ public class PNJ : Shape
     private bool noTurningBack = false;
     public float DisapearRatio;
     private bool hasScreamed = false;
+
+    [Header("Follow")]
+    public float followSpeed = 10f;
+    public float followDistance = 2.5f;
 
     [Header("Happy")]
     public ParticleSystem vfxHappy;
@@ -159,30 +164,42 @@ public class PNJ : Shape
             switch (actualBehaviour)
             {
                 case NPCBehaviour.Neutral:
+                    rb.bodyType = RigidbodyType2D.Kinematic;
                     Neutral();
                     break;
 
                 case NPCBehaviour.Happy:
+                    rb.bodyType = RigidbodyType2D.Kinematic;
                     Happy();
                     break;
 
                 case NPCBehaviour.Attack:
+                    rb.bodyType = RigidbodyType2D.Kinematic;
                     Attack();
                     break;
 
                 case NPCBehaviour.Flee:
+                    rb.bodyType = RigidbodyType2D.Dynamic;
                     Flee();
                     break;
 
                 case NPCBehaviour.Block:
+                    rb.bodyType = RigidbodyType2D.Kinematic;
                     Block();
                     break;
 
                 case NPCBehaviour.Routine:
+                    rb.bodyType = RigidbodyType2D.Kinematic;
                     Routine();
                     break;
 
+                case NPCBehaviour.Follow:
+                    rb.bodyType = RigidbodyType2D.Dynamic;
+                    Follow();
+                    break;
+
                 case NPCBehaviour.AFK:
+                    rb.bodyType = RigidbodyType2D.Kinematic;
                     //Nothing
                     break;
 
@@ -322,7 +339,7 @@ public class PNJ : Shape
 
         if (toPlayerVector.magnitude < fleeDistance || noTurningBack == true)
         {
-            //rb.velocity = -toPlayerVector.normalized * fleeSpeed * Time.deltaTime;
+            //rb.velocity = -toPlayerVector.normalized * fleeSpeed * 5 * Time.deltaTime;
             transform.Translate(-toPlayerVector.normalized * fleeSpeed * Time.deltaTime, Space.World);
             
             if (!vfxFlee.isPlaying)
@@ -370,6 +387,31 @@ public class PNJ : Shape
         }
     }
 
+    private void Follow()
+    {
+        rb.velocity = Vector2.zero;
+
+        if (toPlayerVector.magnitude > followDistance)
+        {
+            //rb.velocity = toPlayerVector.normalized * followSpeed * Time.deltaTime;
+            transform.Translate(toPlayerVector.normalized * followSpeed * Time.deltaTime, Space.World);
+        }
+
+        if (!vfxHappy.isPlaying)
+        {
+            vfxHappy.Play();
+        }
+        if (vfxHappy.time > vfxHappy.main.duration)
+        {
+            vfxHappy.Stop();
+        }
+
+        if (!isRotating)
+        {
+            isRotating = true;
+            StartCoroutine(RotateCorout());
+        }
+    }
     private IEnumerator FadeOut()
     {
         yield return new WaitForSeconds(0.5f);

@@ -150,8 +150,13 @@ public class PlayerController : Shape
     }
     private void Orientation()
     {
-        float angle = Mathf.Atan2(-input.mouvHori, input.mouvVert) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, baseAngle + angle), Time.deltaTime * turnSpeed);
+        Vector2 stickMouv = new Vector2(input.mouvHori, input.mouvVert);
+
+        if(stickMouv.magnitude > 0.1f)
+        {
+            float angle = Mathf.Atan2(-input.mouvHori, input.mouvVert) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, baseAngle + angle), Time.deltaTime * turnSpeed);
+        }
     }
 
     private void Morphing()
