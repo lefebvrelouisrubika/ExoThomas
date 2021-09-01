@@ -9,8 +9,10 @@ public class Scenemanager : MonoBehaviour
 
     public GameObject ImageFondu;
 
+
     #region transitions 
     public Animator transition;
+    
 
     #endregion
     void Awake()
@@ -55,11 +57,13 @@ public class Scenemanager : MonoBehaviour
     //    Debug.Log("Credit");
     //}
 
-    
 
+    
     public void Quit()
     {
         Application.Quit();
         Debug.Log("Quit");
     }
+
+
 }

@@ -31,6 +31,12 @@ public class PNJGroup : MonoBehaviour
     [Header("Group PNJ ")]
     public List<PNJ> allPNJ = new List<PNJ>();
 
+    [Header("Fin")]
+    public bool fin = false;
+    bool finStarted = false;
+    public Animator finUI;
+    public Animator finDecors;
+
     void Start()
     {
         player = PlayerController.instance;
@@ -96,6 +102,13 @@ public class PNJGroup : MonoBehaviour
         else
         {
             actualBehaviour = stateSimilar;
+            //chepa pk ca se lance pas
+            if (fin== true && !finStarted)
+            {
+                Debug.Log("fin");
+                Fin();
+                finStarted = true;
+            }
         }
     }
     private void CallPlayerInArea(bool playerIsInArea)
@@ -130,6 +143,19 @@ public class PNJGroup : MonoBehaviour
             allGone = true;
         }
     }
+
+    public void Fin()
+    {
+        finUI.SetTrigger("Fin");
+        finDecors.SetTrigger("Fin");
+        StartCoroutine(TimeBeforeEnd());
+    }
+    IEnumerator TimeBeforeEnd()
+    {
+        yield return new WaitForSeconds(13);
+        Scenemanager.instance.ChangeScene("Assets/Scenes/MENU.unity");
+    }
+
 
     #region Debug
 #if UNITY_EDITOR

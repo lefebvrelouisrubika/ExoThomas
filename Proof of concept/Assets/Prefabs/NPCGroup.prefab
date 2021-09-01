@@ -90,6 +90,7 @@ MonoBehaviour:
   allGone: 0
   allPNJ:
   - {fileID: 3572058051383050561}
+  fin: 0
 --- !u!1 &3215823758798211485
 GameObject:
   m_ObjectHideFlags: 0
