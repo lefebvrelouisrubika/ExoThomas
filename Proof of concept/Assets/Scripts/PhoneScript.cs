@@ -40,7 +40,7 @@ public class PhoneScript : MonoBehaviour
             {
                 canMove = false;
                 Door1.SetActive(false);
-                Door2.SetActive(false);
+                
                 Part2.SetActive(true);
             }
         }

@@ -5130,6 +5130,8 @@ MonoBehaviour:
   fleeDistance: 2
   disapear: 0
   DisapearRatio: 0.075
+  followSpeed: 10
+  followDistance: 2.5
   vfxHappy: {fileID: 6111969682988581679}
   rotSpeed: 10
   isRotating: 0
