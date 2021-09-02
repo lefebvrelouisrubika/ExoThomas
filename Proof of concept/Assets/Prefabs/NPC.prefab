@@ -5131,6 +5131,9 @@ MonoBehaviour:
   disapear: 0
   DisapearRatio: 0.075
   followSpeed: 10
+  haveSeenPJ2Follow: 0
+  detectFollowDist: 4
+  keepAwayDistance: 1
   followDistance: 2.5
   vfxHappy: {fileID: 6111969682988581679}
   rotSpeed: 10
