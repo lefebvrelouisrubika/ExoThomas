@@ -86,6 +86,9 @@ public class PNJ : Shape
 
     [Header("Follow")]
     public float followSpeed = 10f;
+    public bool haveSeenPJ2Follow = false;
+    public float detectFollowDist = 4f;
+    public float keepAwayDistance = 1f;
     public float followDistance = 2.5f;
 
     [Header("Happy")]
@@ -126,6 +129,7 @@ public class PNJ : Shape
         else
         {
             actualBehaviour = NPCBehaviour.Routine;
+            haveSeenPJ2Follow = false;
         }
         
         PlayBehaviour();
@@ -390,12 +394,27 @@ public class PNJ : Shape
     private void Follow()
     {
         rb.velocity = Vector2.zero;
-
-        if (toPlayerVector.magnitude > followDistance)
+        if (haveSeenPJ2Follow)
         {
-            //rb.velocity = toPlayerVector.normalized * followSpeed * Time.deltaTime;
-            transform.Translate(toPlayerVector.normalized * followSpeed * Time.deltaTime, Space.World);
+            if (toPlayerVector.magnitude > followDistance)
+            {
+                //rb.velocity = toPlayerVector.normalized * followSpeed * Time.deltaTime;
+                transform.Translate(toPlayerVector.normalized * followSpeed * Time.deltaTime, Space.World);
+            }
+            else
+            if (toPlayerVector.magnitude < keepAwayDistance)
+            {
+                transform.Translate(-toPlayerVector.normalized * followSpeed * Time.deltaTime, Space.World);
+            }
         }
+        else
+        {
+            if (toPlayerVector.magnitude < detectFollowDist)
+            {
+                haveSeenPJ2Follow = true;
+            }
+        }
+
 
         if (!vfxHappy.isPlaying)
         {
