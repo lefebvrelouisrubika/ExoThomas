@@ -829,12 +829,12 @@ PrefabInstance:
     - target: {fileID: 5522926182332527941, guid: 0a32c1d90995d0e41bca77d5aca73d46,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 544
+      value: -29.58
       objectReference: {fileID: 0}
     - target: {fileID: 5522926182332527941, guid: 0a32c1d90995d0e41bca77d5aca73d46,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -97
+      value: 5.64
       objectReference: {fileID: 0}
     - target: {fileID: 5522926182332527941, guid: 0a32c1d90995d0e41bca77d5aca73d46,
         type: 3}
@@ -7662,10 +7662,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2084899215199106386, guid: ac948fdbdf894a84ca55594ade558c72,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2084899215199106387, guid: ac948fdbdf894a84ca55594ade558c72,
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716567081299515717, guid: ac948fdbdf894a84ca55594ade558c72,
+        type: 3}
+      propertyPath: MoveLerp
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665283769346145437, guid: ac948fdbdf894a84ca55594ade558c72,
+        type: 3}
+      propertyPath: smoothSpeed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac948fdbdf894a84ca55594ade558c72, type: 3}
