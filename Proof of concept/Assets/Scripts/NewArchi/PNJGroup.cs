@@ -19,7 +19,7 @@ public class PNJGroup : MonoBehaviour
     public NPCBehaviour stateSimilar = NPCBehaviour.Happy;
     public NPCBehaviour stateNeutral = NPCBehaviour.Neutral;
     public NPCBehaviour stateFaraway = NPCBehaviour.Attack;
-    private NPCBehaviour actualBehaviour = NPCBehaviour.Happy;
+    public NPCBehaviour actualBehaviour = NPCBehaviour.Happy;
 
     [Header("Player Value")]
     public float playerLookSimilarity = 0f;
@@ -27,15 +27,10 @@ public class PNJGroup : MonoBehaviour
     private float playerDistance;
     public PlayerController player;
     public bool allGone;
+    public bool playerInArea = false;
 
     [Header("Group PNJ ")]
     public List<PNJ> allPNJ = new List<PNJ>();
-
-    [Header("Fin")]
-    public bool fin = false;
-    bool finStarted = false;
-    public Animator finUI;
-    public Animator finDecors;
 
     void Start()
     {
@@ -68,12 +63,15 @@ public class PNJGroup : MonoBehaviour
 
         if (playerDistance < playerDetectionThreshold)
         {
-            CallPlayerInArea(true);
+            playerInArea = true;
         }
         else
         {
-            CallPlayerInArea(false);
+            playerInArea = false;
         }
+
+        CallPlayerInArea(playerInArea);
+
     }
 
     private void EvaluatePlayer()
@@ -102,13 +100,6 @@ public class PNJGroup : MonoBehaviour
         else
         {
             actualBehaviour = stateSimilar;
-            //chepa pk ca se lance pas
-            if (fin== true && !finStarted)
-            {
-                Debug.Log("fin");
-                Fin();
-                finStarted = true;
-            }
         }
     }
     private void CallPlayerInArea(bool playerIsInArea)
@@ -144,17 +135,6 @@ public class PNJGroup : MonoBehaviour
         }
     }
 
-    public void Fin()
-    {
-        finUI.SetTrigger("Fin");
-        finDecors.SetTrigger("Fin");
-        StartCoroutine(TimeBeforeEnd());
-    }
-    IEnumerator TimeBeforeEnd()
-    {
-        yield return new WaitForSeconds(13);
-        Scenemanager.instance.ChangeScene("Assets/Scenes/MENU.unity");
-    }
 
 
     #region Debug
