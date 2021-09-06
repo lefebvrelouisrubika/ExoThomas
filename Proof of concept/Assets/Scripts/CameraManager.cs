@@ -18,7 +18,7 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(targetOrtho);
+        //Debug.Log(targetOrtho);
         targetOrtho = Mathf.Clamp(targetOrtho, 2.5f, 6);
         Camera.main.orthographicSize = Mathf.MoveTowards(Camera.main.orthographicSize, targetOrtho, smoothSpeed * Time.deltaTime);
 

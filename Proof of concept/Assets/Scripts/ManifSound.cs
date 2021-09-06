@@ -11,10 +11,11 @@ public class ManifSound : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() && playLaunched == false)
         {
-            Soundmanager.Instance.PlayMusic(sonManif, 0.8f);
+            Soundmanager.Instance.PlayMusic(sonManif, 0f);
             playLaunched = true;
-
         }
+            Soundmanager.Instance.ChangeVolume(0.6f);
+
 
     }
 
@@ -22,7 +23,7 @@ public class ManifSound : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
-            Soundmanager.Instance.PlayMusic(sonManif, 0);
+            Soundmanager.Instance.ChangeVolume(0);
         }
     }
 }

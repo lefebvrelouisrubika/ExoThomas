@@ -84,15 +84,14 @@ MonoBehaviour:
   stateSimilar: 1
   stateNeutral: 0
   stateFaraway: 2
+  actualBehaviour: 1
   playerLookSimilarity: 0
   playerDetectionThreshold: 8
   player: {fileID: 0}
   allGone: 0
+  playerInArea: 0
   allPNJ:
   - {fileID: 3572058051383050561}
-  fin: 0
-  finUI: {fileID: 0}
-  finDecors: {fileID: 0}
 --- !u!1 &3215823758798211485
 GameObject:
   m_ObjectHideFlags: 0

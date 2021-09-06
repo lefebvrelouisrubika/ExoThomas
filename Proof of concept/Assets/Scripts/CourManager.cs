@@ -54,7 +54,7 @@ public class CourManager : MonoBehaviour
         {
             if (NPCGroups[a].GetComponent<PNJGroup>().allGone == true && noSee[a] == false)
             {
-                Debug.Log("go");
+                //Debug.Log("go");
                 noSee[a] = true;
                 count -= 1;
             }
@@ -111,7 +111,7 @@ public class CourManager : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
-            Soundmanager.Instance.PlayMusic(courAmbiance, 0);
+            Soundmanager.Instance.ChangeVolume(0);
             
         }
     }

@@ -403,7 +403,7 @@ public class PlayerController : Shape
         if (colorTwitching == true)
         {
             
-            Debug.Log("test");
+            //Debug.Log("test");
             hue = shakeHue + Random.Range(-0.01f, 0.01f);
             //StartCoroutine("ShapeShake");
             

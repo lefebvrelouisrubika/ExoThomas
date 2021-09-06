@@ -15,6 +15,7 @@ public class Soundmanager : MonoBehaviour
     private AudioSource sfxSource;
     private bool musicVolumeChanging;
     private float newMusicVolume;
+    public float lerpSpeed = 0.5f;
 
     #endregion
 
@@ -23,7 +24,7 @@ public class Soundmanager : MonoBehaviour
 
         Instance = this;
 
-        //créer les audiosources
+        //crï¿½er les audiosources
         musicSource = this.gameObject.AddComponent<AudioSource>();
         musicSource2 = this.gameObject.AddComponent<AudioSource>();
         sfxSource = this.gameObject.AddComponent<AudioSource>();
@@ -39,16 +40,8 @@ public class Soundmanager : MonoBehaviour
 
     public void Update()
     {
-        if (musicVolumeChanging == true)
-        {
-            musicSource.volume = Mathf.Lerp(musicSource.volume, newMusicVolume, 0.5f * Time.deltaTime);
-
-            if (Mathf.Abs(musicSource.volume - newMusicVolume) < 0.075f)
-            {
-                musicSource.volume = newMusicVolume;
-                musicVolumeChanging = false;
-            }
-        }
+        musicSource.volume = Mathf.Lerp(musicSource.volume,newMusicVolume,Time.deltaTime*lerpSpeed);
+        //Debug.Log(musicSource.volume);
     }
 
     public void PlayMusic(AudioClip musicClip,float volume)
@@ -56,10 +49,12 @@ public class Soundmanager : MonoBehaviour
         //Debug.Log(musicClip);
         //Debug.Log(musicSource);
         musicSource.clip = musicClip;
-        musicSource.volume = volume;
+        newMusicVolume = volume;
         musicSource.Play();
+        Debug.Log("Play");
 
     }
+
     public void StopMusic()
     {
         musicSource.Stop();
@@ -71,6 +66,7 @@ public class Soundmanager : MonoBehaviour
         musicSource2.volume = volume;
         musicSource2.Play();
 
+
     }
 
     public void PlaySFX(AudioClip clip, float volume)
@@ -81,13 +77,7 @@ public class Soundmanager : MonoBehaviour
 
     public void ChangeVolume (float newVolume)
     {
-        if (musicVolumeChanging == false)
-        {
-
-            musicVolumeChanging = true;
-
-            newMusicVolume = newVolume;
-        }
+            newMusicVolume = newVolume; 
     }
 
 }
