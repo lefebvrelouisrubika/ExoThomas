@@ -14,7 +14,7 @@ public class ManifSound : MonoBehaviour
             Soundmanager.Instance.PlayMusic(sonManif, 0f);
             playLaunched = true;
         }
-            Soundmanager.Instance.ChangeVolume(0.6f);
+            Soundmanager.Instance.ChangeVolume1(0.6f);
 
 
     }
@@ -23,7 +23,7 @@ public class ManifSound : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>())
         {
-            Soundmanager.Instance.ChangeVolume(0);
+            Soundmanager.Instance.ChangeVolume1(0);
         }
     }
 }

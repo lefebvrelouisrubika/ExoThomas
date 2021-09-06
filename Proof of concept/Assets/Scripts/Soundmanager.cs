@@ -40,7 +40,10 @@ public class Soundmanager : MonoBehaviour
 
     public void Update()
     {
+        
         musicSource.volume = Mathf.Lerp(musicSource.volume,newMusicVolume,Time.deltaTime*lerpSpeed);
+        
+
         //Debug.Log(musicSource.volume);
     }
 
@@ -75,8 +78,9 @@ public class Soundmanager : MonoBehaviour
 
     }
 
-    public void ChangeVolume (float newVolume)
+    public void ChangeVolume1 (float newVolume)
     {
+        
             newMusicVolume = newVolume; 
     }
 

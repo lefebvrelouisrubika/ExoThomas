@@ -69457,6 +69457,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 114931913}
+    - target: {fileID: 1181709534374614433, guid: dc900bc8a0680e94fb13f41103da2872,
+        type: 3}
+      propertyPath: timer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1181709535288488362, guid: dc900bc8a0680e94fb13f41103da2872,
         type: 3}
       propertyPath: m_RootOrder
