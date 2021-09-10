@@ -73,19 +73,19 @@ public class CourManager : MonoBehaviour
         switch (count)
         {
             case 0:
-                Soundmanager.Instance.ChangeVolume1(0);
+                Soundmanager.Instance.ChangeVolume1(0.001f);
                 break;
 
             case 1:
-                Soundmanager.Instance.ChangeVolume1(0.33f);
+                Soundmanager.Instance.ChangeVolume1(0.2f);
                 break;
 
             case 2:
-                Soundmanager.Instance.ChangeVolume1(0.66f);
+                Soundmanager.Instance.ChangeVolume1(0.4f);
                 break;
 
             case 3:
-                Soundmanager.Instance.ChangeVolume1(0.8f);
+                Soundmanager.Instance.ChangeVolume1(0.6f);
                 break;
         }
     }
@@ -112,7 +112,7 @@ public class CourManager : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>())
         {
             Soundmanager.Instance.ChangeVolume1(0);
-            
+            Soundmanager.Instance.StopMusic();
         }
     }
 

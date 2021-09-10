@@ -5,17 +5,16 @@ using UnityEngine;
 public class ManifSound : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool playLaunched = false;
+
     public AudioClip sonManif;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerController>() && playLaunched == false)
+        if (collision.gameObject.GetComponent<PlayerController>() )
         {
-            Soundmanager.Instance.PlayMusic(sonManif, 0f);
-            playLaunched = true;
+            Soundmanager.Instance.PlayMusic(sonManif, 0.1f);
+            StartCoroutine(StartSound());
+            
         }
-            Soundmanager.Instance.ChangeVolume1(0.6f);
-
 
     }
 
@@ -24,6 +23,22 @@ public class ManifSound : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>())
         {
             Soundmanager.Instance.ChangeVolume1(0);
+            StartCoroutine(EndSound());
+
         }
+    }
+
+    IEnumerator EndSound()
+    {
+
+        yield return new WaitForSeconds (1);
+        Soundmanager.Instance.StopMusic();
+    }
+
+    IEnumerator StartSound()
+    {
+
+        yield return new WaitForSeconds (1);
+        Soundmanager.Instance.ChangeVolume1(0.4f);
     }
 }

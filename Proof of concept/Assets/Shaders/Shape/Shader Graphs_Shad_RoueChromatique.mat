@@ -37,7 +37,7 @@ Material:
     - CircleSaturation: 0.75
     - CirlcleBrightness: 1
     - baseHue: 0.8333333
-    - hue: 0.8333333
+    - hue: 0.8215
     m_Colors:
     - CursorColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []

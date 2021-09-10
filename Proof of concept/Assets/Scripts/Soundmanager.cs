@@ -49,12 +49,13 @@ public class Soundmanager : MonoBehaviour
 
     public void PlayMusic(AudioClip musicClip,float volume)
     {
-        //Debug.Log(musicClip);
+        Debug.Log(musicClip);
         //Debug.Log(musicSource);
+        Debug.Log(volume);
         musicSource.clip = musicClip;
         newMusicVolume = volume;
         musicSource.Play();
-        Debug.Log("Play");
+        //Debug.Log("Play");
 
     }
 
@@ -66,7 +67,7 @@ public class Soundmanager : MonoBehaviour
     public void PlayMusic2(AudioClip musicClip, float volume)
     {
         musicSource2.clip = musicClip;
-        musicSource2.volume = volume;
+        newMusicVolume = volume;
         musicSource2.Play();
 
 
