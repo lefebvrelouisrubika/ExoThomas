@@ -184,8 +184,9 @@ MonoBehaviour:
   returnColorCooldown: 5
   zoomAmount: 0
   hit: {fileID: 8300000, guid: 459e1fd5799d11e4098bdb7d095abf14, type: 3}
-  changeColor: {fileID: 8300000, guid: 31f35b9144e83584292710bfc68c832c, type: 3}
-  walk: {fileID: 8300000, guid: ba4325c68fa444d449d08ca9c0dc46fb, type: 3}
+  changeColor: {fileID: 8300000, guid: 17f630f3663b09b439b0d1a8d8aa740e, type: 3}
+  changeForm: {fileID: 8300000, guid: 31f35b9144e83584292710bfc68c832c, type: 3}
+  isInScene: 0
 --- !u!1 &7593711602906898013
 GameObject:
   m_ObjectHideFlags: 0

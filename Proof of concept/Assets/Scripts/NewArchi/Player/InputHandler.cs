@@ -31,10 +31,11 @@ public class InputHandler : MonoBehaviour
             mouvHori = Input.GetAxis("Horizontal");
             mouvVert = Input.GetAxis("Vertical");
 
-            SideUp = Input.GetKeyDown(KeyCode.Z);
-            SideDown = Input.GetKeyDown(KeyCode.S);
+
             if (canHueChange)
             {
+                SideUp = Input.GetKeyDown(KeyCode.Z);
+                SideDown = Input.GetKeyDown(KeyCode.S);
                 HueUp = Input.GetKeyDown(KeyCode.Q);
                 HueDown = Input.GetKeyDown(KeyCode.D);
             }
@@ -44,11 +45,11 @@ public class InputHandler : MonoBehaviour
             mouvHori = Input.GetAxis("Horizontal");
             mouvVert = Input.GetAxis("Vertical");
 
-            SideUp = Input.GetKeyDown(KeyCode.W);
-            SideDown = Input.GetKeyDown(KeyCode.S);
 
             if (canHueChange)
             {
+                SideUp = Input.GetKeyDown(KeyCode.W);
+                SideDown = Input.GetKeyDown(KeyCode.S);
                 HueUp = Input.GetKeyDown(KeyCode.A);
                 HueDown = Input.GetKeyDown(KeyCode.D);
             }
@@ -59,6 +60,7 @@ public class InputHandler : MonoBehaviour
     private int CountInput()
     {
         int counter = 0;
+
 
         if (SideUp)
         {

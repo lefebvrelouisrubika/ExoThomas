@@ -48,11 +48,15 @@ public class PlayerController : Shape
     public float zoomAmount;
     float baseOrtho;
 
+    
 
     [Header("sounds")]
     public AudioClip hit;
     public AudioClip changeColor;
-    public AudioClip walk;
+    public AudioClip changeForm;
+    public bool isInScene = false;
+
+    //public AudioClip walk;
 
     public override void Awake()
     {
@@ -73,6 +77,9 @@ public class PlayerController : Shape
         mat.SetFloat("CrackLvl", crackLvl);
         currentShapeCD = returnShapeCooldown;
         currentColorCD = returnColorCooldown;
+
+        
+
     }
 
     private void Update()
@@ -88,6 +95,19 @@ public class PlayerController : Shape
         ColorTwitching();
         //Debug.Log(shaking);
         ReturnCracks();
+
+        if (Mathf.Abs(baseSide - side) > 0.05f)
+        {
+            //dissonance
+            Soundmanager.Instance.ChangeVolume3(0.5f);
+            Soundmanager.Instance.ChangeVolume2(0.001f);
+        }
+        if (Mathf.Abs(baseSide - side) < 0.05f)
+        {
+            //normal
+            Soundmanager.Instance.ChangeVolume2(0.5f);
+            Soundmanager.Instance.ChangeVolume3(0.001f);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -119,7 +139,7 @@ public class PlayerController : Shape
             rb.velocity = new Vector2(input.mouvHori, input.mouvVert).normalized * moveSpeed * 0.5f;
             if (isWalking == false)
             {
-                Debug.Log("son");
+                //Debug.Log("son");
                 //Soundmanager.Instance.PlayMusic(walk, 0.5f);
                 isWalking = true;
             }
@@ -172,6 +192,7 @@ public class PlayerController : Shape
                     nextSide = Mathf.Round(nextSide);
                     side = Mathf.Clamp(nextSide, MinSide, MaxSide);
                     currentShapeCD = returnShapeCooldown;
+                    Soundmanager.Instance.PlaySFX(changeForm, 1f);
                 }
                 if (input.SideDown)
                 {
@@ -179,6 +200,7 @@ public class PlayerController : Shape
                     nextSide = Mathf.Round(nextSide);
                     side = Mathf.Clamp(nextSide, MinSide, MaxSide);
                     currentShapeCD = returnShapeCooldown;
+                    Soundmanager.Instance.PlaySFX(changeForm, 1f);
                 }
             }
             else

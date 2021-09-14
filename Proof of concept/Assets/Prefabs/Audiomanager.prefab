@@ -43,3 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b916d28d251f4304e8c7e41f574b9f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lerpSpeed: 0.5
+  isInScene: 0
+  musicMenu: {fileID: 8300000, guid: bcd33da2f162ec549aaf4da346edb3d2, type: 3}
+  musicPlayNormal: {fileID: 8300000, guid: ed37ba008d813fa499af3a6e3887f4de, type: 3}
+  musicPlayWrong: {fileID: 8300000, guid: d0fccfcb7e5d6a842ac1532c926ea46e, type: 3}
